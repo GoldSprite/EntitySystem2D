@@ -18,8 +18,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             props.AddProp("Name", "佩茨");
 
             var rb = GetComponent<Rigidbody2D>();
-            if (rb == null) throw new Exception($"找不到Rigidbody2D组件");
+            if (rb == null) throw new Exception($"找不到[Rigidbody2D]组件");
             props.AddProp("Rb", rb);
+
+            var anims = GetComponent<Animator>();
+            if (anims == null) throw new Exception($"找不到[Animator]组件");
+            props.AddProp("Anims", anims);
 
             props.AddProp("MoveSpeed", moveSpeed);
         }
@@ -51,13 +55,23 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public FinateStateMachine fsm;
         [Tooltip("输入提供者")]
         public InputProvider inputs;
+        [Tooltip("动画控制器")]
+        public AnimManager animCtrls;
 
         private void Awake()
         {
             InitPropertyManager();
             if (fsm == null) fsm = new FinateStateMachine();
             InitInputProvider();
+            InitAnimatorManager();  //这里要在前面
             InitEntityBehaviours();
+        }
+
+        private void InitAnimatorManager()
+        {
+            if (animCtrls == null) animCtrls = new AnimManager();
+            var anims = props.GetProp<Animator>("Anims");
+            animCtrls.SetAnims(anims);
         }
 
         private void InitInputProvider()
@@ -74,8 +88,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         private void InitEntityBehaviours()
         {
             if (bevs == null) bevs = new EntityBehaviourConstructor(this);
-            bevs.AddBehaviour(new IdleBehaviour());
-            bevs.AddBehaviour(new MoveBehaviour(), 0);
+            bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
+            bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run" }, 0);
 
         }
 
@@ -83,6 +97,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         private void Update()
         {
             fsm.Update();
+            animCtrls.Update();
         }
     }
 

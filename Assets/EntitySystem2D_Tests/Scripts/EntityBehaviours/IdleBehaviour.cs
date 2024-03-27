@@ -15,11 +15,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         //这个enter其实可以省略(一般作为defaultState在其他状态OnExit之后都会自动变为idle)
         public override bool Enter()
         {
-            return MoveDir == Vector2.zero;
+            return MoveDir.x == 0;
         }
         public override bool Exit()
         {
-            return MoveDir != Vector2.zero;
+            return MoveDir.x != 0;
         }
 
 
@@ -39,6 +39,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             var vel = rb.velocity;
             vel.x = 0;
             rb.velocity = vel;
+
+            ent.animCtrls.PlayAnim(AnimName);
         }
     }
 

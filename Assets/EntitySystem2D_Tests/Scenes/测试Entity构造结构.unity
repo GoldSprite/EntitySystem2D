@@ -284,6 +284,11 @@ MonoBehaviour:
   inputs:
     draw: 
     debugLog: 1
+  animCtrls:
+    debugLog: 1
+    anims: {fileID: 0}
+    CAnim: 
+    LastAnim: 
   moveSpeed: 5.5
 --- !u!70 &157924618
 CapsuleCollider2D:

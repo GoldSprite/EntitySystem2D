@@ -12,11 +12,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override bool Enter()
         {
-            return MoveDir != Vector2.zero;
+            return MoveDir.x != 0;
         }
         public override bool Exit()
         {
-            return MoveDir == Vector2.zero;
+            return MoveDir.x == 0;
         }
 
 
@@ -40,9 +40,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void Run()
         {
+            ent.animCtrls.PlayAnim(AnimName);  //防止bug, 所以持续调用播放(一个出现概率极低的移动但idle动画)
+
             ent.fsm.FDebug("执行移动.");
-            var velx = MoveDir.x * MoveSpeed;
             var vel = rb.velocity;
+            var velxNormalized = MoveDir.x > 0 ? 1 : -1;
+            var velx = velxNormalized * MoveSpeed;
             vel.x = velx;
             rb.velocity = vel;
         }

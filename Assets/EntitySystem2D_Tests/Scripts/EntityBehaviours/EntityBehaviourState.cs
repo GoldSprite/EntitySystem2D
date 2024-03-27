@@ -5,6 +5,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     public abstract class EntityBehaviourState : EntityBehaviour, IState {
         public EntitySystem ent;
+        public string AnimName { get; set; } = "";
         public int Priority { get; set; }
         public bool StateSwitch { get; protected set; }
 
