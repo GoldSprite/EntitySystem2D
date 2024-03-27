@@ -20,6 +20,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         {
             defaultState = currentState = state;
             states.Add(state.GetType(), state);
+            OnEnterState(state);
         }
 
         public void AddState(IState state)
@@ -50,10 +51,10 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         protected void OnEnterState(IState targetState)
         {
             currentState.OnExit();
-            Debug.Log($"{"Fsm"}退出状态{currentState}.");
+            Debug.Log($"{"Fsm"}退出状态: {currentState}.");
             currentState = targetState;
             currentState.OnEnter();
-            Debug.Log($"{"Fsm"}进入状态{currentState}.");
+            Debug.Log($"{"Fsm"}进入状态: {currentState}.");
         }
     }
 

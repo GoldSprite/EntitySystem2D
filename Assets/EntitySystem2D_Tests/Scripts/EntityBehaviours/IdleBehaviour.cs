@@ -67,5 +67,10 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         {
             Idle, Move
         }
+
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
     }
 }
