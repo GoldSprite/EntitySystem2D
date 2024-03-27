@@ -84,6 +84,22 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             if (states.TryGetValue(typeof(T), out IState val)) return (T)(object)val;
             return default(T);
         }
+
+        /// <summary>
+        /// 返回(基于当前自身状态)是否有其他操作可转换
+        /// </summary>
+        /// <returns></returns>
+        public bool IsCanTurn()
+        {
+            foreach(var (type,state) in states) {
+                if (state == currentState || state == defaultState) continue;
+                if (state.Enter()) {
+                    Debug.Log("可转换操作触发.");
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 

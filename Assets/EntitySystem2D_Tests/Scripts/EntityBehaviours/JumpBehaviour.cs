@@ -14,6 +14,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public string[] AnimNames;
         float jumpDrag = 0.6f;  //跳跃时移动阻力
         public bool CanExit;
+        public bool Cancel => ent.fsm.IsCanTurn();
 
         public string CurrentAnimName => AnimNames[JumpPhase];  //0, 1, 2, 3, 4分别为起跳 上升 转下落 下落, 落地
 
@@ -91,7 +92,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                     break;
                 case 4:
                     if (ent.animCtrls.CAnimName != CurrentAnimName) break;
-                    if ((velX!=0 && ent.animCtrls.CAnimNormalizedTime>0.4f) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+                    if ((ent.animCtrls.CAnimNormalizedTime > 0.4f && Cancel ) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
                         CanExit = true;
                     }
                     break;
