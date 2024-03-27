@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     public class TestEntityConstructor : EntitySystem {
-        public float moveSpeed = 6.5f;
+        public float moveSpeed = 5.5f;
 
         public override void InitPropertyManager()
         {
@@ -75,8 +75,14 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         {
             if (bevs == null) bevs = new EntityBehaviourConstructor(this);
             bevs.AddBehaviour(new IdleBehaviour());
-            bevs.AddBehaviour(new MoveBehaviour());
+            bevs.AddBehaviour(new MoveBehaviour(), 0);
 
+        }
+
+
+        private void Update()
+        {
+            fsm.Update();
         }
     }
 

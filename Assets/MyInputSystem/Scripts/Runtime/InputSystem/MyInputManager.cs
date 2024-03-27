@@ -21,7 +21,8 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         private string draw;
         public bool debugLog = true;
         //实时
-        private Dictionary<Delegate, object> actionValues = new();
+        public Dictionary<InputAction, Delegate> actions = new();
+        protected Dictionary<InputAction, object> actionValues = new();
 
 
         public void Awake()
@@ -51,28 +52,51 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
             InputActions.Disable();
         }
 
-        public void RegisterActionListener<T>(InputAction keyAction, Action<T> act, bool log = false)
+
+        public void AddActionListener<T>(InputAction keyAction, Action<T> act, bool log = false)
         {
-            Action<InputAction.CallbackContext> proxy = (c) => {
-                var valObj = keyAction.ReadValueAsObject();
-                if (valObj == null)
-                    valObj = default(T);
-                T val = (T)Convert.ChangeType(valObj, typeof(T));
+            //Delegate dele = (Action)(() => {
+            //    Debug.Log("Hello");
+            //});
+            //Action useAct = () => {
+            //    dele?.DynamicInvoke();
+            //};
+            //useAct?.Invoke();
 
-                var disable = !IsInputEnable(keyAction.actionMap);
-                if (disable) return;  //输入禁用时返回
-                {   //自动存值
-                    actionValues[act] = val;
-                    //debug log
-                    if (log || debugLog) Debug.Log($"[InputSystem]: {act.Method.Name}-{keyAction.name}: {val}");
-                    //事件调用
-                    act?.Invoke(val);
-                }
+            //dele = Delegate.Combine(dele, (Action)(() => {
+            //    Debug.Log("Hello");
+            //}));
 
-            };
-            keyAction.performed += proxy;
-            keyAction.canceled += proxy;
-            actionValues.Add(act, null);
+            //useAct?.Invoke();
+
+            Action<InputAction.CallbackContext> proxy = null;
+            //首次时增加基方法, 用于首先更新值
+            if (!actions.ContainsKey(keyAction)) {
+                Action<T> actParent = (p) => { };
+                actParent += act;
+                actions.Add(keyAction, actParent);
+
+                proxy = (c) => {
+                    var valObj = keyAction.ReadValueAsObject();
+                    if (valObj == null)
+                        valObj = default(T);
+                    T val = (T)Convert.ChangeType(valObj, typeof(T));
+
+                    var disable = !IsInputEnable(keyAction.actionMap);
+                    if (disable) return;  //输入禁用时返回
+                    {   //自动存值
+                        actionValues[keyAction] = val;
+                        //debug log
+                        if (log || debugLog) Debug.Log($"[InputSystem]: {keyAction.name}: {val}");
+                        //事件调用
+                        actions[keyAction]?.DynamicInvoke(val);
+                    }
+                };
+                keyAction.performed += proxy;
+                keyAction.canceled += proxy;
+            } else {
+                actions[keyAction] = ((Action<T>)actions[keyAction]) + act;
+            }
         }
 
 
@@ -99,10 +123,10 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         }
 
 
-        public T GetValue<T>(Action<T> act)
+        public T GetValue<T>(InputAction keyAction)
         {
-            if (!actionValues.ContainsKey(act) || actionValues[act] == null) return default(T);
-            return (T)(object)actionValues[act];
+            if (actionValues.TryGetValue(keyAction, out object val)) return (T)val;
+            return default(T);
         }
 
 
@@ -126,7 +150,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                 return;
             }
 
-            var actionValues = ReflectionHelper.GetValue<MyInputManager, Dictionary<Delegate, object>>(input, "actionValues");
+            var actionValues = ReflectionHelper.GetValue<MyInputManager, Dictionary<InputAction, object>>(input, "actionValues");
             if (actionValues != null && actionValues.Count > 0) {
                 position.height = EditorGUIUtility.singleLineHeight;
                 //Debug.Log("Draw");
@@ -145,7 +169,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                 height += lineMargin;
                 position.y += lineMargin;
                 foreach (var (k, v) in actionValues) {
-                    string label1 = k.Method.Name;
+                    string label1 = k.name;
                     GUIContent labelContent = new GUIContent(label1);
                     float labelWidth = GUI.skin.label.CalcSize(labelContent).x;
                     float keyStartX = position.width * 2 / 5f;

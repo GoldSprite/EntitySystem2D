@@ -55,11 +55,11 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
 
         protected override void InitActions()
         {
-            RegisterActionListener(InputActions.TestPlay.Move, (Action<Vector2>)Move);
-            RegisterActionListener(InputActions.TestPlay.MoveBoost, (Action<bool>)MoveBoost);
-            RegisterActionListener(InputActions.TestPlay.Attack, (Action<bool>)Attack);
-            RegisterActionListener(InputActions.TestPlay.SpecialAttack, (Action<bool>)SpecialAttack);
-            RegisterActionListener(InputActions.TestPlay.Hurt, (Action<bool>)Hurt);
+            AddActionListener(InputActions.TestPlay.Move, (Action<Vector2>)Move);
+            AddActionListener(InputActions.TestPlay.MoveBoost, (Action<bool>)MoveBoost);
+            AddActionListener(InputActions.TestPlay.Attack, (Action<bool>)Attack);
+            AddActionListener(InputActions.TestPlay.SpecialAttack, (Action<bool>)SpecialAttack);
+            AddActionListener(InputActions.TestPlay.Hurt, (Action<bool>)Hurt);
         }
 
         private void MoveBoost(bool down)

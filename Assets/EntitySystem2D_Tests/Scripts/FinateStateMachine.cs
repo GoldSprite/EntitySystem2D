@@ -65,6 +65,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             currentState.OnEnter();
         }
 
+        public void Update()
+        {
+            currentState.Run();
+        }
+
         public void FDebug(string msg)
         {
             if (!debugLog) return;
