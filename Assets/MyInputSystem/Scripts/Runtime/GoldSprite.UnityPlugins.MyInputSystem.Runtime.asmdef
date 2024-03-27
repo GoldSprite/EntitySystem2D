@@ -1,11 +1,13 @@
 {
     "name": "GoldSprite.UnityPlugins.MyInputSystem.Runtime",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
+    "overrideReferences": true,
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],

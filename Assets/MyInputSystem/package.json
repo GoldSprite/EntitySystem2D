@@ -1,12 +1,11 @@
 {
-  "name": "com.goldsprite.entity_system",
-  "displayName": "EntitySystem",
-  "description": "实体生物系统!",
-  "version": "0.1.0",
-  "unity": "2018.3",
-  "license": "Apache-2.0", 
-  "dependencies": {
-    "com.unity.render-pipelines.universal": "12.1.10", 
-    "com.unity.inputsystem": "1.5.1"
+    "name": "com.goldsprite.my_input_system",
+    "displayName": "MyInputSystem",
+    "description": "自定义输入系统!",
+    "version": "1.0.0",
+    "unity": "2021.3",
+    "license": "Apache-2.0", 
+    "dependencies": {
+      "com.unity.inputsystem": "1.5.1"
+    }
   }
-}
