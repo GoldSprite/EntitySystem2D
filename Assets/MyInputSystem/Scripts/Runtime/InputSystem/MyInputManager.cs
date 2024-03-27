@@ -114,19 +114,9 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
     [CustomPropertyDrawer(typeof(ShowInputManagerAttribute))]
     public class MyInputManagerDrawer : PropertyDrawer {
         private float height;
-        private bool init;
-        private Color backColor;
-
-        public void Init()
-        {
-            if (init) return;
-
-            //EditorApplication.QueuePlayerLoopUpdate();
-        }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            Init();
             height = 0;
             var target = property.serializedObject.targetObject;
             var input = ReflectionHelper.GetField<MyInputManager>(target);
@@ -148,7 +138,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                 var i = 0;
                 var totalHeight = (actionValues.Count) * (EditorGUIUtility.singleLineHeight + lineMargin) + lineMargin;
                 Rect boxRect = new Rect(position.x, position.y, position.width, totalHeight);
-                EditorGUI.DrawRect(boxRect, backColor);
+                //EditorGUI.DrawRect(boxRect, backColor);
 
                 height += lineMargin;
                 position.y += lineMargin;

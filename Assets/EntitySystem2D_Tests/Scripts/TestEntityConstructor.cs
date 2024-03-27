@@ -8,6 +8,25 @@ using UnityEngine.InputSystem;
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     public class TestEntityConstructor : EntitySystem {
+
+        public override void InitPropertyManager()
+        {
+            //if (props == null) props = new PropertyManager();
+            base.InitPropertyManager();
+        }
+
+        #region TestAddProps
+
+        [ContextMenu("AddRb")]
+        public void AddRb()
+        {
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb == null) throw new Exception($"找不到Rigidbody2D组件");
+            if (!props.Exists("Rb")) props.AddProp("Rb", rb);
+            else props.SetProp("Rb", rb);
+        }
+
+        #endregion
     }
 
 
@@ -38,9 +57,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             inputs.Awake();
         }
 
-        private void InitPropertyManager()
+        public virtual void InitPropertyManager()
         {
             if (props == null) props = new PropertyManager();
+
+            props.AddProp("Name", "佩茨");
+
             var rb = GetComponent<Rigidbody2D>();
             if (rb == null) throw new Exception($"找不到Rigidbody2D组件");
             props.AddProp("Rb", rb);

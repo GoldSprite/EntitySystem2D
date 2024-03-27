@@ -287,9 +287,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: AA
+  props:
+    draw: 
+    foldout: 0
   fsm:
     debugLog: 0
-    draw: asdsd
+    draw: 
   inputs:
     draw: 
     debugLog: 1
