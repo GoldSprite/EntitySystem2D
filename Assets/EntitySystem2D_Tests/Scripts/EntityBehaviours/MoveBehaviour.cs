@@ -6,18 +6,34 @@ using UnityEngine;
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     public class MoveBehaviour : EntityBehaviourState {
         public Rigidbody2D rb;
+        public bool IsGround => ent.physics.IsGround;
         public float MoveSpeed => ent.props.GetProp<float>("MoveSpeed");
         public Vector2 MoveDir => ent.inputs.GetValue<Vector2>(ent.inputs.InputActions.GamePlay.Move);
         public float moveFrameCache;
+        public bool CanExit;
+        public float keepTicker, keepDuration = 0.2f;
 
 
         public override bool Enter()
         {
-            return MoveDir.x != 0 && !ent.animCtrls.CAnimTranslationing;
+            return IsGround && MoveDir.x != 0/* && !ent.animCtrls.CAnimTranslationing*/;
         }
         public override bool Exit()
         {
-            return MoveDir.x == 0 && !ent.animCtrls.CAnimTranslationing;
+            //移动键粘连计时器
+            if (MoveDir.x == 0) {
+                if (Time.realtimeSinceStartup > keepTicker) {
+                    Debug.Log("移动粘连结束.");
+                    CanExit = true;
+                }
+            } else {
+                //if (MoveDir.x != lastmoveDir) {
+                //    lastmoveDir = MoveDir.x;
+                //}
+                Debug.Log("移动粘连刷新.");
+                keepTicker = Time.realtimeSinceStartup + keepDuration;
+            }
+            return CanExit /*&& !ent.animCtrls.CAnimTranslationing*/;
         }
 
 
@@ -33,14 +49,16 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void OnEnter()
         {
-            ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f);
+            ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
         }
 
         public override void OnExit()
         {
+            CanExit = false;
             moveFrameCache = ent.animCtrls.CAnimNormalizedTime;
         }
 
+        float lastmoveDir;
         public override void Run()
         {
             //if (!ent.animCtrls.IsAnimName(AnimName)) {
@@ -49,6 +67,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             //}
 
             ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1);
+
         }
     }
 }

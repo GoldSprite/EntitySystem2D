@@ -94,7 +94,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             foreach(var (type,state) in states) {
                 if (state == currentState || state == defaultState) continue;
                 if (state.Enter()) {
-                    Debug.Log("可转换操作触发.");
+                    FDebug("可转换操作触发.");
                     return true;
                 }
             }

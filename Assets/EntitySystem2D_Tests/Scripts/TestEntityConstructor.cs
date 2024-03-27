@@ -66,7 +66,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                 var vel = rb.velocity;
                 var velxNormalized = moveDir.x == 0 ? 0 : (moveDir.x > 0 ? 1 : -1);
                 var velx = velxNormalized * moveSpeed * moveBoost;
-                vel.x = velx;
+                vel.x = Mathf.Lerp(vel.x, velx, 3/60f);
                 rb.velocity = vel;
                 //转向
                 if (moveDir.x != 0) {
@@ -89,7 +89,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             bevs.Init(this);
             //初始化行为状态列表
             bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
-            bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run" }, 0);
+            bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run" });
             bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
             //bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
         }

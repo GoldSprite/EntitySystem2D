@@ -12,7 +12,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public Rigidbody2D rb;
         public int JumpPhase { get => (int)ent.animCtrls.anims.GetFloat("JumpPhase"); set => ent.animCtrls.anims.SetFloat("JumpPhase", value); }
         public string[] AnimNames;
-        float jumpDrag = 0.6f;  //跳跃时移动阻力
+        float jumpDrag = 0.3f;  //跳跃时移动阻力
         public bool CanExit;
         public bool Cancel => ent.fsm.IsCanTurn();
 
@@ -92,7 +92,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                     break;
                 case 4:
                     if (ent.animCtrls.CAnimName != CurrentAnimName) break;
-                    if ((ent.animCtrls.CAnimNormalizedTime > 0.4f && Cancel ) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+                    if ((ent.animCtrls.CAnimNormalizedTime > 0.35f && Cancel ) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
                         CanExit = true;
                     }
                     break;
