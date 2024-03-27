@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEditor;
+using GoldSprite.UnityPlugins.GUtils;
+using GoldSprite.UnityPlugins.MyInputSystem;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     [Serializable]
     public class FinateStateMachine {
+        [ShowFsm]
+        [SerializeField]
+        public string draw;
         public Dictionary<Type, IState> states = new();
         public IState currentState;
         public IState defaultState;
@@ -50,4 +56,46 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             Debug.Log($"{"Fsm"}进入状态{currentState}.");
         }
     }
+
+
+    public class ShowFsmAttribute : PropertyAttribute { }
+
+
+#if UNITY_EDITOR
+    [CustomPropertyDrawer(typeof(ShowFsmAttribute))]
+    public class FsmDrawer : PropertyDrawer {
+        private float height;
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            if (!Application.isPlaying) return;
+            height = 0;
+            var target = property.serializedObject.targetObject;
+            var fsm = ReflectionHelper.GetField<FinateStateMachine>(target);
+            if (fsm == null) {
+                return;
+            }
+
+            var cState = fsm.currentState;
+            if(cState != null) {
+                var lineMargin = 5f;
+                position.height = EditorGUIUtility.singleLineHeight;
+                height += EditorGUIUtility.singleLineHeight + lineMargin;
+                height += lineMargin;
+                position.y += lineMargin;
+
+                var cStateStr = cState.GetType().Name;
+                EditorGUI.TextField(position, cStateStr);
+
+                //height += lineMargin;
+                EditorUtility.SetDirty(target);
+            }
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return height;
+        }
+    }
+#endif
 }
