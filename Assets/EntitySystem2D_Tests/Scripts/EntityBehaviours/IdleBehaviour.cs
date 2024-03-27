@@ -38,7 +38,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             this.rb = props.GetProp<Rigidbody2D>("Rb");
             if(fsm.currentState==null) fsm.InitState(this);
             fsm.AddState(this);
-            inputs.RegisterActionListener(inputs.GetInputActions().GamePlay.Move, (Action<Vector2>)MoveKey);
+            inputs.RegisterActionListener(inputs.InputActions.GamePlay.Move, (Action<Vector2>)MoveKey);
         }
 
 

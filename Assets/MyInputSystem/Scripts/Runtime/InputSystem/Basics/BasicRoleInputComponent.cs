@@ -14,10 +14,16 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         {
             inputs = new BasicRoleInputs() {
                 role = transform,
-                rb = GetComponent<Rigidbody2D>(),
+                rb = GetComponent<Rigidbody2D>(), 
                 anim = GetComponent<Animator>()
             };
+            inputs.Awake();
 
+        }
+
+        private void OnDisable()
+        {
+            inputs.OnDisable();
         }
     }
 

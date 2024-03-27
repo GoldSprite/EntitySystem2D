@@ -122,7 +122,6 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     [Serializable]
     public class InputProvider : MyInputManager {
-        public InputActions GetInputActions() { return MyInputManager.InputActions; }
 
         protected override Dictionary<InputActionMap, bool> SetInputActionMaps()
         {
