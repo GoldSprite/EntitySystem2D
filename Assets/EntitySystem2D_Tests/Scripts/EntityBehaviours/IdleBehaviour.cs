@@ -43,7 +43,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             vel.x = 0;
             rb.velocity = vel;
 
-            ent.animCtrls.anims.CrossFade(AnimName, 0.3f);
+            ent.animCtrls.anims.CrossFade(AnimName, 0.12f);
         }
 
         public override void OnExit()

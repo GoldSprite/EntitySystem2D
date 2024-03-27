@@ -92,7 +92,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                     break;
                 case 4:
                     if (ent.animCtrls.CAnimName != CurrentAnimName) break;
-                    if ((ent.animCtrls.CAnimNormalizedTime > 0.35f && Cancel ) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+                    if ((ent.animCtrls.CAnimNormalizedTime > 0.24f && Cancel ) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
                         CanExit = true;
                     }
                     break;
