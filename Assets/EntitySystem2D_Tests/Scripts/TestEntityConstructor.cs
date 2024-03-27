@@ -28,6 +28,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     public class EntitySystem : MonoBehaviour {
         public float moveSpeed = 5.5f;
         public float jumpForce = 6f;
+        public float attackPower = 5f;
         [Header("Constructor")]
         [Tooltip("实体构造器")]
         public EntityBehaviourConstructor bevs;
@@ -56,6 +57,21 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             props.AddProp("Anims", anims);
             props.AddProp("MoveSpeed", moveSpeed);
             props.AddProp("JumpForce", jumpForce);
+            props.AddProp("AttackPower", attackPower);
+            props.AddProp("MoveAction", (Action<Vector2, float>)((dir, moveBoost) => {
+                float moveSpeed = props.GetProp<float>("MoveSpeed");
+                Vector2 moveDir = inputs.GetValue<Vector2>(inputs.InputActions.GamePlay.Move);
+                fsm.FDebug("执行移动.");
+                var vel = rb.velocity;
+                var velxNormalized = moveDir.x == 0 ? 0 : moveDir.x > 0 ? 1 : -1;
+                var velx = velxNormalized * moveSpeed * moveBoost;
+                vel.x = velx;
+                rb.velocity = vel;
+                //转向
+                var face = rb.transform.localScale;
+                face.x = moveDir.x > 0 ? 1 : -1;
+                rb.transform.localScale = face;
+            }));
 
             //初始化输入器
             inputs.Awake();
@@ -71,7 +87,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             //初始化行为状态列表
             bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
             bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run" }, 0);
-            bevs.AddBehaviour(new JumpBehaviour() { AnimName="JumpBlend", AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall" } });
+            bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
+            //bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
         }
 
 

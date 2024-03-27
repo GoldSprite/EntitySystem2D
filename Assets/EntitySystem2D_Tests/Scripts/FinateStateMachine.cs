@@ -78,6 +78,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             if (!debugLog) return;
             Debug.Log(msg);
         }
+
+        public T GetState<T>()
+        {
+            if (states.TryGetValue(typeof(T), out IState val)) return (T)(object)val;
+            return default(T);
+        }
     }
 
 

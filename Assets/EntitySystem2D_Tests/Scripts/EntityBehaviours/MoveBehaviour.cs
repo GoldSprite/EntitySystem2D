@@ -32,16 +32,26 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void OnEnter()
         {
-            //转向
-            var face = rb.transform.localScale;
-            face.x = MoveDir.x > 0 ? 1 : -1;
-            rb.transform.localScale = face;
         }
 
         public override void Run()
         {
             ent.animCtrls.PlayAnim(AnimName);  //防止bug, 所以持续调用播放(一个出现概率极低的移动但idle动画)
 
+            Move();
+
+            TurnFace();
+        }
+
+        public void TurnFace()
+        {   //转向
+            var face = rb.transform.localScale;
+            face.x = MoveDir.x > 0 ? 1 : -1;
+            rb.transform.localScale = face;
+        }
+
+        public void Move()
+        {
             ent.fsm.FDebug("执行移动.");
             var vel = rb.velocity;
             var velxNormalized = MoveDir.x > 0 ? 1 : -1;
