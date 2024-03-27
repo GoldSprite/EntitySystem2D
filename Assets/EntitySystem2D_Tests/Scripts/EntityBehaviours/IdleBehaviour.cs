@@ -9,22 +9,21 @@ using UnityEngine;
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     public class IdleBehaviour : EntityBehaviour, IState {
         public string Name => "IdleState";
-        private FinateStateMachine fsm;
-        private InputProvider inputs;
+        public EntityBehaviourConstructor ent;
         public int Priority { get; private set; }
-        private Rigidbody2D rb;
         public bool StateSwitch { get; private set; }
+        public Rigidbody2D rb;
 
 
         //这个enter其实可以省略(一般作为defaultState在其他状态OnExit之后都会自动变为idle)
         public bool Enter()
         {
-            var moveDir = inputs.GetValue<Vector2>(MoveKey);
+            var moveDir = ent.inputs.GetValue<Vector2>(MoveKey);
             return moveDir == Vector2.zero;
         }
         public bool Exit()
         {
-            var moveDir = inputs.GetValue<Vector2>(MoveKey);
+            var moveDir = ent.inputs.GetValue<Vector2>(MoveKey);
             return moveDir != Vector2.zero;
         }
         public void OnEnter() { }
@@ -32,13 +31,16 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public void Run() { }
 
 
-        public override void Init(PropertyManager props, FinateStateMachine fsm, InputProvider inputs, int priority)
+        public override void Init(EntityBehaviourConstructor ent, int priority)
         {
-            this.Priority = priority;
-            this.rb = props.GetProp<Rigidbody2D>("Rb");
-            if(fsm.currentState==null) fsm.InitState(this);
-            fsm.AddState(this);
-            inputs.RegisterActionListener(inputs.InputActions.GamePlay.Move, (Action<Vector2>)MoveKey);
+            this.ent = ent;
+            rb = ent.props.GetProp<Rigidbody2D>("Rb");
+
+            Priority = priority;
+            if(ent.fsm.currentState==null) ent.fsm.InitState(this);
+            else ent.fsm.AddState(this);
+
+            ent.inputs.RegisterActionListener(ent.inputs.InputActions.GamePlay.Move, (Action<Vector2>)MoveKey);
         }
 
 
@@ -47,7 +49,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         {
             //key up
             if(vector == Vector2.zero) {
-                fsm.UpdateNextState();
+                ent.fsm.UpdateNextState();
             }
         }
 
@@ -59,7 +61,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
 
     public abstract class EntityBehaviour {
-        public abstract void Init(PropertyManager props, FinateStateMachine fsm, InputProvider inputs, int priority);
+        public abstract void Init(EntityBehaviourConstructor ent, int priority);
 
         public enum Type
         {

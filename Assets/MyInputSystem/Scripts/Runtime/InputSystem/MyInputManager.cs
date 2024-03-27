@@ -155,10 +155,10 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                     string label1 = k.Method.Name;
                     GUIContent labelContent = new GUIContent(label1);
                     float labelWidth = GUI.skin.label.CalcSize(labelContent).x;
-                    float keyStartX = 300f;
+                    float keyStartX = position.width * 2/5f;
                     float keyWidth = position.width - keyStartX;
                     {
-                        var keyRect = new Rect(position.x, position.y, labelWidth, position.height);
+                        var keyRect = new Rect(position.x, position.y, position.width, position.height);
                         var valRect = new Rect(position.x + keyStartX, position.y, keyWidth - lineMargin, position.height);
                         EditorGUI.LabelField(keyRect, label1);
                         //height += EditorGUIUtility.singleLineHeight;
