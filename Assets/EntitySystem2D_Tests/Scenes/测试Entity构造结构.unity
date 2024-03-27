@@ -297,6 +297,7 @@ MonoBehaviour:
     CAnimNormalizedTime: 0
     CAnimClipLooping: 0
     CAnimStateLoop: 0
+    CAnimTranslationing: 0
   physics:
     OnTriggerEnter2D:
       m_PersistentCalls:
@@ -404,7 +405,7 @@ SpriteRenderer:
   m_SortingLayerID: -566021745
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 143285946, guid: a4534f4824bf5f24e8210e54d8a3bf97, type: 3}
+  m_Sprite: {fileID: -1815053464, guid: a4534f4824bf5f24e8210e54d8a3bf97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0

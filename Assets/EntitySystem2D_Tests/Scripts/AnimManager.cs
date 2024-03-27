@@ -17,6 +17,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public float CAnimNormalizedTime;
         public bool CAnimClipLooping;
         public bool CAnimStateLoop;
+        public bool CAnimTranslationing;
 
         public void SetAnims(Animator anims) => this.anims = anims;
 
@@ -44,6 +45,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                 CAnimNormalizedTime = CAnimState.normalizedTime;
                 CAnimClipLooping = CAnimClip.isLooping;
                 CAnimStateLoop = CAnimState.loop;
+                CAnimTranslationing = anims.IsInTransition(0);
 
                 if (LastAnimName != CAnimName) {
                     //if (IsCurrentAnimEnd(CAnimName)) {

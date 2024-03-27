@@ -61,16 +61,19 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             props.AddProp("MoveAction", (Action<Vector2, float>)((dir, moveBoost) => {
                 float moveSpeed = props.GetProp<float>("MoveSpeed");
                 Vector2 moveDir = inputs.GetValue<Vector2>(inputs.InputActions.GamePlay.Move);
-                fsm.FDebug("执行移动.");
+
+                //fsm.FDebug("执行移动.");
                 var vel = rb.velocity;
-                var velxNormalized = moveDir.x == 0 ? 0 : moveDir.x > 0 ? 1 : -1;
+                var velxNormalized = moveDir.x == 0 ? 0 : (moveDir.x > 0 ? 1 : -1);
                 var velx = velxNormalized * moveSpeed * moveBoost;
                 vel.x = velx;
                 rb.velocity = vel;
                 //转向
-                var face = rb.transform.localScale;
-                face.x = moveDir.x > 0 ? 1 : -1;
-                rb.transform.localScale = face;
+                if (moveDir.x != 0) {
+                    var face = rb.transform.localScale;
+                    face.x = velxNormalized;
+                    rb.transform.localScale = face;
+                }
             }));
 
             //初始化输入器
