@@ -16,21 +16,25 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public Dictionary<Type, IState> states = new();
         public IState currentState;
         public IState defaultState;
+        private int LastPriority;
 
         public void InitState(IState state)
         {
             defaultState = currentState = state;
-            states.Add(state.GetType(), state);
+            AddState(state, 0);
             OnEnterState(state);
         }
 
-        public void AddState(IState state)
+        public void AddState(IState state, int priotity)
         {
             states.Add(state.GetType(), state);
+            LastPriority += priotity;
+            state.Priority = priotity;
         }
 
         public void UpdateNextState()
         {
+            FDebug("尝试转换状态...");
             var target = currentState;
             //遍历条件, 进入优先级最高的那个状态
             foreach (var (type, state) in states) {
@@ -39,7 +43,10 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             }
             if (target.Exit()) target = defaultState;  //计算完优先级后再判断返回到默认状态
             var change = currentState != target;
-            if (change) OnEnterState(target);
+            if (change) {
+                OnEnterState(target);
+                FDebug("转换成功到: " + target);
+            }
         }
 
         protected bool EnterState(IState state) { return EnterState(state, currentState); }
@@ -54,8 +61,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             currentState.OnExit();
             FDebug($"{"Fsm"}退出状态: {currentState}.");
             currentState = targetState;
-            currentState.OnEnter();
             FDebug($"{"Fsm"}进入状态: {currentState}.");
+            currentState.OnEnter();
         }
 
         public void FDebug(string msg)
@@ -85,7 +92,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             }
 
             var cState = fsm.currentState;
-            if(cState != null) {
+            if (cState != null) {
                 var lineMargin = 5f;
                 position.height = EditorGUIUtility.singleLineHeight;
                 height += EditorGUIUtility.singleLineHeight + lineMargin;

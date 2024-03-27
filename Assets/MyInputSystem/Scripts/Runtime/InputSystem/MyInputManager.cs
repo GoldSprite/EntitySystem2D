@@ -57,16 +57,18 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                 var valObj = keyAction.ReadValueAsObject();
                 if (valObj == null)
                     valObj = default(T);
-                T t = (T)Convert.ChangeType(valObj, typeof(T));
+                T val = (T)Convert.ChangeType(valObj, typeof(T));
 
                 var disable = !IsInputEnable(keyAction.actionMap);
                 if (disable) return;  //输入禁用时返回
-                actionValues[act] = t;  //自动存值
-                act?.Invoke(t);
+                {   //自动存值
+                    actionValues[act] = val;
+                    //debug log
+                    if (log || debugLog) Debug.Log($"[InputSystem]: {act.Method.Name}-{keyAction.name}: {val}");
+                    //事件调用
+                    act?.Invoke(val);
+                }
 
-                //debug log
-                if (!log && !debugLog) return;
-                Debug.Log($"[InputSystem]: {keyAction.name}: {t}");
             };
             keyAction.performed += proxy;
             keyAction.canceled += proxy;
@@ -146,7 +148,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                     string label1 = k.Method.Name;
                     GUIContent labelContent = new GUIContent(label1);
                     float labelWidth = GUI.skin.label.CalcSize(labelContent).x;
-                    float keyStartX = position.width * 2/5f;
+                    float keyStartX = position.width * 2 / 5f;
                     float keyWidth = position.width - keyStartX;
                     {
                         var keyRect = new Rect(position.x, position.y, position.width, position.height);

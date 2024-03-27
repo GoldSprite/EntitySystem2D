@@ -92,6 +92,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                             {
                                 fixValue = EditorGUI.TextField(position, k, str);
                             }
+                        } else
+                        if (v is float fl) {
+                            {
+                                fixValue = EditorGUI.FloatField(position, k, fl);
+                            }
                         }
                         NextLine(ref position);
                     }

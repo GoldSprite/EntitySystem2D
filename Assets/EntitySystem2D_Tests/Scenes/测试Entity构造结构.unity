@@ -291,11 +291,12 @@ MonoBehaviour:
     draw: 
     foldout: 0
   fsm:
-    debugLog: 0
+    debugLog: 1
     draw: 
   inputs:
     draw: 
     debugLog: 1
+  moveSpeed: 6.5
 --- !u!50 &814883690
 Rigidbody2D:
   serializedVersion: 4

@@ -7,70 +7,50 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
-    public class IdleBehaviour : EntityBehaviour, IState {
-        public string Name => "IdleState";
-        public EntityBehaviourConstructor ent;
-        public int Priority { get; private set; }
-        public bool StateSwitch { get; private set; }
+    public class IdleBehaviour : EntityBehaviourState {
         public Rigidbody2D rb;
+        public Vector2 MoveDir;
 
 
         //这个enter其实可以省略(一般作为defaultState在其他状态OnExit之后都会自动变为idle)
-        public bool Enter()
+        public override bool Enter()
         {
-            var moveDir = ent.inputs.GetValue<Vector2>(MoveKey);
-            return moveDir == Vector2.zero;
+            return MoveDir == Vector2.zero;
         }
-        public bool Exit()
+        public override bool Exit()
         {
-            var moveDir = ent.inputs.GetValue<Vector2>(MoveKey);
-            return moveDir != Vector2.zero;
+            return MoveDir != Vector2.zero;
         }
-        public void OnEnter() { }
-        public void OnExit() { }
-        public void Run() { }
 
 
-        public override void Init(EntityBehaviourConstructor ent, int priority)
+        public override void InitState()
         {
-            this.ent = ent;
             rb = ent.props.GetProp<Rigidbody2D>("Rb");
-
-            Priority = priority;
-            if(ent.fsm.currentState==null) ent.fsm.InitState(this);
-            else ent.fsm.AddState(this);
-
-            ent.inputs.RegisterActionListener(ent.inputs.InputActions.GamePlay.Move, (Action<Vector2>)MoveKey);
+            ent.inputs.RegisterActionListener(ent.inputs.InputActions.GamePlay.Move, (Action<Vector2>)IdleKey);
         }
 
-
-
-        public void MoveKey(Vector2 vector)
+        public void IdleKey(Vector2 dir)
         {
+            MoveDir = dir;
             //key up
-            if(vector == Vector2.zero) {
+            if(dir.x == 0) {
                 ent.fsm.UpdateNextState();
             }
         }
 
         public void Idle()
         {
-            rb.velocity = Vector2.zero;
+            ent.fsm.FDebug("执行停下.");
+            var vel = rb.velocity;
+            vel.x = 0;
+            rb.velocity = vel;
+        }
+
+        public override void OnEnter()
+        {
+            Idle();
         }
     }
 
 
-    public abstract class EntityBehaviour {
-        public abstract void Init(EntityBehaviourConstructor ent, int priority);
-
-        public enum Type
-        {
-            Idle, Move
-        }
-
-        public override string ToString()
-        {
-            return GetType().Name;
-        }
-    }
 }

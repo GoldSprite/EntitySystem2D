@@ -4,23 +4,14 @@ using UnityEngine;
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     public class EntityBehaviourConstructor {
         public EntitySystem ent;
-        public PropertyManager props;
-        public FinateStateMachine fsm;
-        public InputProvider inputs;
 
 
-        public EntityBehaviourConstructor(EntitySystem ent)
-        {
-            this.ent = ent;
-            props = ent.props;
-            fsm = ent.fsm;
-            inputs = ent.inputs;
-        }
+        public EntityBehaviourConstructor(EntitySystem ent) => this.ent = ent;
 
         public void AddBehaviour(EntityBehaviour bev, int priority = 1)
         {
-            if (ent.fsm.currentState == null) priority = 0;
-            bev.Init(this, priority);
+            //if (ent.fsm.currentState == null) priority = 0;
+            bev.Init(ent, priority);
         }
     }
 

@@ -2,8 +2,7 @@
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     public interface IState {
-        string Name { get; }
-        public int Priority { get; }
+        public int Priority { get; set; }
         bool Enter();
         bool Exit();
         void OnEnter();
