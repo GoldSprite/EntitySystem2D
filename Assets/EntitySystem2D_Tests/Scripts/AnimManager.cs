@@ -7,12 +7,16 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public bool debugLog;
         //引用
         public Animator anims;
-        public string CAnim = "", LastAnim = "";
         [Header("动画事件")]
         public Action<string, string> AnimTranAction;  //last, next
-
-        //public Action<string> AnimEndAction;
-
+        public Action<string> CurrentAnimEndAction;
+        [Header("实时")]
+        public string CAnimName = "", LastAnimName = "";
+        public AnimationClip CAnimClip => anims.GetCurrentAnimatorClipInfo(0)[0].clip;
+        public AnimatorStateInfo CAnimState => anims.GetCurrentAnimatorStateInfo(0);
+        public float CAnimNormalizedTime;
+        public bool CAnimClipLooping;
+        public bool CAnimStateLoop;
 
         public void SetAnims(Animator anims) => this.anims = anims;
 
@@ -27,15 +31,29 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             return anims.GetCurrentAnimatorStateInfo(0).IsName(animName);
         }
 
+        public bool IsCurrentAnimEnd(string animName)
+        {
+            return CAnimName == animName/* && !CAnimClipLooping*/ && CAnimState.normalizedTime >= 1f;
+        }
+
 
         public void Update()
         {
             try {
-                CAnim = anims.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-                if (LastAnim != CAnim) {
-                    ADebug($"动画转换事件{LastAnim} -> {CAnim}");
-                    AnimTranAction?.Invoke(LastAnim, CAnim);
-                    LastAnim = CAnim;
+                CAnimName = CAnimClip.name;
+                CAnimNormalizedTime = CAnimState.normalizedTime;
+                CAnimClipLooping = CAnimClip.isLooping;
+                CAnimStateLoop = CAnimState.loop;
+
+                if (LastAnimName != CAnimName) {
+                    //if (IsCurrentAnimEnd(CAnimName)) {
+                    ADebug($"动画播放结束事件: {LastAnimName}");
+                    CurrentAnimEndAction?.Invoke(LastAnimName);
+                    //}
+
+                    ADebug($"动画转换事件{LastAnimName} -> {CAnimName}");
+                    AnimTranAction?.Invoke(LastAnimName, CAnimName);
+                    LastAnimName = CAnimName;
                 }
             }
             catch (Exception) { }

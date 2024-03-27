@@ -8,25 +8,7 @@ using UnityEngine.InputSystem;
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     public class TestEntityConstructor : EntitySystem {
-        public float moveSpeed = 5.5f;
 
-        public override void InitPropertyManager()
-        {
-            //if (props == null) props = new PropertyManager();
-            base.InitPropertyManager();
-
-            props.AddProp("Name", "佩茨");
-
-            var rb = GetComponent<Rigidbody2D>();
-            if (rb == null) throw new Exception($"找不到[Rigidbody2D]组件");
-            props.AddProp("Rb", rb);
-
-            var anims = GetComponent<Animator>();
-            if (anims == null) throw new Exception($"找不到[Animator]组件");
-            props.AddProp("Anims", anims);
-
-            props.AddProp("MoveSpeed", moveSpeed);
-        }
 
         #region TestAddProps
 
@@ -44,7 +26,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
 
     public class EntitySystem : MonoBehaviour {
-        public string Name = "AA";
+        public float moveSpeed = 5.5f;
+        public float jumpForce = 6f;
         [Header("Constructor")]
         [Tooltip("实体构造器")]
         public EntityBehaviourConstructor bevs;
@@ -57,40 +40,38 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public InputProvider inputs;
         [Tooltip("动画控制器")]
         public AnimManager animCtrls;
+        [Tooltip("物理管理器")]
+        public PhysicsManager physics;
+
 
         private void Awake()
         {
-            InitPropertyManager();
-            if (fsm == null) fsm = new FinateStateMachine();
-            InitInputProvider();
-            InitAnimatorManager();  //这里要在前面
-            InitEntityBehaviours();
-        }
+            //初始化属性器
+            props.AddProp("Name", "佩茨");
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb == null) throw new Exception($"找不到[Rigidbody2D]组件");
+            props.AddProp("Rb", rb);
+            var anims = GetComponent<Animator>();
+            if (anims == null) throw new Exception($"找不到[Animator]组件");
+            props.AddProp("Anims", anims);
+            props.AddProp("MoveSpeed", moveSpeed);
+            props.AddProp("JumpForce", jumpForce);
 
-        private void InitAnimatorManager()
-        {
-            if (animCtrls == null) animCtrls = new AnimManager();
-            var anims = props.GetProp<Animator>("Anims");
-            animCtrls.SetAnims(anims);
-        }
-
-        private void InitInputProvider()
-        {
-            if (inputs == null) inputs = new InputProvider();
+            //初始化输入器
             inputs.Awake();
-        }
 
-        public virtual void InitPropertyManager()
-        {
-            if (props == null) props = new PropertyManager();
-        }
+            //初始化动画器
+            var anims2 = props.GetProp<Animator>("Anims");
+            animCtrls.SetAnims(anims2);
 
-        private void InitEntityBehaviours()
-        {
-            if (bevs == null) bevs = new EntityBehaviourConstructor(this);
+            //初始化物理器
+            physics.Init();
+
+            bevs.Init(this);
+            //初始化行为状态列表
             bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
             bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run" }, 0);
-
+            bevs.AddBehaviour(new JumpBehaviour() { AnimName="JumpBlend", AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall" } });
         }
 
 
@@ -99,6 +80,10 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             fsm.Update();
             animCtrls.Update();
         }
+
+
+        private void OnTriggerEnter2D(Collider2D collision) => physics.OnTriggerEnter2D?.Invoke(collision);
+        private void OnTriggerExit2D(Collider2D collision) => physics.OnTriggerExit2D?.Invoke(collision);
     }
 
 

@@ -2,11 +2,12 @@
 using UnityEngine;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+    [Serializable]
     public class EntityBehaviourConstructor {
         public EntitySystem ent;
 
 
-        public EntityBehaviourConstructor(EntitySystem ent) => this.ent = ent;
+        public void Init(EntitySystem ent) => this.ent = ent;
 
         public void AddBehaviour(EntityBehaviour bev, int priority = 1)
         {

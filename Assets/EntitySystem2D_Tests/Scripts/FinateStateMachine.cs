@@ -68,6 +68,9 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public void Update()
         {
             currentState.Run();
+
+            if (currentState.Exit())
+                UpdateNextState();
         }
 
         public void FDebug(string msg)
