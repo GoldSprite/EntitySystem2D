@@ -9,10 +9,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GoldSprite.UnityPlugins.MyInputSystem {
-    public abstract partial class MyInputManager : MonoBehaviour {
+    public abstract partial class MyInputManager {
         //“˝”√
-        protected static InputActions InputActions { get; set; }
-        public static MyInputManager Instance { get; private set; }
+        public InputActions InputActions { get; private set; }
         private Dictionary<InputActionMap, bool> InputEnables;
 
         //≈‰÷√
@@ -24,11 +23,8 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         private Dictionary<Delegate, object> actionValues = new();
 
 
-        private void Awake()
+        public MyInputManager()
         {
-            if (Instance != null) return;
-            Instance = this;
-
             InitManager();
 
             InitActions();
@@ -49,7 +45,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         }
 
 
-        private void OnDisable()
+        public void OnDisable()
         {
             InputActions.Disable();
         }

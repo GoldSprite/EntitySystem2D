@@ -1,15 +1,33 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GoldSprite.UnityPlugins.MyInputSystem {
+
+    public class BasicRoleInputComponent : MonoBehaviour {
+        public BasicRoleInputs inputs;
+
+        private void Awake()
+        {
+            inputs = new BasicRoleInputs() {
+                role = transform,
+                rb = GetComponent<Rigidbody2D>(),
+                anim = GetComponent<Animator>()
+            };
+
+        }
+    }
+
+
+    [Serializable]
     public class BasicRoleInputs : MyInputManager {
         //引用
-        private Transform role;
-        private Rigidbody2D rb;
-        private Animator anim;
+        public Transform role;
+        public Rigidbody2D rb;
+        public Animator anim;
 
         //配置
         public float moveSpeed = 6.5f;
@@ -31,15 +49,11 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
 
         protected override void InitActions()
         {
-            role = transform;
-            rb = GetComponent<Rigidbody2D>();
-            anim = GetComponent<Animator>();
-
-            Instance.RegisterActionListener(InputActions.TestPlay.Move, (Action<Vector2>)Move);
-            Instance.RegisterActionListener(InputActions.TestPlay.MoveBoost, (Action<bool>)MoveBoost);
-            Instance.RegisterActionListener(InputActions.TestPlay.Attack, (Action<bool>)Attack);
-            Instance.RegisterActionListener(InputActions.TestPlay.SpecialAttack, (Action<bool>)SpecialAttack);
-            Instance.RegisterActionListener(InputActions.TestPlay.Hurt, (Action<bool>)Hurt);
+            RegisterActionListener(InputActions.TestPlay.Move, (Action<Vector2>)Move);
+            RegisterActionListener(InputActions.TestPlay.MoveBoost, (Action<bool>)MoveBoost);
+            RegisterActionListener(InputActions.TestPlay.Attack, (Action<bool>)Attack);
+            RegisterActionListener(InputActions.TestPlay.SpecialAttack, (Action<bool>)SpecialAttack);
+            RegisterActionListener(InputActions.TestPlay.Hurt, (Action<bool>)Hurt);
         }
 
         private void MoveBoost(bool down)

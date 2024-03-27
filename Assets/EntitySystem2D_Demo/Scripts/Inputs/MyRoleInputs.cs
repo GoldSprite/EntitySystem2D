@@ -19,11 +19,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
         protected override void InitActions()
         {
-            Instance.RegisterActionListener(InputActions.GamePlay.Move, (Action<Vector2>)Move);
-            Instance.RegisterActionListener(InputActions.GamePlay.MoveBoost, (Action<bool>)MoveBoost);
-            Instance.RegisterActionListener(InputActions.GamePlay.Attack, (Action<bool>)Attack);
-            Instance.RegisterActionListener(InputActions.GamePlay.Jump, (Action<bool>)Jump);
-            //Instance.RegisterActionListener(InputActions.GamePlay.SpecialAttack, (Action<bool>)SpecialAttack);
+            RegisterActionListener(InputActions.GamePlay.Move, (Action<Vector2>)Move);
+            RegisterActionListener(InputActions.GamePlay.MoveBoost, (Action<bool>)MoveBoost);
+            RegisterActionListener(InputActions.GamePlay.Attack, (Action<bool>)Attack);
+            RegisterActionListener(InputActions.GamePlay.Jump, (Action<bool>)Jump);
+            //RegisterActionListener(InputActions.GamePlay.SpecialAttack, (Action<bool>)SpecialAttack);
         }
 
         private void Jump(bool obj)
