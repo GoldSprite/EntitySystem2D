@@ -27,20 +27,20 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         private void Awake()
         {
             InitPropertyManager();
-            fsm = new FinateStateMachine();
+            if (fsm == null) fsm = new FinateStateMachine();
             InitInputProvider();
             InitEntityBehaviours();
         }
 
         private void InitInputProvider()
         {
-            inputs = new InputProvider();
+            if (inputs == null) inputs = new InputProvider();
             inputs.Awake();
         }
 
         private void InitPropertyManager()
         {
-            props = new PropertyManager();
+            if (props == null) props = new PropertyManager();
             var rb = GetComponent<Rigidbody2D>();
             if (rb == null) throw new Exception($"找不到Rigidbody2D组件");
             props.AddProp("Rb", rb);
@@ -48,7 +48,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         private void InitEntityBehaviours()
         {
-            bevs = new EntityBehaviourConstructor(this);
+            if (bevs == null) bevs = new EntityBehaviourConstructor(this);
 
             bevs.AddBehaviour(new IdleBehaviour());
             //bevs.AddBehaviour(new MoveBehaviour());

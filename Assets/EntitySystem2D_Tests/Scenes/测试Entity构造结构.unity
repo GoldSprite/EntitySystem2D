@@ -287,6 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: AA
+  fsm:
+    debugLog: 0
+    draw: asdsd
   inputs:
     draw: 
     debugLog: 1

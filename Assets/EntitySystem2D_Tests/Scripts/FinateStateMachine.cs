@@ -9,6 +9,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
     [Serializable]
     public class FinateStateMachine {
+        public bool debugLog;
         [ShowFsm]
         [SerializeField]
         public string draw;
@@ -51,10 +52,16 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         protected void OnEnterState(IState targetState)
         {
             currentState.OnExit();
-            Debug.Log($"{"Fsm"}退出状态: {currentState}.");
+            FDebug($"{"Fsm"}退出状态: {currentState}.");
             currentState = targetState;
             currentState.OnEnter();
-            Debug.Log($"{"Fsm"}进入状态: {currentState}.");
+            FDebug($"{"Fsm"}进入状态: {currentState}.");
+        }
+
+        public void FDebug(string msg)
+        {
+            if (!debugLog) return;
+            Debug.Log(msg);
         }
     }
 
