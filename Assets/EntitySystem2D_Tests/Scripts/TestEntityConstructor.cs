@@ -66,7 +66,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                 var vel = rb.velocity;
                 var velxNormalized = moveDir.x == 0 ? 0 : (moveDir.x > 0 ? 1 : -1);
                 var velx = velxNormalized * moveSpeed * moveBoost;
-                vel.x = Mathf.Lerp(vel.x, velx, 3 / 60f);
+                vel.x = Mathf.Lerp(vel.x, velx, 3/60f);
                 rb.velocity = vel;
 
                 props.GetProp<Action<int>>("TurnAction")?.Invoke(velxNormalized);

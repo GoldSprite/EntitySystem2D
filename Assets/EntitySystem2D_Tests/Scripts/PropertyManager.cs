@@ -4,6 +4,7 @@ using GoldSprite.UnityPlugins.GUtils;
 using GoldSprite.UnityPlugins.MyInputSystem;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     [Serializable]
@@ -79,32 +80,35 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                     {
                         if (v is Transform trans) {
                             fixValue = (Transform)EditorGUI.ObjectField(position, k, trans, typeof(Transform), true);
+                            NextLine(ref position);
                         } else
                         if (v is Rigidbody2D rb) {
                             fixValue = (Rigidbody2D)EditorGUI.ObjectField(position, k, rb, typeof(Rigidbody2D), true);
+                            NextLine(ref position);
                         } else
                         if (v is Vector3 vec3) {
-                            {
-                                fixValue = EditorGUI.Vector3Field(position, k, vec3);
-                            }
+                            fixValue = EditorGUI.Vector3Field(position, k, vec3);
+                            NextLine(ref position);
                         } else
                         if (v is string str) {
-                            {
-                                fixValue = EditorGUI.TextField(position, k, str);
-                            }
+                            fixValue = EditorGUI.TextField(position, k, str);
+                            NextLine(ref position);
                         } else
                         if (v is float fl) {
-                            {
-                                fixValue = EditorGUI.FloatField(position, k, fl);
-                            }
+                            fixValue = EditorGUI.FloatField(position, k, fl);
+                            NextLine(ref position);
+                        }else
+                        if (v is int inte) {
+                            fixValue = EditorGUI.IntField(position, k, inte);
+                            NextLine(ref position);
                         }
-                        NextLine(ref position);
                     }
                     //EditorGUI.indentLevel--;
                     if (EditorGUI.EndChangeCheck()) {
                         updateList.Add(new KeyValuePair<string, object>(k, fixValue));
                     }
                 }
+                NextLine(ref position);
 
                 if (updateList.Count > 0) {
                     foreach (var pair in updateList) pairs[pair.Key] = pair.Value;

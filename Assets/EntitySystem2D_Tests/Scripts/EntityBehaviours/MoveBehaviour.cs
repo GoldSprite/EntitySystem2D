@@ -45,7 +45,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void OnEnter()
         {
-            ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
+            ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.8f /*moveFrameCache*/);
         }
 
         public override void OnExit()
@@ -70,7 +70,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                 if (ent.animCtrls.IsCurrentAnimEnd(TurnAnimName)) {
                     ent.props.GetProp<Action<int>>("TurnAction")?.Invoke(turn);
                     //ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
-                    ent.animCtrls.anims.Play(AnimName, 0, 0.913f /*moveFrameCache*/);
+                    ent.animCtrls.anims.Play(AnimName, 0, 0 /*moveFrameCache*/);
                     turn = 0;
                 }
             } else {

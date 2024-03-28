@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: "Assets/NoobAdventure/Scenes/2\u6446\u5730\u56FE_2.unity"
-    guid: 5529d04b05336db48a704c36662a1927
+    path: "Assets/EntitySystem2D_Tests/Scenes/\u6D4B\u8BD5Entity\u6784\u9020\u7ED3\u6784.unity"
+    guid: 6149d86173eb0f64d8294406c0497bf8
   m_configObjects: {}
