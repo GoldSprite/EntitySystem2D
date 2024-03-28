@@ -10,6 +10,7 @@ using GoldSprite.UnityPlugins.GUtils;
 using System.Runtime.Serialization;
 using UnityEditor.Build.Content;
 using Assets.SerializationData_Demo.Tests;
+using System.Collections.Generic;
 
 namespace GoldSprite.UnityPlugins.SerializationData {
     [ExecuteAlways]
@@ -18,6 +19,8 @@ namespace GoldSprite.UnityPlugins.SerializationData {
         public MyObject2 MyObj2;
         public MyObject2 MyObj3;
         public MyObject2 MyObj4;
+
+        public List<MyObject2> MyObjList;
 
         public MyObject4 OutMyObj;
 

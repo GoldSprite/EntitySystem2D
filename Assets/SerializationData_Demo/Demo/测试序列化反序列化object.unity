@@ -253,8 +253,20 @@ PrefabInstance:
       value: TestSerializationObject
       objectReference: {fileID: 0}
     - target: {fileID: 7348483305555379974, guid: dd3600aff34850d4488acb4b7eb23837, type: 3}
+      propertyPath: OutMyObj.n1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348483305555379974, guid: dd3600aff34850d4488acb4b7eb23837, type: 3}
+      propertyPath: OutMyObj.n2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348483305555379974, guid: dd3600aff34850d4488acb4b7eb23837, type: 3}
       propertyPath: MyObj.SampleVal
       value: sdasdxc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348483305555379974, guid: dd3600aff34850d4488acb4b7eb23837, type: 3}
+      propertyPath: MyObjList.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929495269009031933, guid: dd3600aff34850d4488acb4b7eb23837, type: 3}
       propertyPath: m_RootOrder

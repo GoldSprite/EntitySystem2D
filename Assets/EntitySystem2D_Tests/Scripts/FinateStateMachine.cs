@@ -29,12 +29,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         {
             states.Add(state.GetType(), state);
             LastPriority += priotity;
-            state.Priority = priotity;
+            state.Priority = LastPriority;
         }
 
         public void UpdateNextState()
         {
-            FDebug("尝试转换状态...");
+            //FDebug("尝试转换状态...");
             var target = currentState;
             //遍历条件, 进入优先级最高的那个状态
             foreach (var (type, state) in states) {
@@ -67,10 +67,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public void Update()
         {
+            UpdateNextState();
             currentState.Run();
 
-            if (currentState.Exit())
-                UpdateNextState();
+            //if (currentState.Exit())
+            //    UpdateNextState();
         }
 
         public void FDebug(string msg)

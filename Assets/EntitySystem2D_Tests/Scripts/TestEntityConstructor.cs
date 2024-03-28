@@ -49,6 +49,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         {
             //初始化属性器
             props.AddProp("Name", "佩茨");
+            props.AddProp("TempVal", 2f);
             var rb = GetComponent<Rigidbody2D>();
             if (rb == null) throw new Exception($"找不到[Rigidbody2D]组件");
             props.AddProp("Rb", rb);
@@ -105,8 +106,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             //初始化行为状态列表
             bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
             bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run", TurnAnimName = "RunTurn" });
-            bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
-            //bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
+            bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimsPhase=5, AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
+            bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimsPhase=3, AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
         }
 
 

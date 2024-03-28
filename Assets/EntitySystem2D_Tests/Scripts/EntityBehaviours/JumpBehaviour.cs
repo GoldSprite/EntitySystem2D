@@ -11,6 +11,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public bool IsGround => ent.physics.IsGround;
         public Rigidbody2D rb;
         public int JumpPhase { get => (int)ent.animCtrls.anims.GetFloat("JumpPhase"); set => ent.animCtrls.anims.SetFloat("JumpPhase", value); }
+        public int AnimsPhase = 5;
         public string[] AnimNames;
         float jumpDrag = 0.3f;  //跳跃时移动阻力
         public bool CanExit;
@@ -21,7 +22,19 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override bool Enter()
         {
-            return JumpKey && IsGround;
+            var result = false;
+            //起跳
+            if (IsGround && JumpKey) result = true;
+            //空中坠落
+            //ent.fsm.FDebug($"JumpEnter: con{!IsGround && rb.velocity.y < 0}, con1{!IsGround}, con2{rb.velocity.y < 0}");
+            if (!IsGround) {
+                var ray = Physics2D.RaycastAll(rb.transform.position, Vector2.down, 5, LayerMask.GetMask(new string[] {"Ground"}));
+                if (ray.Length != 0 && ray[0].distance > 0.3f) {  //0.2f
+                    JumpPhase = 2;
+                    result = true;
+                }
+            }
+            return result;
         }
         public override bool Exit()
         {
@@ -51,7 +64,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void Run()
         {
-            ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1-jumpDrag);
+            ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1 - jumpDrag);
             var velY = rb.velocity.y;
             var velX = rb.velocity.x;
             var jumpForce = ent.props.GetProp<float>("JumpForce");
@@ -92,7 +105,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                     break;
                 case 4:
                     if (ent.animCtrls.CAnimName != CurrentAnimName) break;
-                    if ((ent.animCtrls.CAnimNormalizedTime > 0.24f && Cancel ) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+                    if ((ent.animCtrls.CAnimNormalizedTime > 0.24f && Cancel) || ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
                         CanExit = true;
                     }
                     break;

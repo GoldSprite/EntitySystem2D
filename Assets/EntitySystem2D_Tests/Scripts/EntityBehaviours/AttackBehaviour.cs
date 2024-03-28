@@ -3,29 +3,36 @@ using UnityEngine;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     public class AttackBehaviour : EntityBehaviourState {
-        public bool JumpKey => ent.inputs.GetValue<bool>(ent.inputs.InputActions.GamePlay.Jump);
-        public bool IsGround => ent.physics.IsGround;
-        public Rigidbody2D rb;
-        public int JumpPhase { get => (int)ent.animCtrls.anims.GetFloat("JumpPhase"); set=> ent.animCtrls.anims.SetFloat("JumpPhase", value); }
+        public bool AttackKey => ent.inputs.GetValue<bool>(ent.inputs.InputActions.GamePlay.Attack);
+        public Vector2 MoveDir => ent.inputs.GetValue<Vector2>(ent.inputs.InputActions.GamePlay.Move);
+        public int AttackPhase { get => (int)ent.animCtrls.anims.GetFloat("AttackPhase"); set => ent.animCtrls.anims.SetFloat("AttackPhase", value); }
         public string[] AnimNames;
-        public string CurrentAnimName => AnimNames[JumpPhase];
+        public int AnimsPhase = 3;
+        public string CurrentAnimName => AnimNames[AttackPhase];
+        float attackMoveDrag = 0.75f;  //攻击时移动阻力
 
 
         public override bool Enter()
         {
-            return JumpKey && IsGround;
+            return AttackKey;
         }
         public override bool Exit()
         {
-            return JumpPhase > 2 && IsGround;
+            return ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName);
         }
 
         public override void InitState()
         {
-            rb = ent.props.GetProp<Rigidbody2D>("Rb");
 
             ent.inputs.AddActionListener(ent.inputs.InputActions.GamePlay.Attack, (Action<bool>)((down) => {
-                if (down) ent.fsm.UpdateNextState();
+                if (down) {
+                    if (ent.fsm.currentState != this)
+                        ent.fsm.UpdateNextState();
+                    else {
+                        AttackPhase = (AttackPhase + 1) % AnimsPhase;
+                        ent.animCtrls.anims.Play(AnimName, 0, 0);
+                    }
+                }
             }));
         }
 
@@ -37,39 +44,28 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void OnExit()
         {
-            JumpPhase = 0;
+            AttackPhase = 0;
         }
 
         public override void Run()
         {
-            var velY = rb.velocity.y;
-            var jumpForce = ent.props.GetProp<float>("JumpForce");
-            switch (JumpPhase) {
-                case 0:
-                    if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
-                        TakeJumpForce(jumpForce);
-                        JumpPhase++;
-                    }
-                    break;
-                case 1:
-                    if (velY < jumpForce*1/2f) {
-                        JumpPhase++;
-                        ent.animCtrls.anims.Play(AnimName, 0, 0);
-                    }
-                    break;
-                case 2:
-                    Debug.Log($"{ent.animCtrls.CAnimName},  {ent.animCtrls.CAnimNormalizedTime}");
-                    if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName))
-                        JumpPhase++;
-                    break;
-            }
-        }
-
-        private void TakeJumpForce(float jumpForce)
-        {
-            var vel = rb.velocity;
-            vel.y = jumpForce;
-            rb.velocity = vel;
+            ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1 - attackMoveDrag);
+            //switch (AttackPhase) {
+            //    case 0: 
+            //        if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+            //            AttackPhase++;
+            //            ent.animCtrls.anims.Play(AnimName, 0, 0);
+            //        }
+            //        break;
+            //    case 1:
+            //        if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+            //            AttackPhase++;
+            //            ent.animCtrls.anims.Play(AnimName, 0, 0);
+            //        }
+            //        break;
+            //    case 2:
+            //        break;
+            //}
         }
     }
 }
