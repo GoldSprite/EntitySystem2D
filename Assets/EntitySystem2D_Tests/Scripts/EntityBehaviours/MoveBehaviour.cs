@@ -12,6 +12,9 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public float moveFrameCache;
         public bool CanExit;
         public float keepTicker, keepDuration = 0.2f;
+        public string TurnAnimName;
+        public int turn = 0;
+        public int turnPhase;
 
 
         public override bool Enter()
@@ -20,19 +23,6 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         }
         public override bool Exit()
         {
-            //移动键粘连计时器
-            if (MoveDir.x == 0) {
-                if (Time.realtimeSinceStartup > keepTicker) {
-                    Debug.Log("移动粘连结束.");
-                    CanExit = true;
-                }
-            } else {
-                //if (MoveDir.x != lastmoveDir) {
-                //    lastmoveDir = MoveDir.x;
-                //}
-                Debug.Log("移动粘连刷新.");
-                keepTicker = Time.realtimeSinceStartup + keepDuration;
-            }
             return CanExit /*&& !ent.animCtrls.CAnimTranslationing*/;
         }
 
@@ -45,6 +35,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                     ent.fsm.UpdateNextState();
                 }
             }));
+            //注册转向事件
+            var runTurnEvent = ent.props.GetProp<Action<int>>("RunTurnEvent");
+            runTurnEvent += (face) => {
+                if (IsGround) turn = face;
+            };
+            ent.props.SetProp("RunTurnEvent", runTurnEvent);
         }
 
         public override void OnEnter()
@@ -54,6 +50,8 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void OnExit()
         {
+            turnPhase = 0;
+            turn = 0;
             CanExit = false;
             moveFrameCache = ent.animCtrls.CAnimNormalizedTime;
         }
@@ -65,9 +63,35 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             //    //防止bug, 所以持续调用播放(一个出现概率极低的移动但idle动画)///改为判定动画是否成功切换
             //    ent.animCtrls.anims.CrossFade(AnimName, 0.3f, 0, moveFrameCache);
             //}
+            if (turn != 0) {
+                if (!ent.animCtrls.IsAnimName(TurnAnimName)) {
+                    ent.animCtrls.PlayAnim(TurnAnimName);
+                } else
+                if (ent.animCtrls.IsCurrentAnimEnd(TurnAnimName)) {
+                    ent.props.GetProp<Action<int>>("TurnAction")?.Invoke(turn);
+                    //ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
+                    ent.animCtrls.anims.Play(AnimName, 0, 0.913f /*moveFrameCache*/);
+                    turn = 0;
+                }
+            } else {
+            }
+            if (turn == 0 && ent.animCtrls.IsAnimName(AnimName)) {
+                ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1);
+            }
 
-            ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1);
-
+            //移动键粘连计时器
+            if (MoveDir.x == 0) {
+                if (Time.realtimeSinceStartup > keepTicker) {
+                    Debug.Log("移动粘连结束.");
+                    CanExit = true;
+                }
+            } else {
+                if (MoveDir.x != lastmoveDir) {
+                    Debug.Log("移动粘连刷新.");
+                    lastmoveDir = MoveDir.x;
+                }
+                keepTicker = Time.realtimeSinceStartup + keepDuration;
+            }
         }
     }
 }

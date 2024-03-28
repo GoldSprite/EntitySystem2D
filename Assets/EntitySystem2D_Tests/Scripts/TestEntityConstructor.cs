@@ -66,18 +66,33 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                 var vel = rb.velocity;
                 var velxNormalized = moveDir.x == 0 ? 0 : (moveDir.x > 0 ? 1 : -1);
                 var velx = velxNormalized * moveSpeed * moveBoost;
-                vel.x = Mathf.Lerp(vel.x, velx, 3/60f);
+                vel.x = Mathf.Lerp(vel.x, velx, 3 / 60f);
                 rb.velocity = vel;
-                //转向
-                if (moveDir.x != 0) {
-                    var face = rb.transform.localScale;
-                    face.x = velxNormalized;
-                    rb.transform.localScale = face;
-                }
+
+                props.GetProp<Action<int>>("TurnAction")?.Invoke(velxNormalized);
             }));
+            props.AddProp("TurnAction", (Action<int>)((face) => {
+                if (face == 0) return;
+                //转向
+                var localScale = rb.transform.localScale;
+                localScale.x = face;
+                rb.transform.localScale = localScale;
+            }));
+            props.AddProp("LastFace", 1);
+            props.AddProp("RunTurnEvent", (Action<int>)((face) => { }));
 
             //初始化输入器
             inputs.Awake();
+            inputs.AddActionListener(inputs.InputActions.GamePlay.Move, (Action<Vector2>)((dir) => {
+                if (dir.x == 0) return;
+                int dirxNormalized = dir.x > 0 ? 1 : -1;
+                if (dirxNormalized != props.GetProp<int>("LastFace")) {
+                    Debug.Log("转向事件触发.");
+                    Action<int> runTurnAction = props.GetProp<Action<int>>("RunTurnEvent");
+                    runTurnAction?.Invoke(dirxNormalized);
+                    props.SetProp("LastFace", dirxNormalized);
+                }
+            }));
 
             //初始化动画器
             var anims2 = props.GetProp<Animator>("Anims");
@@ -89,7 +104,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             bevs.Init(this);
             //初始化行为状态列表
             bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
-            bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run" });
+            bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run", TurnAnimName = "RunTurn" });
             bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
             //bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
         }
