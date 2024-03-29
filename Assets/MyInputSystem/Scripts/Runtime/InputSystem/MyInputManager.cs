@@ -75,6 +75,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                 Action<T> actParent = (p) => { };
                 actParent += act;
                 actions.Add(keyAction, actParent);
+                actionValues.Add(keyAction, default(T));
 
                 proxy = (c) => {
                     var valObj = keyAction.ReadValueAsObject();
