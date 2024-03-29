@@ -38,10 +38,10 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
         public override void OnEnter()
         {
-            ent.fsm.FDebug("执行停下.");
-            var vel = rb.velocity;
-            vel.x = 0;
-            rb.velocity = vel;
+            //ent.fsm.FDebug("执行停下.");
+            //var vel = rb.velocity;
+            //vel.x = 0;
+            //rb.velocity = vel;
 
             ent.animCtrls.anims.CrossFade(AnimName, 0.12f);
         }
