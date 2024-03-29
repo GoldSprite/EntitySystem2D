@@ -1,4 +1,6 @@
-﻿namespace GoldSprite.Fsm {
+﻿using System;
+
+namespace GoldSprite.Fsm {
     public interface IFsm {
         public IState CState { get; }
         public IState DefaultState { get; }

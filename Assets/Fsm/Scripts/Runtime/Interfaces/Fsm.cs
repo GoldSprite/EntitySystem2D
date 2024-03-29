@@ -8,14 +8,13 @@ namespace GoldSprite.Fsm {
         public IState CState { get; protected set; }
         public IState DefaultState { get; protected set; }
         public int LastPriority { get; private set; }
-        protected IProps Props { get; }
+        public IProps Props { get; }
 
 
         protected void InitState(IState state)
         {
             DefaultState = CState = state;
             AddState(state, 0);
-            state.OnEnter();
         }
 
         protected void AddState(IState state, int priority = 1)
@@ -25,6 +24,11 @@ namespace GoldSprite.Fsm {
             state.Priority = LastPriority;
         }
 
+        public void Start()
+        {
+            CState.OnEnter();
+        }
+
 
         public bool UpdateNextState()
         {
@@ -32,13 +36,10 @@ namespace GoldSprite.Fsm {
             foreach (var state in states.Values) {
                 if (EnterState(state, targetState)) targetState = state;
             }
-            if (targetState.Exit()) targetState = DefaultState;
-            var change = targetState != DefaultState;
-            if (change) {
-                OnEnterState(targetState);
-                return true;
-            }
-            return false;
+            var change = targetState != CState;
+            if (!change && CState.Exit()) { targetState = DefaultState; change = true; }
+            if (change) OnEnterState(targetState);
+            return change;
         }
 
         protected bool EnterState(IState target, IState current)
@@ -57,7 +58,7 @@ namespace GoldSprite.Fsm {
         public T GetState<T>() where T : IState
         {
             if (states.TryGetValue(typeof(T), out IState state)) return (T)state;
-            return default(T);
+            return default;
         }
 
         public void Update()

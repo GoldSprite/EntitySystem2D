@@ -10,7 +10,7 @@ namespace GoldSprite.Fsm {
         {
             return true;
         }
-        public override bool Exit0()
+        public override bool Exit()
         {
             return true;
         }

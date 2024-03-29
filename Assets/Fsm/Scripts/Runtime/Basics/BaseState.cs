@@ -7,7 +7,7 @@ namespace GoldSprite.Fsm {
 
         public override string ToString()
         {
-            return $"[{GetType().Name}-{Props.Name}]";
+            return $"[{Props.Name}-{GetType().Name}]";
         }
     }
 }

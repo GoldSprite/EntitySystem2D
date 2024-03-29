@@ -19,7 +19,13 @@
       - BaseProps
 - [x] 更新设计:
   - 暂不统计...
+  - 增加BaseFsmCommandManager
 - [ ] 测试: 
-  - [ ] Idle<->Move是否可以正确转换
-  - [ ] 
-  - [ ] 
+  - [x] Idle<->Move是否可以正确转换
+  - [x] 进行实际运行测试
+    - 过程中学习: 
+      1. [Test] 普通测试
+      2. [UnityTest] + IEnumerator返回型方法 + yield return null 可等待一帧(实测可能是更多帧或者更少(也即漏帧或不跳))
+         1. 实际使用yield return new WaitForSeconds(0.1f);
+      3. TestRunner方法与其代码所在脚本无关系并不会创建组件实例, 需要手动创建.
+         1. 配合new GameObject().AddComponent<TargetComponent>();使用可针对脚本进行测试.

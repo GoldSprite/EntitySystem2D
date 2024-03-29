@@ -8,11 +8,26 @@ namespace GoldSprite.Fsm {
 
         public override bool Enter()
         {
-            return Props.Velocity != Vector2.zero && Props.IsGround;
+            return Props.Direction.x != 0 && Props.IsGround;
         }
-        public override bool Exit0()
+        public override bool Exit()
         {
-            return Props.Direction == Vector2.zero || !Props.IsGround;
+            return Props.Velocity == Vector2.zero || !Props.IsGround;
+        }
+
+        public override void OnEnter()
+        {
+        }
+
+        public override void OnExit()
+        {
+        }
+
+        public override void FixedUpdate()
+        {
+            var vel = Props.Velocity;
+            vel.x = Props.Direction.x * Props.Speed;
+            Props.Velocity = vel;
         }
     }
 }
