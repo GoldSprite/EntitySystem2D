@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
     public abstract class EntityBehaviourState : EntityBehaviour, IState {
         public EntitySystem ent;

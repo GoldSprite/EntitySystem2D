@@ -4,7 +4,7 @@ using System.Collections;
 using System.Data;
 using UnityEngine;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
     public class MoveBehaviour : EntityBehaviourState {
         public Rigidbody2D rb;
         public bool IsGround => ent.physics.IsGround;
@@ -37,11 +37,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             ent.inputs.AddActionListener(ent.inputs.InputActions.GamePlay.Move, (Action<Vector2>)((dir) => {
             }));
             ////注册转向事件
-            //var runTurnEvent = ent.props.GetProp<Action<int>>("RunTurnEvent");
+            //var runTurnEvent = ent.Props.GetProp<Action<int>>("RunTurnEvent");
             //runTurnEvent += (nextFace) => {
             //    if (IsGround) turn = nextFace;
             //};
-            //ent.props.SetProp("RunTurnEvent", runTurnEvent);
+            //ent.Props.SetProp("RunTurnEvent", runTurnEvent);
         }
 
         Coroutine turnTask;

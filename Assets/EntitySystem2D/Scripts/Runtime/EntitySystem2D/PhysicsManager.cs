@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
     [Serializable]
     public class PhysicsManager {
         [Header("事件")]

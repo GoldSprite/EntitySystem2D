@@ -5,7 +5,7 @@ using UnityEditor;
 using GoldSprite.UnityPlugins.GUtils;
 using GoldSprite.UnityPlugins.MyInputSystem;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
     [Serializable]
     public class FinateStateMachine {

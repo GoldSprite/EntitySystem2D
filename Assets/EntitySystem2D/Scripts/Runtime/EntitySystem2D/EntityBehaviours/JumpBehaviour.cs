@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
     /// <summary>
     /// 这个类注意细节: 混合树动画在播放时使用混合树动画名, 在判定获取时使用具体子动画名
     /// </summary>

@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: "Assets/EntitySystem2D_Tests/Scenes/\u6D4B\u8BD5Entity\u6784\u9020\u7ED3\u6784.unity"
+    path: "Assets/EntitySystem2D_Demo/Scenes/Tests/\u6D4B\u8BD5Entity\u6784\u9020\u7ED3\u6784.unity"
     guid: 6149d86173eb0f64d8294406c0497bf8
   m_configObjects: {}

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
     public class AttackBehaviour : EntityBehaviourState {
         public bool AttackKey => ent.inputs.GetValue<bool>(ent.inputs.InputActions.GamePlay.Attack);
         public Vector2 MoveDir => ent.inputs.GetValue<Vector2>(ent.inputs.InputActions.GamePlay.Move);

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
     public class TestEntityConstructor : EntitySystem {
 
@@ -80,18 +80,18 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
                 rb.transform.localScale = localScale;
             }));
             props.AddProp("LastFace", transform.localScale.x>0?1:-1);
-            //props.AddProp("RunTurnEvent", (Action<int>)((face) => { }));
+            //Props.AddProp("RunTurnEvent", (Action<int>)((face) => { }));
 
             //初始化输入器
             inputs.Awake();
             //inputs.AddActionListener(inputs.InputActions.GamePlay.Move, (Action<Vector2>)((MoveDir) => {
             //    if (MoveDir.x == 0) return;
             //    int dirxNormalized = MoveDir.x > 0 ? 1 : -1;
-            //    if (dirxNormalized != props.GetProp<int>("LastFace")) {
+            //    if (dirxNormalized != Props.GetProp<int>("LastFace")) {
             //        Debug.Log("转向事件触发.");
-            //        Action<int> runTurnAction = props.GetProp<Action<int>>("RunTurnEvent");
+            //        Action<int> runTurnAction = Props.GetProp<Action<int>>("RunTurnEvent");
             //        runTurnAction?.Invoke(dirxNormalized);
-            //        props.SetProp("LastFace", dirxNormalized);
+            //        Props.SetProp("LastFace", dirxNormalized);
             //    }
             //}));
 

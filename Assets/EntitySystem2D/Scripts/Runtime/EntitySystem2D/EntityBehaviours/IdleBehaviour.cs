@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
     public class IdleBehaviour : EntityBehaviourState {
         public Rigidbody2D rb;
         public bool IsGround => ent.physics.IsGround;

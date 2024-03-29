@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.InputSystem;
 
-namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
+namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
     [Serializable]
     public class InputProvider : MyInputManager {
