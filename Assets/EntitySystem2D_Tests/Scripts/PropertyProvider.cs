@@ -8,13 +8,19 @@ using UnityEngine.Events;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
     [Serializable]
-    public class PropertyManager {
+    public class PropertyProvider {
         [ShowProperty]
         [SerializeField]
         public string draw;
         [HideInInspector]
         public bool foldout;
         public Dictionary<string, object> pairs = new();
+
+
+        public void Awake()
+        {
+            new LivingNode();
+        }
 
 
         public T GetProp<T>(string key)
@@ -56,12 +62,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
 
             var serializedObject = property.serializedObject;
             var target = serializedObject.targetObject;
-            var props = ReflectionHelper.GetField<PropertyManager>(target);
+            var props = ReflectionHelper.GetField<PropertyProvider>(target);
             if (props == null) {
                 return;
             }
 
-            var pairs = ReflectionHelper.GetValue<PropertyManager, Dictionary<string, object>>(props, "pairs");
+            var pairs = ReflectionHelper.GetValue<PropertyProvider, Dictionary<string, object>>(props, "pairs");
 
             //UProps
             if (pairs != null && pairs.Count > 0) {

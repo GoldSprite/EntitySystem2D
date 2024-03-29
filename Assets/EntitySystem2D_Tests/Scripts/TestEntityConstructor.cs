@@ -34,7 +34,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
         public EntityBehaviourConstructor bevs;
         [Header("Components")]
         [Tooltip("属性管理者")]
-        public PropertyManager props;
+        public PropertyProvider props;
         [Tooltip("状态器")]
         public FinateStateMachine fsm;
         [Tooltip("输入提供者")]
