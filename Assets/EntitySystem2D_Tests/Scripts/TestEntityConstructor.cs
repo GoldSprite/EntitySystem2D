@@ -100,6 +100,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D.Tests {
             animCtrls.SetAnims(anims2);
 
             //初始化物理器
+            physics.Awake();
             physics.Init();
 
             bevs.Init(this);

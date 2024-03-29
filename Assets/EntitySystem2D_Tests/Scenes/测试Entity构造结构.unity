@@ -305,6 +305,8 @@ MonoBehaviour:
     OnTriggerExit2D:
       m_PersistentCalls:
         m_Calls: []
+    GroundLayer: Ground
+    GroundList: []
     IsGround: 0
 --- !u!70 &157924618
 CapsuleCollider2D:
@@ -776,7 +778,7 @@ GameObject:
   - component: {fileID: 959900950}
   m_Layer: 3
   m_Name: Square
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
