@@ -1,5 +1,8 @@
 namespace GoldSprite.Fsm {
     public interface IState {
+        public int Priority { get; set; }
+        public bool CanTranSelf { get; }
+
         public bool Enter();
         public bool Exit();
         public void OnEnter();

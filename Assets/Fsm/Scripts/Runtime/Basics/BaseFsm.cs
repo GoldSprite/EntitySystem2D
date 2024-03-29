@@ -1,39 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+
+using System;
 
 namespace GoldSprite.Fsm {
-    public class BaseFsm : IFsm {
-        private Dictionary<Type, IState> states = new();
-        public IState CState { get; }
-        public IState DefaultState { get; }
-        protected IProps Props { get; }
+    public class BaseFsm : Fsm {
+        protected new BaseProps Props { get; }
 
-        public bool UpdateNextState()
+        public BaseFsm(BaseProps props)
         {
-            foreach(var state in states.Values) {
-                if (state.Enter()) {
-                    state.OnEnter();
-                    return true;
-                }
-            }
-            return false;
+            Props = props;
+
+            InitStates();
         }
 
-        public T GetState<T>() where T : IState
+        protected virtual void InitStates()
         {
-            if(states.TryGetValue(typeof(T), out IState state)) return (T)state;
-            return default(T);
+            InitState(new IdleState(this, Props));
+            AddState(new MoveState(this, Props));
         }
 
-        public void Update()
+        public override string ToString()
         {
-            UpdateNextState();
-            CState.Update();
-        }
-
-        public void FixedUpdate()
-        {
-            CState.FixedUpdate();
+            return $"[{GetType().Name}-{Props.Name}]";
         }
     }
 }

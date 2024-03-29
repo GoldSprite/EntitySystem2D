@@ -5,5 +5,7 @@
 
         public bool UpdateNextState();
         public T GetState<T>() where T : IState;
+        public void Update();
+        public void FixedUpdate();
     }
 }
