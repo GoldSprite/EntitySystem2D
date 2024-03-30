@@ -1,6 +1,10 @@
 # EntitySystem2D
 实体生物系统
 
+#目标: V0.2.0
+- [ ] 实现logger日志器
+- [ ] 实现序列化面板化数据类型
+
 # 2024.3.29-V0.1.0: 
 - [x] 创建项目
 - [x] 基本设计: 
@@ -29,3 +33,6 @@
          1. 实际使用yield return new WaitForSeconds(0.1f);
       3. TestRunner方法与其代码所在脚本无关系并不会创建组件实例, 需要手动创建.
          1. 配合new GameObject().AddComponent<TargetComponent>();使用可针对脚本进行测试.
+
+
+# 2024.3.30-V0.2.0:

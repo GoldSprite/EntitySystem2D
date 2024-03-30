@@ -1,0 +1,16 @@
+{
+    "name": "Fsm.UnityFsm",
+    "rootNamespace": "",
+    "references": [
+        "GUID:018154f71ef6704449ed068db7df2378"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
