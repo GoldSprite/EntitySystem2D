@@ -1,5 +1,5 @@
 {
-    "name": "Tests_Runtime",
+    "name": "Fsm_Tests_Runtime",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
