@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  serializedVersion: 2
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 9249d9fb3ac39b742abae5cba9162479, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -396902986, guid: 21ecfe40fbaf2d94f9036b3ba11dbab8, type: 3}
+  - {fileID: -2057634363, guid: 21ecfe40fbaf2d94f9036b3ba11dbab8, type: 3}
+  - {fileID: 773407353, guid: 21ecfe40fbaf2d94f9036b3ba11dbab8, type: 3}
+  - {fileID: 122260515, guid: 21ecfe40fbaf2d94f9036b3ba11dbab8, type: 3}
+  - {fileID: -1995576460, guid: 21ecfe40fbaf2d94f9036b3ba11dbab8, type: 3}
+  - {fileID: 1374791819, guid: 21ecfe40fbaf2d94f9036b3ba11dbab8, type: 3}
+  - {fileID: -1374573807, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: -1630961565, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: 1371826530, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: 1855229050, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: 847715417, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: 1677049634, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: -408419140, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: -1612595293, guid: 8ac3a6a22e6dc064ca03efaa0608a09d, type: 3}
+  - {fileID: 1409548239, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: 1890944549, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: -970496055, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: 422968124, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: 1172687621, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: 195455360, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: -1703516459, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: -1119071891, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: 899956076, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: -966904579, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: -836615236, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: 18492706, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: 741082677, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: -814421656, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: -1575209686, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
+  - {fileID: -204522778, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
+  - {fileID: -1203871471, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
+  - {fileID: -1169530052, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
+  - {fileID: 1957518878, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
+  - {fileID: 901054686, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
+  - {fileID: -1569412775, guid: 5a4d564e411835040bc836fb67e5a4b6, type: 3}
+  - {fileID: 1926873549, guid: 5a4d564e411835040bc836fb67e5a4b6, type: 3}
+  - {fileID: -1042470733, guid: 5a4d564e411835040bc836fb67e5a4b6, type: 3}
+  - {fileID: 977255765, guid: 5a4d564e411835040bc836fb67e5a4b6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Attack1_1
+  - Attack1_0
+  - Attack1_3
+  - Attack1_2
+  - Attack1_5
+  - Attack1_4
+  - Idle_4
+  - Idle_5
+  - Idle_6
+  - Idle_7
+  - Idle_0
+  - Idle_1
+  - Idle_2
+  - Idle_3
+  - Death_4
+  - Death_5
+  - Death_2
+  - Death_3
+  - Death_0
+  - Death_1
+  - Run_7
+  - Run_6
+  - Run_5
+  - Run_4
+  - Run_3
+  - Run_2
+  - Run_1
+  - Run_0
+  - Attack2_4
+  - Attack2_5
+  - Attack2_2
+  - Attack2_3
+  - Attack2_0
+  - Attack2_1
+  - Take Hit - white silhouette_2
+  - Take Hit - white silhouette_3
+  - Take Hit - white silhouette_0
+  - Take Hit - white silhouette_1
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0
+  m_IsPlaceholder: 0
