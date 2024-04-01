@@ -22,11 +22,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
         public override bool Enter()
         {
-            return IsGround && MoveDir.x != 0/* && !ent.animCtrls.CAnimTranslationing*/;
+            return IsGround && MoveDir.x != 0/* && !ent.provider.CAnimTranslationing*/;
         }
         public override bool Exit()
         {
-            return CanExit /*&& !ent.animCtrls.CAnimTranslationing*/;
+            return CanExit /*&& !ent.provider.CAnimTranslationing*/;
         }
 
 
@@ -34,8 +34,6 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         {
             rb = ent.props.GetProp<Rigidbody2D>("Rb");
             lastFace = rb.transform.localScale.x > 0 ? 1 : -1;
-            ent.inputs.AddActionListener(ent.inputs.InputActions.GamePlay.Move, (Action<Vector2>)((dir) => {
-            }));
             ////注册转向事件
             //var runTurnEvent = ent.Props.GetProp<Action<int>>("RunTurnEvent");
             //runTurnEvent += (nextFace) => {
@@ -49,7 +47,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         {
             ent.fsm.FDebug("移动Turn任务1: 播放转向动画...");
             ent.animCtrls.PlayAnim(TurnAnimName);
-            //ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
+            //ent.provider.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
             while (!ent.animCtrls.IsCurrentAnimEnd(TurnAnimName))
                 yield return new WaitForFixedUpdate();
             ent.fsm.FDebug("移动Turn任务1: 播放转向动画结束.");
@@ -61,14 +59,14 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
             ent.props.GetProp<Action<int>>("TurnAction")?.Invoke(face);
         }
 
-        public override void OnEnter()
+        public override void OnEnter0()
         {
             ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.8f /*moveFrameCache*/);
         }
 
-        public override void OnExit()
+        public override void OnExit0()
         {
-            if (turnTask != null) ent.StopCoroutine(turnTask);
+            if (turnTask != null) ent.ent.StopCoroutine(turnTask);
             turnPhase = 0;
             turn = 0;
             CanExit = false;
@@ -86,7 +84,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
             //        turnTask = ent.StartCoroutine(TurnTask(nextFace));
             //    } else {
             //        turnEvent = false;
-            //        if (!ent.animCtrls.CAnimTranslationing && !ent.animCtrls.IsAnimName(AnimName)) ent.animCtrls.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
+            //        if (!ent.provider.CAnimTranslationing && !ent.provider.IsAnimName(AnimName)) ent.provider.anims.CrossFade(AnimName, 0.14f, 0, 0.913f /*moveFrameCache*/);
             //    }
             //}
 

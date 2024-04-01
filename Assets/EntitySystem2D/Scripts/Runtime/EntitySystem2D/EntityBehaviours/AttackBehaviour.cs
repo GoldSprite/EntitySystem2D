@@ -37,12 +37,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         }
 
 
-        public override void OnEnter()
+        public override void OnEnter0()
         {
             ent.animCtrls.PlayAnim(AnimName);
         }
 
-        public override void OnExit()
+        public override void OnExit0()
         {
             AttackPhase = 0;
         }
@@ -52,15 +52,15 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
             ent.props.GetProp<Action<Vector2, float>>("MoveAction")?.Invoke(MoveDir, 1 - attackMoveDrag);
             //switch (AttackPhase) {
             //    case 0: 
-            //        if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+            //        if (ent.provider.IsCurrentAnimEnd(CurrentAnimName)) {
             //            AttackPhase++;
-            //            ent.animCtrls.anims.Play(AnimName, 0, 0);
+            //            ent.provider.anims.Play(AnimName, 0, 0);
             //        }
             //        break;
             //    case 1:
-            //        if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
+            //        if (ent.provider.IsCurrentAnimEnd(CurrentAnimName)) {
             //            AttackPhase++;
-            //            ent.animCtrls.anims.Play(AnimName, 0, 0);
+            //            ent.provider.anims.Play(AnimName, 0, 0);
             //        }
             //        break;
             //    case 2:

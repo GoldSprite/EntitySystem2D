@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D {
     [Serializable]
-    public class PropertyProvider {
+    public class PropertyProvider : IEntityProvider {
         [ShowProperty]
         [SerializeField]
         public string draw;
@@ -44,6 +44,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
             return pairs.ContainsKey(key);
         }
 
+        public bool Init()
+        {
+            var msgs = new List<string>();
+            if (string.IsNullOrEmpty(GetProp<string>("Name"))) msgs.Add("属性Name未初始化.");
+            return IEntityProvider.PrintInitLog(this, msgs);
+        }
     }
 
 

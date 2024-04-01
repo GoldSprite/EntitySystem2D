@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEditor;
 using GoldSprite.UnityPlugins.GUtils;
 using GoldSprite.UnityPlugins.MyInputSystem;
+using UnityEditor.PackageManager;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
     [Serializable]
-    public class FinateStateMachine {
+    public class FinateStateMachine : IEntityProvider {
         public bool debugLog;
         [ShowFsm]
         [SerializeField]
@@ -22,7 +23,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         {
             defaultState = currentState = state;
             AddState(state, 0);
-            OnEnterState(state);
+            state.OnEnter();
         }
 
         public void AddState(IState state, int priotity)
@@ -100,6 +101,13 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
                 }
             }
             return false;
+        }
+
+        public bool Init()
+        {
+            var msgs = new List<string>();
+            //if (states.Count == 0) msgs.Add("状态表为空, 将不会运行任何状态.");
+            return IEntityProvider.PrintInitLog(this, msgs);
         }
     }
 

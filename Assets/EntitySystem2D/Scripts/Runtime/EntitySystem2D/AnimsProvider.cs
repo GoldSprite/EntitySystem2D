@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GoldSprite.UnityPlugins.EntitySystem2D {
     [Serializable]
-    public class AnimManager {
+    public class AnimsProvider : IEntityProvider {
         public bool debugLog;
         //引用
         public Animator anims;
@@ -20,6 +21,13 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         public bool CAnimTranslationing;
 
         public void SetAnims(Animator anims) => this.anims = anims;
+
+        public bool Init()
+        {
+            var msgs = new List<string>();
+            if (anims == null) msgs.Add($"[AnimCtrls]: 未设置动画控制组件anims, 将不会播放任何动画.");
+            return IEntityProvider.PrintInitLog(this, msgs);
+        }
 
 
         public void PlayAnim(string animName)
@@ -66,6 +74,12 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         {
             if (debugLog)
                 Debug.Log(msg);
+        }
+
+        public void CrossFade(string animName, float normalizedTransitionDuration)
+        {
+            if(anims == null) return;
+            anims.CrossFade(animName, normalizedTransitionDuration);
         }
     }
 }

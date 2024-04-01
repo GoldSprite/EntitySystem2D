@@ -40,9 +40,11 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         [Tooltip("输入提供者")]
         public InputProvider inputs;
         [Tooltip("动画控制器")]
-        public AnimManager animCtrls;
+        public AnimsProvider animCtrls;
         [Tooltip("物理管理器")]
         public PhysicsManager physics;
+        [Tooltip("事件管理器")]
+        public EventManager events;
 
 
         private void Awake()
@@ -67,7 +69,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
                 var vel = rb.velocity;
                 var velxNormalized = moveDir.x == 0 ? 0 : (moveDir.x > 0 ? 1 : -1);
                 var velx = velxNormalized * moveSpeed * moveBoost;
-                vel.x = Mathf.Lerp(vel.x, velx, 3/60f);
+                vel.x = Mathf.Lerp(vel.x, velx, 3 / 60f);
                 rb.velocity = vel;
 
                 props.GetProp<Action<int>>("TurnAction")?.Invoke(velxNormalized);
@@ -79,8 +81,9 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
                 localScale.x = face;
                 rb.transform.localScale = localScale;
             }));
-            props.AddProp("LastFace", transform.localScale.x>0?1:-1);
+            props.AddProp("LastFace", transform.localScale.x > 0 ? 1 : -1);
             //Props.AddProp("RunTurnEvent", (Action<int>)((face) => { }));
+            props.Init();
 
             //初始化输入器
             inputs.Awake();
@@ -94,21 +97,37 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
             //        Props.SetProp("LastFace", dirxNormalized);
             //    }
             //}));
+            inputs.AddActionListener(inputs.InputActions.GamePlay.Move, (Action<Vector2>)((dir) => { }));
+            inputs.AddActionListener(inputs.InputActions.GamePlay.Attack, (Action<bool>)((down) => { }));
+            inputs.AddActionListener(inputs.InputActions.GamePlay.Jump, (Action<bool>)((down) => { }));
+            inputs.AddActionListener(InputProvider.VirtualKey.HurtKey, (Action<bool>)((down) => { }));
+            inputs.Init();
 
             //初始化动画器
             var anims2 = props.GetProp<Animator>("Anims");
-            animCtrls.SetAnims(anims2);
+            animCtrls.anims = anims2;
+            animCtrls.Init();
 
             //初始化物理器
             physics.Awake();
             physics.Init();
 
-            bevs.Init(this);
+            //初始化事件器
+            events.Init();
+
+            bevs.ent = this;
+            bevs.props = props;
+            bevs.fsm = fsm;
+            bevs.inputs = inputs;
+            bevs.animCtrls = animCtrls;
+            bevs.physics = physics;
+            bevs.events = events;
+            bevs.Init();
             //初始化行为状态列表
             bevs.AddBehaviour(new IdleBehaviour() { AnimName = "Idle" });
             bevs.AddBehaviour(new MoveBehaviour() { AnimName = "Run", TurnAnimName = "RunTurn" });
-            bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimsPhase=5, AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
-            bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimsPhase=3, AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
+            bevs.AddBehaviour(new JumpBehaviour() { AnimName = "JumpBlend", AnimsPhase = 5, AnimNames = new string[] { "JumpStart", "JumpUpper", "JumpTurnFall", "JumpFall", "Land" } });
+            bevs.AddBehaviour(new AttackBehaviour() { AnimName = "AttackBlend", AnimsPhase = 3, AnimNames = new string[] { "Attack_1", "Attack_2", "Attack_3" } });
         }
 
 

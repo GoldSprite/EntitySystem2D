@@ -44,20 +44,16 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         public override void InitState()
         {
             rb = ent.props.GetProp<Rigidbody2D>("Rb");
-
-            ent.inputs.AddActionListener(ent.inputs.InputActions.GamePlay.Jump, (Action<bool>)((down) => {
-                if (down) ent.fsm.UpdateNextState();
-            }));
         }
 
 
-        public override void OnEnter()
+        public override void OnEnter0()
         {
             CanExit = false;
             ent.animCtrls.PlayAnim(AnimName);
         }
 
-        public override void OnExit()
+        public override void OnExit0()
         {
             JumpPhase = 0;
         }
@@ -86,7 +82,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
                     break;
                 case 2:
                     if (ent.animCtrls.CAnimName != CurrentAnimName) break;
-                    //Debug.Log($"{ent.animCtrls.CAnimName},  {ent.animCtrls.CAnimNormalizedTime}");
+                    //Debug.Log($"{ent.provider.CAnimName},  {ent.provider.CAnimNormalizedTime}");
                     if (ent.animCtrls.IsCurrentAnimEnd(CurrentAnimName)) {
                         JumpPhase = 3;
                         ent.animCtrls.anims.Play(AnimName, 0, 0);

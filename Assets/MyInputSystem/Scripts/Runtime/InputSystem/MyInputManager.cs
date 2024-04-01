@@ -55,20 +55,6 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
 
         public void AddActionListener<T>(InputAction keyAction, Action<T> act, bool log = false)
         {
-            //Delegate dele = (Action)(() => {
-            //    Debug.Log("Hello");
-            //});
-            //Action useAct = () => {
-            //    dele?.DynamicInvoke();
-            //};
-            //useAct?.Invoke();
-
-            //dele = Delegate.Combine(dele, (Action)(() => {
-            //    Debug.Log("Hello");
-            //}));
-
-            //useAct?.Invoke();
-
             Action<InputAction.CallbackContext> proxy = null;
             //首次时增加基方法, 用于首先更新值
             if (!actions.ContainsKey(keyAction)) {

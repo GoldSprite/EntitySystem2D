@@ -4,20 +4,31 @@ using UnityEngine;
 namespace GoldSprite.UnityPlugins.EntitySystem2D {
 
     public abstract class EntityBehaviourState : EntityBehaviour, IState {
-        public EntitySystem ent;
+        public EntityBehaviourConstructor ent;
         public string AnimName { get; set; } = "";
         public int Priority { get; set; }
+        public bool OnEnterEnd { get; protected set; }
         public bool StateSwitch { get; protected set; }
 
 
         public abstract bool Enter();
         public abstract bool Exit();
-        public virtual void OnEnter() { }
-        public virtual void OnExit() { }
+        public void OnEnter()
+        {
+            OnEnter0();
+            OnEnterEnd = true;
+        }
+        public virtual void OnEnter0() { }
+        public void OnExit()
+        {
+            OnEnterEnd = false;
+            OnExit0();
+        }
+        public virtual void OnExit0() { }
         public virtual void Run() { }
 
 
-        public override void Init(EntitySystem ent, int priority)
+        public override void Init(EntityBehaviourConstructor ent, int priority)
         {
             this.ent = ent;
 
