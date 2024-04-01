@@ -280,6 +280,34 @@ MonoBehaviour:
   attackPower: 5
   bevs:
     ent: {fileID: 0}
+    props:
+      draw: 
+      foldout: 0
+    fsm:
+      debugLog: 0
+      draw: 
+    inputs:
+      draw: 
+      debugLog: 1
+    animCtrls:
+      debugLog: 0
+      anims: {fileID: 0}
+      CAnimName: 
+      LastAnimName: 
+      CAnimNormalizedTime: 0
+      CAnimClipLooping: 0
+      CAnimStateLoop: 0
+      CAnimTranslationing: 0
+    physics:
+      OnTriggerEnter2D:
+        m_PersistentCalls:
+          m_Calls: []
+      OnTriggerExit2D:
+        m_PersistentCalls:
+          m_Calls: []
+      GroundLayer: Ground
+      GroundList: []
+      IsGround: 0
   props:
     draw: 
     foldout: 0

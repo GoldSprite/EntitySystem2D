@@ -30,6 +30,7 @@ namespace GoldSprite.UnityPlugins.EntitySystem2D {
         public float jumpForce = 6f;
         public float attackPower = 5f;
         [Header("Constructor")]
+        [HideInInspector]
         [Tooltip("实体构造器")]
         public EntityBehaviourConstructor bevs;
         [Header("Components")]
