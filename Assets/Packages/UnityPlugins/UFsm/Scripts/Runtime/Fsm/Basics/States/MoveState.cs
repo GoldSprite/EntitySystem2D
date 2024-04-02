@@ -26,9 +26,13 @@ namespace GoldSprite.UFsm {
 
         public override void FixedUpdate()
         {
+            // Ù–‘
             var vel = Props.Velocity;
             vel.x = Props.Direction.x * Props.Speed;
             Props.Velocity = vel;
+
+            //∂Øª≠
+            //Fsm.AnimCtrls.Play();
         }
     }
 }

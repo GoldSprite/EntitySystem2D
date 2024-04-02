@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking.Types;
 
 namespace GoldSprite.UFsm {
-    public class Fsm : IFsm {
+    public class Fsm : MonoBehaviour, IFsm {
         protected Dictionary<Type, IState> states = new();
         public IState CState { get; protected set; }
         public IState DefaultState { get; protected set; }
@@ -24,7 +25,7 @@ namespace GoldSprite.UFsm {
             state.Priority = LastPriority;
         }
 
-        public void Start()
+        public void Begin()
         {
             CState.OnEnter();
         }

@@ -49,14 +49,14 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
                 if (LastAnimEndName != CAnimName && IsCurrentAnimEnd(CAnimName)) {
                     LastAnimEndName = CAnimName;
                     //PlayAnim(CAnimName, 0, CAnimState.normalizedTime - 1);
-                    Debug.Log($"动画播放结束事件: {LastAnimName}");
+                    LogTool.NLog("MyAnimator", $"动画播放结束事件: {LastAnimName}");
                     //CurrentAnimEndAction?.Invoke(LastAnimName);
                     var clipKey = GetClipKey(CAnimClip);
                     OnAnimEndEvent?.Invoke(clipKey);
                 }
                 if (LastAnimName != CAnimName) {
                     LastAnimEndName = "";
-                    Debug.Log($"动画转换事件{LastAnimName} -> {CAnimName}");
+                    LogTool.NLog("MyAnimator", $"动画转换事件{LastAnimName} -> {CAnimName}");
                     OnAnimTranEvent?.Invoke(LastAnimEnum, CAnimEnum);
                     LastAnimName = CAnimName;
                     LastAnimEnum = CAnimEnum;

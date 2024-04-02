@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68c53206ec31db4d8e09b3414c8ba03, type: 3}
   m_Name: LogToolData
   m_EditorClassIdentifier: 
-  showInterceptMsg: 1
+  showInterceptMsg: 0
   logdatas:
     pairs:
     - Key: default
@@ -22,4 +22,10 @@ MonoBehaviour:
       - "\u4EC0\u4E48\u4F60\u8BF4\u8FD9\u51E0\u884C\u6709\u4EC0\u4E48\u7528, \u6CA1\u7528."
     - Key: MyInputs
       Value:
-      - "\u8F93\u5165\u5668Lo"
+      - "\u8F93\u5165\u5668Log"
+    - Key: xMyAnimator
+      Value:
+      - "\u52A8\u753B\u5668Log"
+    - Key: xMyAnimatorSamples
+      Value:
+      - "\u52A8\u753B\u5668\u6F14\u793ALog"

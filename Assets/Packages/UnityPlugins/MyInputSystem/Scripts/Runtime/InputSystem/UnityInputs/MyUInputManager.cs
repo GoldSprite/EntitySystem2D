@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GoldSprite.UnityPlugins.MyInputSystem {
-    public abstract partial class MyUInputManager : MonoBehaviour, IMyInputManager {
+    public partial class MyUInputManager : MonoBehaviour, IMyInputManager {
         //引用
         public InputActions InputActions { get; private set; }
         private Dictionary<InputActionMap, bool> InputEnables;
@@ -17,7 +17,6 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         [ShowUInputManager]
         [SerializeField]
         private string draw;
-        public bool debugLog = true;
         //实时
         public Dictionary<InputAction, Delegate> actions = new();
         protected Dictionary<InputAction, object> actionValues = new();
@@ -38,7 +37,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
             InputEnables = SetInputActionMaps();
         }
 
-        protected abstract Dictionary<InputActionMap, bool> SetInputActionMaps();
+        protected virtual Dictionary<InputActionMap, bool> SetInputActionMaps() { return null; }
 
         protected virtual void InitActions()
         {
@@ -72,7 +71,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                     {   //自动存值
                         actionValues[keyAction] = val;
                         //debug log
-                        if (log || debugLog) Debug.Log($"[InputSystem]: {keyAction.name}: {val}");
+                        if (log) LogTool.NLog("MyInputs", $"{keyAction.name}: {val}");
                         //事件调用
                         actions[keyAction]?.DynamicInvoke(val);
                     }
@@ -129,8 +128,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             height = 0;
-            var target = property.serializedObject.targetObject;
-            var input = ReflectionHelper.GetField<MyInputManager>(target);
+            var input = property.serializedObject.targetObject as MyUInputManager;
             if (input == null) {
                 return;
             }

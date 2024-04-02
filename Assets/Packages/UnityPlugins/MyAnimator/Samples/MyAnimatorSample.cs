@@ -15,10 +15,10 @@ namespace GoldSprite.UnityPlugins.MyAnimator.Samples {
             animCtrl.SetAnimClips(clips);
             animCtrl.OnAnimEndEvent += (clipType) => {
                 if (AnimClipType.Idle.Equals(clipType))
-                    Debug.Log("AnimClipType.Idle动画结束");
+                    LogTool.NLog("MyAnimatorSamples", "AnimClipType.Idle动画结束");
             };
             animCtrl.OnAnimTranEvent += (lastAnim, nowAnim) => {
-                Debug.Log($"动画转换: {lastAnim}=>{nowAnim}");
+                LogTool.NLog("MyAnimatorSamples", $"动画转换: {lastAnim}=>{nowAnim}");
             };
         }
 

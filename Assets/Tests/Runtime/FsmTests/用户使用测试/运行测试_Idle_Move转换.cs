@@ -7,15 +7,16 @@ using UnityEngine;
 using UnityEngine.TestTools;
 
 public class ÔËÐÐ²âÊÔ_Idle_Move×ª»» : MonoBehaviour{
-    public BaseProps props;
+    public IBaseProps props;
     public BaseFsm fsm;
 
 
     public void Start()
     {
         props = new BaseProps() { Name = "A" };
-        fsm = new BaseFsm(props);
-        fsm.Start();
+        var fsm = GetComponent<BaseFsm>();
+        fsm.InitFsm(props);
+        fsm.Begin();
     }
 
     public void Update()

@@ -9,8 +9,9 @@ namespace GoldSprite.UFsm.Tests {
         public static void Test1()
         {
             var props = new BaseProps() { Name = "A" };
-            var fsm = new BaseFsm(props);
-            fsm.Start();
+            var fsm = new BaseFsm();
+            fsm.InitFsm(props);
+            fsm.Begin();
             var dir = new Vector2(1, 0);
 
             {   //idle->move
