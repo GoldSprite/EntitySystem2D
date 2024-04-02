@@ -9,6 +9,7 @@ namespace GoldSprite.UFsm {
         public Vector2 Velocity { get; set; }
         public bool IsGround { get;}
         public float Speed { get; set; }
+        public int Face { get; set; }
     }
 
     [Serializable]
@@ -21,5 +22,6 @@ namespace GoldSprite.UFsm {
         public bool IsGround { get; } = true;
         [SerializeField] private string speed;
         public float Speed { get; set; } = 1;
+        public int Face { get; set; }
     }
 }

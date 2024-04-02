@@ -8,5 +8,11 @@ namespace GoldSprite.UFsm {
 
         public override bool Enter() => true;
         public override bool Exit() => true;
+
+        public override void Update()
+        {
+            //¶¯»­
+            Fsm.AnimCtrls.Play(AnimEnum);
+        }
     }
 }

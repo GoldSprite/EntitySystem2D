@@ -355,7 +355,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2c088c5b7ed1d468dd8e5ff245eb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: animClips
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Enum, mscorlib],[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[System.Enum, mscorlib]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnAnimEndEvent
+      Entry: 6
+      Data: 
+    - Name: OnAnimTranEvent
+      Entry: 6
+      Data: 
+    - Name: CAnimEnum
+      Entry: 6
+      Data: 
+    - Name: LastAnimEnum
+      Entry: 6
+      Data: 
+    - Name: LastAnimEndEnum
+      Entry: 6
+      Data: 
   anims: {fileID: 1751541982}
   CAnimName: 
   LastAnimName: 
@@ -376,15 +419,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73fb0c52dde35ff4da032fef0228d77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 7400000, guid: 1150a4d5cfdac8046a1b9f6afc4f03c4, type: 2}
+    - {fileID: 7400000, guid: 1f086acd655b5ce4fabd4c2d55554b9f, type: 2}
+    - {fileID: 7400000, guid: c85b86c30c1204842b23f6c159a47b39, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: clips
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[GoldSprite.UnityPlugins.MyAnimator.Samples.MyAnimatorSample+AnimClipType,
+        EntitySystem2D_Plugins],[UnityEngine.AnimationClip, UnityEngine.AnimationModule]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[GoldSprite.UnityPlugins.MyAnimator.Samples.MyAnimatorSample+AnimClipType,
+        EntitySystem2D_Plugins]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   animCtrl: {fileID: 1751541980}
-  clips:
-    pairs:
-    - Key: 0
-      Value: {fileID: 7400000, guid: 1150a4d5cfdac8046a1b9f6afc4f03c4, type: 2}
-    - Key: 1
-      Value: {fileID: 7400000, guid: 1f086acd655b5ce4fabd4c2d55554b9f, type: 2}
-    - Key: 2
-      Value: {fileID: 7400000, guid: c85b86c30c1204842b23f6c159a47b39, type: 2}
 --- !u!95 &1751541982
 Animator:
   serializedVersion: 5

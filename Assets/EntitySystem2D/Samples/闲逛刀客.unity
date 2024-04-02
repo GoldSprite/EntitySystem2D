@@ -328,10 +328,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2001830881}
   - component: {fileID: 2001830882}
+  - component: {fileID: 2001830885}
+  - component: {fileID: 2001830884}
+  - component: {fileID: 2001830883}
   - component: {fileID: 2001830878}
   - component: {fileID: 2001830877}
   - component: {fileID: 2001830876}
   - component: {fileID: 2001830875}
+  - component: {fileID: 2001830887}
+  - component: {fileID: 2001830886}
   m_Layer: 6
   m_Name: BladeMan
   m_TagString: Untagged
@@ -483,11 +488,139 @@ MonoBehaviour:
   m_GameObject: {fileID: 2001830871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86d2dea5a2c9d1b4bbaff13a52bee755, type: 3}
+  m_Script: {fileID: 11500000, guid: 2941880b59615ee4d80c203354cef9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   behaviourMetaList:
   - {fileID: 11400000, guid: 21e491bdae6d48243b3af452c296ab21, type: 2}
   - {fileID: 11400000, guid: 70930009688782a41a250a10246ba9e5, type: 2}
-  propsManager: {fileID: 0}
-  fsm: {fileID: 0}
+  fsm: {fileID: 2001830884}
+  animCtrls: {fileID: 2001830883}
+  props: {fileID: 2001830887}
+--- !u!114 &2001830883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001830871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb881b4781edf4283a15da79f50cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: animClips
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Enum, mscorlib],[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[System.Enum, mscorlib]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnAnimEndEvent
+      Entry: 6
+      Data: 
+    - Name: OnAnimTranEvent
+      Entry: 6
+      Data: 
+    - Name: CAnimEnum
+      Entry: 6
+      Data: 
+    - Name: LastAnimEnum
+      Entry: 6
+      Data: 
+    - Name: LastAnimEndEnum
+      Entry: 6
+      Data: 
+  anims: {fileID: 2001830878}
+  CAnimName: 
+  LastAnimName: 
+  LastAnimEndName: 
+  CAnimNormalizedTime: 0
+  CAnimClipLooping: 0
+  CAnimStateLoop: 0
+  CAnimTranslationing: 0
+--- !u!114 &2001830884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001830871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31136a3036302cf4c96cec696d5e849b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+--- !u!114 &2001830885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001830871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378422821c20fab4386766ba605a1edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  draw: 
+  fsm: {fileID: 2001830884}
+--- !u!114 &2001830886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001830871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1254cfb356f21944afaadb261259054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroundCount: 0
+  IsGround: 0
+--- !u!114 &2001830887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001830871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d544c0028a0bb42b62696469aea6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2001830876}
+  physics: {fileID: 2001830886}

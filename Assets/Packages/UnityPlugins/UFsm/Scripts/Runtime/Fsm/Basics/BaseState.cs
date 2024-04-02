@@ -3,10 +3,11 @@ using System;
 namespace GoldSprite.UFsm {
     [Serializable]
     public class BaseState : State {
+        public Enum AnimEnum { get; set; }
         public new BaseFsm Fsm { get; }
         public IBaseProps Props => Fsm.Props;
 
-        public BaseState(BaseFsm fsm) : base(fsm) {}
+        public BaseState(BaseFsm fsm) : base(fsm) { Fsm = fsm; }
 
         public override string ToString()
         {

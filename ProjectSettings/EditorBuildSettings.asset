@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/Packages/UnityPlugins/MyAnimator/Samples/\u57FA\u672C\u4EBA\u7269\u72B6\u6001.unity"
-    guid: e2f0dd4f3c249ff48b789b384f0a4d44
+    path: "Assets/EntitySystem2D/Samples/\u95F2\u901B\u5200\u5BA2.unity"
+    guid: fac8f9e9c8e51d543b13639be11a98e4
   m_configObjects: {}

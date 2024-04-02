@@ -13,6 +13,7 @@ namespace GoldSprite.EntitySystem2D {
         public bool IsGround { get; } = true;
         [SerializeField] private string speed;
         public float Speed { get; set; } = 1;
+        public int Face { get; set; }
     }
 
     public interface IBaseProps2 : IBaseProps { }

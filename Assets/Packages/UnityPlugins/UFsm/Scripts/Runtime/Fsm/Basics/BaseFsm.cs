@@ -8,7 +8,7 @@ namespace GoldSprite.UFsm {
     public class BaseFsm : Fsm {
         public new IBaseProps Props { get; protected set; }
         public MyAnimator AnimCtrls { get; protected set; }
-        protected BaseFsmCommandManager Cmd { get; private set; }
+        protected BaseFsmCommandManager Cmd { get; set; }
 
         public void InitFsm(IBaseProps props, MyAnimator animCtrls)
         {

@@ -1,15 +1,18 @@
-using GoldSprite.UnityTools.MyDict;
 using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Collections.Generic;
 
 namespace GoldSprite.UnityPlugins.MyAnimator {
-    public class MyAnimator : MonoBehaviour {
-        [ShowMyAnimator]
-        public string draw;
+    public class MyAnimator: SerializedMonoBehaviour {
+        [ManualRequire]
         public Animator anims;
-        private readonly MyDict<Enum, AnimationClip> animClips = new();
+        [OdinSerialize]
+        private readonly Dictionary<Enum, AnimationClip> animClips = new();
 
         //引用
         [Header("动画事件")]
@@ -28,7 +31,7 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
         public bool CAnimTranslationing;
 
 
-        public void SetAnimClips<T>(MyDict<T, AnimationClip> clips) where T : Enum
+        public void SetAnimClips<T>(Dictionary<T, AnimationClip> clips) where T:Enum
         {
             animClips.Clear();
             foreach (var (k, v) in clips) {
@@ -68,12 +71,16 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
 
         public Enum GetClipKey(AnimationClip clip)
         {
-            return animClips.FirstOrDefault(p => p.Item2 == clip).Item1;
+            return animClips.FirstOrDefault(p => p.Value == clip).Key;
         }
 
         public void Play(Enum key, int layer = 0, float normalizedTime = 0)
         {
             anims.Play(animClips[key].name, layer, normalizedTime);
+        }
+        public void Play(Enum key)
+        {
+            anims.Play(animClips[key].name);
         }
 
         public void PlayAnim(string animName, int layer = 0, float normalizedTime = 0)
@@ -96,12 +103,10 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
             if (anims == null) return;
             anims.CrossFade(animName, normalizedTransitionDuration);
         }
-
-        public T InsertComponentLater<T>()
-        {
-            throw new NotImplementedException();
-        }
     }
+
+
+
 
 
     public class ShowMyAnimatorAttribute : PropertyAttribute { }

@@ -25,8 +25,11 @@ namespace GoldSprite.UFsm {
             vel.x = Props.Direction.x * Props.Speed;
             Props.Velocity = vel;
 
+            //×ªÏò
+            if(Props.Direction.x != 0) Props.Face = Props.Direction.x > 0 ? 1 : -1;
+
             //¶¯»­
-            //Fsm.AnimCtrls.Play();
+            Fsm.AnimCtrls.Play(AnimEnum);
         }
     }
 }

@@ -3,11 +3,12 @@ using GoldSprite.UnityPlugins.MyAnimator;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace GoldSprite.UnityPlugins.MyAnimator.Samples {
-    public class MyAnimatorSample : MonoBehaviour {
+    public class MyAnimatorSample : SerializedMonoBehaviour {
         public MyAnimator animCtrl;
-        public MyDict<AnimClipType, AnimationClip> clips;
+        public Dictionary<AnimClipType, AnimationClip> clips;
 
 
         private void Start()

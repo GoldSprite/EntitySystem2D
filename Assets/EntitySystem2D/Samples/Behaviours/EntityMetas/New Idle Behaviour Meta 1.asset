@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fbafe5c086afc438d3bde146d0562b, type: 3}
   m_Name: New Idle Behaviour Meta 1
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   priority: 0
   animClip: {fileID: 7400000, guid: 1150a4d5cfdac8046a1b9f6afc4f03c4, type: 2}
+  bid: 0
   props: {fileID: 11400000, guid: 75e9727bfb3956443a4b816f011b5a5f, type: 2}

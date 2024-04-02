@@ -10,7 +10,7 @@ namespace GoldSprite.EntitySystem2D {
     public class EntityInputs : MyUInputManager {
         [Header("Êä³öµ½×´Ì¬Æ÷")]
         [ManualRequire]
-        public EntityUFsm fsm;
+        public EntityUFsm22 fsm;
 
 
         protected override Dictionary<InputActionMap, bool> SetInputActionMaps()
