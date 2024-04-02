@@ -27,19 +27,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         {
             InitManager();
 
-            InitDefaultActions();
-
             InitActions();
-        }
-
-        private void InitDefaultActions()
-        {
-            foreach(var map in InputEnables.Keys) {
-                foreach(var actionKey in map) {
-                    var type = actionKey.type;
-                    Debug.Log($"ActionKey-{actionKey.name}: type-{type}");
-                }
-            }
         }
 
         private void InitManager()
@@ -84,7 +72,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                     {   //自动存值
                         actionValues[keyAction] = val;
                         //debug log
-                        if (log || debugLog) Debug.Log($"[InputSystem]: {keyAction.name}: {val}");
+                        if (log) LogTool.NLog("MyInputs", $"{keyAction.name}: {val}");
                         //事件调用
                         actions[keyAction]?.DynamicInvoke(val);
                     }
@@ -150,7 +138,6 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
             var actionValues = ReflectionHelper.GetField<Dictionary<InputAction, object>>(input, "actionValues");
             if (actionValues != null && actionValues.Count > 0) {
                 position.height = EditorGUIUtility.singleLineHeight;
-                //Debug.Log("Draw");
                 float lineMargin = 5f;
                 var i = 0;
 

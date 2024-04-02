@@ -27,19 +27,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         {
             InitManager();
 
-            InitDefaultActions();
-
             InitActions();
-        }
-
-        private void InitDefaultActions()
-        {
-            foreach(var map in InputEnables.Keys) {
-                foreach(var actionKey in map) {
-                    var type = actionKey.type;
-                    Debug.Log($"ActionKey-{actionKey.name}: type-{type}");
-                }
-            }
         }
 
         private void InitManager()
