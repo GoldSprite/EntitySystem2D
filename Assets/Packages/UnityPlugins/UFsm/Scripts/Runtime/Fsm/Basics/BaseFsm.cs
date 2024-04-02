@@ -10,9 +10,10 @@ namespace GoldSprite.UFsm {
         public MyAnimator AnimCtrls { get; protected set; }
         protected BaseFsmCommandManager Cmd { get; private set; }
 
-        public void InitFsm(IBaseProps props)
+        public void InitFsm(IBaseProps props, MyAnimator animCtrls)
         {
             Props = props;
+            AnimCtrls = animCtrls;
             Cmd = new BaseFsmCommandManager();
             InitStates();
             InitCommands();
@@ -20,8 +21,8 @@ namespace GoldSprite.UFsm {
 
         protected virtual void InitStates()
         {
-            InitState(new IdleState(this, Props));
-            AddState(new MoveState(this, Props));
+            InitState(new IdleState(this));
+            AddState(new MoveState(this));
         }
 
         protected virtual void InitCommands()

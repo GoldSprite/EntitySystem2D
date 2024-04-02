@@ -4,17 +4,11 @@ using UnityEngine;
 namespace GoldSprite.UFsm {
     public class MoveState : BaseState {
         public override bool CanTranSelf { get; protected set; } = false;
-        public MoveState(BaseFsm fsm, IBaseProps props) : base(fsm, props) {
+        public MoveState(BaseFsm fsm) : base(fsm) {
         }
 
-        public override bool Enter()
-        {
-            return Props.Direction.x != 0 && Props.IsGround;
-        }
-        public override bool Exit()
-        {
-            return Props.Velocity == Vector2.zero || !Props.IsGround;
-        }
+        public override bool Enter() => Props.Direction.x != 0 && Props.IsGround;
+        public override bool Exit() => Props.Velocity == Vector2.zero || !Props.IsGround;
 
         public override void OnEnter()
         {

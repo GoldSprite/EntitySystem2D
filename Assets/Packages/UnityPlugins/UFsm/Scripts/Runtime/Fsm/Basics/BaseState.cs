@@ -1,13 +1,19 @@
-namespace GoldSprite.UFsm {
-    public abstract class BaseState : State {
-        public new BaseFsm Fsm { get; }
-        protected IBaseProps Props { get; }
+using System;
 
-        public BaseState(BaseFsm fsm, IBaseProps props) : base(fsm) { this.Props = props; }
+namespace GoldSprite.UFsm {
+    [Serializable]
+    public class BaseState : State {
+        public new BaseFsm Fsm { get; }
+        public IBaseProps Props => Fsm.Props;
+
+        public BaseState(BaseFsm fsm) : base(fsm) {}
 
         public override string ToString()
         {
             return $"[{Props.Name}-{GetType().Name}]";
         }
+
+        public override bool Enter() => false;
+        public override bool Exit() => true;
     }
 }

@@ -47,6 +47,8 @@ namespace GoldSprite.UnityTools.MyDict {
             return default(V);
         }
 
+        public int Count() { return pairs.Count; }
+
         private void SetPair(K key, V val)
         {
             var pair = pairs.FirstOrDefault(p => p.Key.Equals(key));

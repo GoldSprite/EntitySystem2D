@@ -9,7 +9,7 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
         [ShowMyAnimator]
         public string draw;
         public Animator anims;
-        private MyDict<Enum, AnimationClip> animClips = new();
+        private readonly MyDict<Enum, AnimationClip> animClips = new();
 
         //引用
         [Header("动画事件")]
@@ -73,7 +73,7 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
 
         public void Play(Enum key, int layer = 0, float normalizedTime = 0)
         {
-            anims.Play(animClips[key].name);
+            anims.Play(animClips[key].name, layer, normalizedTime);
         }
 
         public void PlayAnim(string animName, int layer = 0, float normalizedTime = 0)
