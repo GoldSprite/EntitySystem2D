@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GoldSprite.UnityPlugins.MyInputSystem {
-    public abstract partial class MyInputManager {
+    public abstract partial class MyInputManager : IMyInputManager {
         //ÒýÓÃ
         public InputActions InputActions { get; private set; }
         private Dictionary<InputActionMap, bool> InputEnables;

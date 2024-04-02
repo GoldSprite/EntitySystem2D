@@ -14,12 +14,20 @@ namespace GoldSprite.GUtils {
         /// <exception cref="Exception"></exception>
         public static T GetField<T>(object target, string propertyPath)
         {
+            return (T)GetField(target, propertyPath);
+        }
+        public static object GetField(object target, string propertyPath)
+        {
+            return GetFieldInfo(target, propertyPath)?.GetValue(target);
+        }
+        public static FieldInfo GetFieldInfo(object target, string propertyPath)
+        {
             foreach (var fieldName in propertyPath.Split('.')) {
                 var fieldInfo = target.GetType().GetField(fieldName);
                 if (fieldInfo == null) throw new Exception("找不到该路径成员信息.");
-                target = fieldInfo.GetValue(target);
+                return fieldInfo;
             }
-            return (T)target;
+            return null;
         }
 
 
@@ -38,6 +46,11 @@ namespace GoldSprite.GUtils {
                 }
             }
             return default(T);
+        }
+
+        public static Type GetFieldType(object target, string propertyPath)
+        {
+            return GetFieldInfo(target, propertyPath)?.FieldType;
         }
     }
 }

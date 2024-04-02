@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+using GoldSprite.UnityTools.InspectorTools;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,11 +21,11 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
                 //var warnIcon = EditorGUIUtility.IconContent("console.warnicon.sml").image;
                 //var content = new GUIContent("需要Animator组件", warnIcon);
                 EditorGUI.HelpBox(position, "需要Animator组件", MessageType.Warning);
-                NextLine(ref position);
+                position.NextLine(ref height);
                 if (GUI.Button(position, "添加Animator组件")) {
                     myanim.anims = myanim.InsertComponentLater<Animator>();
                 }
-                NextLine(ref position);
+                position.NextLine(ref height);
             }
 
             //if(myanim.CAnimEnum != null) {
@@ -58,11 +60,6 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
         {
             return height;
         }
-
-        private void NextLine(ref Rect position)
-        {
-            position.y += singleLineMargin;
-            height += singleLineMargin;
-        }
     }
 }
+#endif

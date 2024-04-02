@@ -1,8 +1,6 @@
-using GoldSprite.UnityTools.MyDict;
-using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace GoldSprite.UnityTools.MyDict {
     // 自定义绘制器
@@ -61,3 +59,4 @@ namespace GoldSprite.UnityTools.MyDict {
         }
     }
 }
+#endif
