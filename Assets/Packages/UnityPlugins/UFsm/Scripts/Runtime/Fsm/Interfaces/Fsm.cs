@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking.Types;
 using static UnityEngine.GraphicsBuffer;
@@ -26,6 +27,13 @@ namespace GoldSprite.UFsm {
             states.Add(state.GetType(), state);
             LastPriority += priority;
             state.Priority = LastPriority;
+        }
+
+        protected void AddStateFix(IState state, int priority)
+        {
+            states.Add(state.GetType(), state);
+            state.Priority = priority;
+            LastPriority = states.Values.OrderBy(p=>p.Priority).Last().Priority;
         }
 
         public void Begin()

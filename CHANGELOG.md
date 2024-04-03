@@ -144,3 +144,61 @@
 
 ## 2024.4.3 - [V0.1.6.3-alpha]
 - [x] 疾跑忘了, 加上
+
+
+## 2024.4.3 - [V0.1.7.0-alpha]
+- [x] Plan:
+  - Add Properties: Health, MaxHealth, AttackPower.
+    - Update Fsm: 
+      - HurtState: 
+        - Add Judgment Of Death Method. 
+      - Command: 
+        - HurtMethod: Add a param of attacker.
+- Real: 
+  - 算了还是不用洋文了, 自己都懒得看
+  - 更新如下: 
+    1. 大更新:
+       2. 增加血量, 最大血量, 攻击力属性
+       3. 受伤状态OnEnter时做死亡判定, 扣血到0就转deathkey
+       4. 指令执行器
+          1. Action参数从Action<T>变为Delegate: 这样可以传入多个参数不然只能传一个参数, 
+          2. 并删除无用重复的comListener表直接使用commands
+    2. 其他小更新: 
+       1. 受击改为传入攻击者实例, 并在Hurt状态初始化时注册回调, 获取攻击者攻击力
+       2. 修正跳跃输入逻辑, KeyDown改为Key因为KeyDown发现抬起时并不消除JumpKey导致缓存行为
+       3. 状态机初始化顺序改为: 首先初始化指令再初始化状态, 因为之前状态初始化时拿不到指令实例
+       4. 调整状态优先级表: idle-0, move-1, attack/jump/-2, fall-0, hurt-3, death-4
+          1. fall改0: 之前为2和attack同级导致跳跃时攻击到一半被fall打断了
+       5. 死亡状态判定改为增加血量低于0自动deathKey=true, 不然取消deathKey之后血量为0都可以站起来
+       6. 接口增加ILiving生命属性, 并给IVictim继承: 受伤者应该有生命
+       7. 攻击者接口增加攻击力属性
+       8. 之前没有成功应用优先级, 添加AddStateFix方法修正优先级
+  - 总结: 
+    - 加入了生命, 攻击力属性, 
+    - 修复了一些状态转换bug
+    - 优化了行为转换手感
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```

@@ -4,27 +4,22 @@ using System.Collections.Generic;
 namespace GoldSprite.UFsm {
     public class BaseFsmCommandManager {
         protected Dictionary<Enum, Delegate> commands = new();
-        protected Dictionary<Enum, Delegate> listeners = new();
 
-        public void RegisterCommand<T>(Enum cmd, Action<T> action)
+        public void RegisterCommand(Enum cmd, Delegate action)
         {
             commands[cmd] = action;
-            listeners[cmd] = (Action<T>)((p) => { });
         }
 
-        public void AddCommandListener<T>(Enum cmd, Action<T> action)
+        public void AddCommandListener(Enum cmd, Delegate action)
         {
-            try {
-                listeners[cmd] = Delegate.Combine(listeners[cmd], action);
-            }
-            catch (Exception) { }
+            //可能会抛异常
+            commands[cmd] = Delegate.Combine(commands[cmd], action);
         }
 
-        public void Execute<T>(Enum cmd, T p)
+        public void Execute(Enum cmd, params object[] p)
         {
             if (!commands.TryGetValue(cmd, out Delegate dele)) return;
             dele?.DynamicInvoke(p);
-            listeners[cmd]?.DynamicInvoke(p);
         }
     }
 

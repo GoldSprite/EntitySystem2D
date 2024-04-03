@@ -54,7 +54,9 @@ namespace GoldSprite.EntitySystem2D {
 
         public void Hurt(bool down)
         {
-            fsm.Command(BaseFsmCommand.Hurt, down);
+            if (!down) return;
+            var attacker = ((IAttacker)fsm.Props);
+            fsm.Command(BaseFsmCommand.Hurt, attacker);
         }
         public void Death(bool down)
         {
@@ -63,8 +65,7 @@ namespace GoldSprite.EntitySystem2D {
         }
         public void Jump(bool down)
         {
-            if (down)
-                fsm.Command(BaseFsmCommand.Jump, true);
+            fsm.Command(BaseFsmCommand.Jump, down);
         }
     }
 }

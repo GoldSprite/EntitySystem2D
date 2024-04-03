@@ -1,5 +1,9 @@
-# EntitySystem2D - [V0.1.6.2-alpha]
+# EntitySystem2D
 实体生物系统
+
+## 2024.4.3 - [V0.1.7-alpha]
+- [x] 实现玩家操作角色: 刀客:
+  - [x] 输入: wasd移动, shift疾跑, j攻击, k/space跳跃, y受击, T死亡
 
 ## 工作流介绍:
 - 增加状态.
