@@ -31,7 +31,7 @@ namespace GoldSprite.UFsm {
         private void DrawRoamArea()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(RoamArea.position, RoamArea.size);
+            Gizmos.DrawWireCube(RoamArea.center, RoamArea.size);
         }
     }
 

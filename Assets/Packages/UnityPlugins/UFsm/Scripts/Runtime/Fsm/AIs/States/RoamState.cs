@@ -30,6 +30,17 @@ namespace GoldSprite.UFsm {
         public override void Update()
         {
             //(Props.MoveState)?.Move();
+            if (IsOutOfRoamArea()) {
+                Debug.Log("Âþ²½Ô½½ç.");
+            }
+        }
+
+
+        private bool IsOutOfRoamArea()
+        {
+            var collBounds = Fsm.Props.BodyCollider.bounds;
+            var rect = Fsm.Props.RoamArea;
+            return collBounds.min.x < rect.min.x || collBounds.max.x > rect.max.x || collBounds.min.y < rect.min.y || collBounds.max.y > rect.max.y;
         }
 
         public IEnumerator RoamTask()

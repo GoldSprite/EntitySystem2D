@@ -7,7 +7,10 @@ using UnityEngine.Networking.Types;
 using static UnityEngine.GraphicsBuffer;
 
 namespace GoldSprite.UFsm {
+    [Serializable]
     public class Fsm : SerializedMonoBehaviour, IFsm {
+        public bool TranRun = true;
+        public bool StateRun = true;
         [ShowInInspector]
         protected virtual SortedDictionary<Type, IState> states { get; set; }
         [ShowInInspector]
@@ -80,12 +83,16 @@ namespace GoldSprite.UFsm {
 
         public void Update()
         {
+            if(!TranRun) return;
+
             UpdateNextState();
             CState.Update();
         }
 
         public void FixedUpdate()
         {
+            if (!StateRun) return;
+
             CState.FixedUpdate();
         }
 
