@@ -8,8 +8,16 @@ namespace GoldSprite.UFsm {
         public Vector2 Direction { get; set; }
         public Vector2 Velocity { get; set; }
         public bool IsGround { get;}
+        public bool MoveBoostKey { get; set; }
+        public KeySwitchType MoveBoostKeyType { get; set; }
         public float Speed { get; set; }
+        public float SpeedBoost { get; set; }
         public int Face { get; set; }
+
+        public enum KeySwitchType
+        {
+            KeyDown, Key
+        }
     }
 
     public interface IAttacker

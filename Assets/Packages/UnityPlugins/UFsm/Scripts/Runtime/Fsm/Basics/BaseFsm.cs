@@ -42,6 +42,13 @@ namespace GoldSprite.UFsm {
             Cmd.RegisterCommand<bool>(BaseFsmCommand.Jump, (down) => {
                 Props.JumpKey = down;
             });
+            Cmd.RegisterCommand<bool>(BaseFsmCommand.MoveBoost, (down) => {
+                if (Props.MoveBoostKeyType == IEntityProps.KeySwitchType.Key)
+                    Props.MoveBoostKey = down;
+                else
+                if (Props.MoveBoostKeyType == IEntityProps.KeySwitchType.KeyDown && down)
+                    Props.MoveBoostKey = !Props.MoveBoostKey;
+            });
         }
 
         public void Command(Enum cmd, object p)

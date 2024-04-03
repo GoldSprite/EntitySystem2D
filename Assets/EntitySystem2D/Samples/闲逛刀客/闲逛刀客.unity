@@ -610,9 +610,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  rb: {fileID: 2001830876}
+  physics: {fileID: 2001830886}
+  name: UNKNOWN
   speed: 4
+  speedBoost: 2
   jumpForce: 6
   jumpingMoveDrag: 0.655
   attackingMoveDrag: 0.8
-  rb: {fileID: 2001830876}
-  physics: {fileID: 2001830886}
+  moveBoostKeyType: 1

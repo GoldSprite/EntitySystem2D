@@ -35,7 +35,7 @@ namespace GoldSprite.EntitySystem2D {
 
         private void MoveBoost(bool down)
         {
-            //if(down) props.
+            fsm.Command(BaseFsmCommand.MoveBoost, down);
         }
 
         public void Move(Vector2 dir)

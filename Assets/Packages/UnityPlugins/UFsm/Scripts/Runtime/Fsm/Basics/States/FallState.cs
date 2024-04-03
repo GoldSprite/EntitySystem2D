@@ -27,7 +27,7 @@ namespace GoldSprite.UFsm {
 
         public override void FixedUpdate()
         {
-            ((IJumper)Props).MoveState.Move(Props.JumpingMoveDrag);
+            ((IJumper)Props).MoveState?.Move(Props.JumpingMoveDrag);
         }
     }
 }

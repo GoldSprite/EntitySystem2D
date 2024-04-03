@@ -30,7 +30,9 @@ namespace GoldSprite.UFsm {
         {
             //ÊôÐÔ
             var vel = Props.Velocity;
-            vel.x = Props.Direction.x * Props.Speed * (1-moveDrag);
+            var boost = (Props.MoveBoostKey ? Props.SpeedBoost : 1);
+            var drag = (1 - moveDrag);
+            vel.x = Props.Direction.x * Props.Speed * boost * drag;
             Props.Velocity = vel;
 
             //×ªÏò

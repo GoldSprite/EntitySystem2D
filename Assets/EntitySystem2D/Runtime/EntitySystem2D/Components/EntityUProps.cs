@@ -13,8 +13,17 @@ using UnityEditor;
 
 namespace GoldSprite.UFsm {
     public class EntityUProps : SerializedMonoBehaviour, IEntityProps {
+        //Unity属性
+        [ManualRequire]
+        [Header("控制组件")]
+        public Rigidbody2D rb;
+        [ManualRequire]
+        [Header("依赖物理")]
+        public PhysicsManager physics;
+        [PropertySpace]
         //元属性
-        public string Name { get; set; } = "UNKNOWN";
+        [SerializeField] private new string name = "UNKNOWN";
+        public string Name { get => name; set => name = value; }
         private Vector2 direction;
         [ShowInInspector]
         public Vector2 Direction { get => (direction = direction.magnitude > 1 ? direction.normalized : direction); set => direction = value; }
@@ -24,6 +33,8 @@ namespace GoldSprite.UFsm {
         public bool IsGround => physics.IsGround;
         [SerializeField] private float speed = 4;
         public float Speed { get => speed; set => speed = value; }
+        [SerializeField] private float speedBoost = 2;
+        public float SpeedBoost { get => speedBoost; set => speedBoost = value; }
         public int Face {
             get => transform.localScale.x > 0 ? 1 : -1;
             set {
@@ -48,14 +59,10 @@ namespace GoldSprite.UFsm {
         [SerializeField, Range(0f, 1f)] private float attackingMoveDrag = 0.8f;
         public float AttackingMoveDrag { get => attackingMoveDrag; set => attackingMoveDrag = value; }
         public MoveState MoveState { get; set; }
-
-        //Unity属性
-        [ManualRequire]
-        [Header("控制组件")]
-        public Rigidbody2D rb;
-        [ManualRequire]
-        [Header("依赖物理")]
-        public PhysicsManager physics;
+        [SerializeField] private IEntityProps.KeySwitchType moveBoostKeyType;
+        public IEntityProps.KeySwitchType MoveBoostKeyType { get => moveBoostKeyType; set => moveBoostKeyType = value; }
+        [ShowInInspector]
+        public bool MoveBoostKey { get; set; }
 
         //[Header("可选的")]
         //[RequireInputCtrl]
