@@ -9,5 +9,7 @@ namespace GoldSprite.UFsm {
 
     public interface IRoamProps {
         public MoveState MoveState { get; set; }
+        public Rect RoamArea { get; set; }
+        public Collider2D BodyCollider { get; set; }
     }
 }

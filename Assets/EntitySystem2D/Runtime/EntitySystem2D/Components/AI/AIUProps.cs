@@ -13,13 +13,25 @@ using UnityEditor;
 
 namespace GoldSprite.UFsm {
     public class AIUProps : SerializedMonoBehaviour, IAIProps {
+
         //元属性
         public string Name { get; set; } = "AI";
         public MoveState MoveState { get; set; }
+        [SerializeField] private Rect roamArea;
+        public Rect RoamArea { get => roamArea; set => roamArea = value; }
+        [SerializeField] private Collider2D bodyCollider;
+        public Collider2D BodyCollider { get => bodyCollider; set => bodyCollider = value; }
 
 
-        private void Start()
+        private void OnDrawGizmos()
         {
+            DrawRoamArea();
+        }
+
+        private void DrawRoamArea()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(RoamArea.position, RoamArea.size);
         }
     }
 
