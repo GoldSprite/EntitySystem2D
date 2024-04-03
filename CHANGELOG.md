@@ -201,6 +201,8 @@
   - 使用Gizmos绘制于Scene界面上方便查看
 - 增加BodyCollider属性: 
   - 检测与漫步区域Rect的碰撞
+    - 使用AABB
+  - 越界后设置方向为区域方向
 
 
 

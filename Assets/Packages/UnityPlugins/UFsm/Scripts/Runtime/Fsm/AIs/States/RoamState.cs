@@ -32,6 +32,11 @@ namespace GoldSprite.UFsm {
             //(Props.MoveState)?.Move();
             if (IsOutOfRoamArea()) {
                 Debug.Log("Âþ²½Ô½½ç.");
+                var laterDir = Fsm.Props.RoamArea.center.x - Fsm.Props.BodyCollider.bounds.center.x; laterDir = laterDir > 0 ? 1 : -1;
+                if (MathTool.rand.NextDouble() < IdleRate) laterDir = 0;
+                var dir = Direction;
+                dir.x = Math.Abs(dir.x) * laterDir;
+                Direction = dir;
             }
         }
 
