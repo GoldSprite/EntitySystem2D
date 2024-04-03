@@ -19,6 +19,8 @@ namespace GoldSprite.UnityPlugins.PhysicsManager {
         public bool IsGround;
         public List<Collider2D> CollisionList;
 
+        private static int groundMask;
+        public static int GroundMask { get => groundMask; private set => groundMask = value; }
 
         public static void SingletonInitGroundList()
         {
@@ -33,6 +35,7 @@ namespace GoldSprite.UnityPlugins.PhysicsManager {
 
         public void Awake()
         {
+            GroundMask = LayerMask.GetMask(new string[] { GroundLayer });
             SingletonInitGroundList();
             GroundCount = GroundList.Count;
 

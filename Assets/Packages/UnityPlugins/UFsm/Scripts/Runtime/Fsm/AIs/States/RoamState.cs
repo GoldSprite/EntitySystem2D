@@ -1,4 +1,5 @@
 using GoldSprite.GUtils;
+using GoldSprite.UnityPlugins.PhysicsManager;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -18,12 +19,13 @@ namespace GoldSprite.UFsm {
         public float TickerNormalizee => (Ticker - seconds) / TickerInterval;
         private float seconds;
 
-        public bool IsOutOrCollision { get; private set; }
-
         [ShowInInspector]
         public Vector2 Direction { get => Fsm.ctrlFsm.Props.Direction; set => Fsm.ctrlFsm.Props.Direction = value; }
         public float CenterDirX => CenterDistanceX > 0 ? 1 : -1;
         public float CenterDistanceX => Fsm.Props.RoamArea.center.x - Fsm.Props.BodyCollider.bounds.center.x;
+
+        public Collider2D ground;
+        private Vector3 headPoint;
 
         public RoamState(AIFsm fsm) : base(fsm)
         {
@@ -53,16 +55,41 @@ namespace GoldSprite.UFsm {
 
         public override void Update()
         {
-            //边界时
+            //边界时朝中心移动
             if (IsOutOfRoamArea() && !IsSameSign(Direction.x, CenterDirX)) {
-                Debug.Log("碰撞越界.");
+                LogTool.NLog("RoamStateTest", "碰撞越界.");
                 if (IsRan(reverseProbability)) CenterMove();
                 else {
-                    Debug.Log("随机到退出.");
+                    LogTool.NLog("RoamStateTest", "随机到退出.");
                     ExitRoam = true;
                 }
+                //碰撞地面体时
+            } else
+            if (IsCollisionGround()) {
+                LogTool.NLog("RoamStateTest", "头部碰撞地面体.");
+                if (IsRan(reverseProbability)) {
+                    float GroundDistanceX = ground.bounds.center.x - headPoint.x;
+                    float GroundDirX = GroundDistanceX > 0 ? 1 : -1;
+                    ReverseMove(GroundDirX);
+                } else {
+                    LogTool.NLog("RoamStateTest", "随机到退出.");
+                    ExitRoam = true;
+                }
+                ground = null;
+            } else
                 //内部时
-            } else RandomMoveTask();
+                RandomMoveTask();
+
+        }
+
+        private bool IsCollisionGround()
+        {
+            var bounds = Fsm.Props.BodyCollider.bounds;
+            headPoint = bounds.center;
+            headPoint.y = bounds.max.y;
+            var radius = bounds.size.x;
+            ground = Physics2D.OverlapCircle(headPoint, radius, PhysicsManager.GroundMask);
+            return ground != null;
         }
 
         private bool IsSameSign(float a, float b)
@@ -74,14 +101,14 @@ namespace GoldSprite.UFsm {
         {
             seconds = Time.time;
             if (TickerNormalizee <= 0) {
-                Debug.Log($"执行随机移动任务: ");
+                LogTool.NLog("RoamStateTest", $"执行随机移动任务: ");
                 if (IsRan(reverseProbability)) RandomMove();
                 else {
-                    Debug.Log("随机到退出.");
+                    LogTool.NLog("RoamStateTest", "随机到退出.");
                     ExitRoam = true;
                 }
                 Ticker = seconds + TickerInterval;
-                //Debug.Log($"下一次秒数: {Ticker}");
+                //LogTool.NLog("RoamStateTest", $"下一次秒数: {Ticker}");
             }
         }
 
@@ -95,7 +122,7 @@ namespace GoldSprite.UFsm {
             var dirx = CenterDirX;
             var dir = Direction;
             var vel = IsSameSign(dirx, dir.x) ? Math.Abs(dir.x) : Random.Range(RoamVelMinMax.x, RoamVelMinMax.y);  //同向则延续速度
-            Debug.Log($"朝中心移动: dirx: {dirx}, vel: {vel}");
+            LogTool.NLog("RoamStateTest", $"朝中心移动: dirx: {dirx}, vel: {vel}");
             dir.x = dirx * vel;
             Direction = dir;
         }
@@ -105,8 +132,16 @@ namespace GoldSprite.UFsm {
             var dirx = Ran(LeftDirProbability);
             var dir = Direction;
             var vel = IsSameSign(dirx, dir.x) ? Math.Abs(dir.x) : Random.Range(RoamVelMinMax.x, RoamVelMinMax.y);  //同向则延续速度
-            Debug.Log($"随机移动: dirx: {dirx}, vel: {vel}");
+            LogTool.NLog("RoamStateTest", $"随机移动: dirx: {dirx}, vel: {vel}");
             dir.x = dirx * vel;
+            Direction = dir;
+        }
+
+        private void ReverseMove(float groundDirX)
+        {
+            var dir = Direction;
+            dir.x = -groundDirX * Math.Abs(dir.x);
+            LogTool.NLog("RoamStateTest", $"反向移动: ");
             Direction = dir;
         }
 

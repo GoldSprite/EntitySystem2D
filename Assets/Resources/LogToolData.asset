@@ -12,20 +12,138 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68c53206ec31db4d8e09b3414c8ba03, type: 3}
   m_Name: LogToolData
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Reload
+      Entry: 7
+      Data: 0|System.Action, mscorlib
+    - Name: target
+      Entry: 7
+      Data: 1|LogTool+<>c, EntitySystem2D_Plugins
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declaringType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: LogTool+<>c, EntitySystem2D_Plugins
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: <Init>b__2_0
+    - Name: delegateType
+      Entry: 7
+      Data: 3|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Action, mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 4|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: logdatas
+      Entry: 7
+      Data: 5|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 6|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: default
+    - Name: $v
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: MyInputs
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: MyAnimator
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: MyAnimatorSamples
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: RoamStateTest
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   showInterceptMsg: 0
-  logdatas:
-    pairs:
-    - Key: default
-      Value:
-      - "\u9ED8\u8BA4\u6807\u7B7E"
-      - "\u4E3A\u7A7A\u65F6\u81EA\u52A8\u4E3A\u6B64\u6807\u7B7E"
-      - "\u4EC0\u4E48\u4F60\u8BF4\u8FD9\u51E0\u884C\u6709\u4EC0\u4E48\u7528, \u6CA1\u7528."
-    - Key: MyInputs
-      Value:
-      - "\u8F93\u5165\u5668Log"
-    - Key: xMyAnimator
-      Value:
-      - "\u52A8\u753B\u5668Log"
-    - Key: xMyAnimatorSamples
-      Value:
-      - "\u52A8\u753B\u5668\u6F14\u793ALog"

@@ -11,5 +11,6 @@ namespace GoldSprite.UFsm {
     public interface IRoamProps {
         public Rect RoamArea { get; set; }
         public Collider2D BodyCollider { get; set; }
+        public bool IsCollisionGround { get; set; }
     }
 }

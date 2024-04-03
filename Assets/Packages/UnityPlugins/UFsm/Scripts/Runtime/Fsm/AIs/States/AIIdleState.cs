@@ -22,7 +22,7 @@ namespace GoldSprite.UFsm {
         public override void OnExit()
         {
             Ticker = 0;
-            Debug.Log($"退出时重置计时器: ");
+            LogTool.NLog("RoamStateTest", $"退出时重置计时器: ");
         }
 
         public override void Update()
@@ -34,7 +34,7 @@ namespace GoldSprite.UFsm {
         {
             seconds = Time.time;
             if (TickerNormalize <= 0) {
-                Debug.Log($"执行随机漫游: ");
+                LogTool.NLog("RoamStateTest", $"执行随机漫游: ");
                 Fsm.Props.RoamState.EnterRoam = true;
             }
         }

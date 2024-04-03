@@ -39,8 +39,8 @@ public static class LogTool {
     }
     public static bool DisPlayLog(string tag)
     {
-        if(Options == null) return true;
-        var exist = Options.logdatas.ContainsKey(tag);
+        if (Options == null) return true;
+        var exist = Options.logdatas.TryGetValue(tag, out bool enable) && enable;
         if (!exist && Options.showInterceptMsg) NLog($"[tag:{tag}] ÒÑ±»À¹½Ø.");
         return exist;
     }

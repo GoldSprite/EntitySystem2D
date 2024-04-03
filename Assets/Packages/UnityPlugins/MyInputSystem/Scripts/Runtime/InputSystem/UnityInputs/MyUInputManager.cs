@@ -11,7 +11,9 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
     public partial class MyUInputManager : MonoBehaviour, IMyInputManager {
         //引用
         public InputActions InputActions { get; private set; }
-        private Dictionary<InputActionMap, bool> InputEnables;
+        [SerializeField] private bool enable = true;
+        public bool Enable { get => enable; set => enable = value; }
+        public Dictionary<InputActionMap, bool> InputEnables;
 
         //配置
         [ShowUInputManager]
@@ -21,8 +23,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
         public Dictionary<InputAction, Delegate> actions = new();
         protected Dictionary<InputAction, object> actionValues = new();
 
-
-        public void Awake()
+        public void Start()
         {
             InitManager();
 
@@ -67,7 +68,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem {
                     T val = (T)Convert.ChangeType(valObj, typeof(T));
 
                     var disable = !IsInputEnable(keyAction.actionMap);
-                    if (disable) return;  //输入禁用时返回
+                    if (disable || !Enable) return;  //输入禁用时返回
                     {   //自动存值
                         actionValues[keyAction] = val;
                         //debug log
