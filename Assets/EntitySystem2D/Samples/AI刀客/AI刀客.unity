@@ -888,7 +888,7 @@ MonoBehaviour:
     SerializationNodes: []
   roamArea:
     serializedVersion: 2
-    x: -1.49
+    x: -3.96
     y: -2.65
     width: 10.17
     height: 5.09

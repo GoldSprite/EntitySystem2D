@@ -202,7 +202,24 @@
 - 增加BodyCollider属性: 
   - 检测与漫步区域Rect的碰撞
     - 使用AABB
-  - 越界后设置方向为区域方向
+  - 越界后设置方向为区域方向, 并30%几率停下
+
+
+## 2024.4.3 - [V0.1.8.3-temp]
+- 上版本效果不稳定. 重写过状态代码: 
+  - 我希望有两对状态: AIIdle和Roam, 
+  - 变量列举: 
+    - AIIdle: TranTicker, TranInterval
+    - Roam: TranTicker, TranInterval, RightFacingProbability, MoveVelRange, reverseProbability
+  - 逻辑: 
+    - 在AIIdle期间每隔TranInterval秒转换到Roam
+      - 当退出时计时器清零
+    - 在Roam期间
+      - 每隔TranInterval秒转换到AIIdle
+        - 当退出时计时器清零
+      - 在进入时有RightFacingProbability几率朝右否则朝左移动, 移动速度为Vec2 MoveVelRange: x为Min, y为Max
+      - 在运行时, 如果碰撞到边界点, 则
+        - 有reverseProbability几率折返, 否则退出状态
 
 
 
