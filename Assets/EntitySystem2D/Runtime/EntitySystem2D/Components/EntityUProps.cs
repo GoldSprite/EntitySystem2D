@@ -43,9 +43,10 @@ namespace GoldSprite.UFsm {
         public bool JumpKey { get; set; }
         [SerializeField] private float jumpForce = 6;
         public float JumpForce { get => jumpForce; set => jumpForce = value; }
-        [ShowInInspector, PropertyRange(0f, 1f)]
-        [SerializeField] private float jumpingMoveDrag = 0.7f;
+        [SerializeField, Range(0f, 1f)] private float jumpingMoveDrag = 0.6f;
         public float JumpingMoveDrag { get => jumpingMoveDrag; set => jumpingMoveDrag = value; }
+        [SerializeField, Range(0f, 1f)] private float attackingMoveDrag = 0.8f;
+        public float AttackingMoveDrag { get => attackingMoveDrag; set => attackingMoveDrag = value; }
         public MoveState MoveState { get; set; }
 
         //Unity属性

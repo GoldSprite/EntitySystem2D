@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GoldSprite.UFsm {
     public class JumpState : BaseState {
 
-        public override bool CanTranSelf { get; protected set; } = true;
+        public override bool CanTranSelf { get; protected set; } = false;
         public JumpState(BaseFsm fsm) : base(fsm)
         {
         }
@@ -18,10 +18,7 @@ namespace GoldSprite.UFsm {
         public override void OnEnter()
         {
             Props.JumpKey = false;
-            // Ù–‘
-            var vel = Props.Velocity;
-            vel.y = Props.JumpForce;
-            Props.Velocity = vel;
+            Jump();
             //∂Øª≠
             Fsm.AnimCtrls.Play(AnimName, 0, 0);
         }
@@ -32,8 +29,16 @@ namespace GoldSprite.UFsm {
 
         public override void FixedUpdate()
         {
-            if (Props.MoveState != null)
-                Props.MoveState.Move(Props.JumpingMoveDrag);
+            if (((IJumper)Props).MoveState != null)
+                ((IJumper)Props).MoveState.Move(Props.JumpingMoveDrag);
+        }
+
+        public void Jump()
+        {
+            // Ù–‘
+            var vel = Props.Velocity;
+            vel.y = Props.JumpForce;
+            Props.Velocity = vel;
         }
     }
 }

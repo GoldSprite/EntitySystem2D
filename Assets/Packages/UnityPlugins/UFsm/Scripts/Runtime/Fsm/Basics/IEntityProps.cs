@@ -15,6 +15,8 @@ namespace GoldSprite.UFsm {
     public interface IAttacker
     {
         public bool AttackKey { get; set; }
+        public MoveState MoveState { get; }
+        public float AttackingMoveDrag { get; set; }
     }
     public interface IVictim {
         public bool HurtKey { get; set; }

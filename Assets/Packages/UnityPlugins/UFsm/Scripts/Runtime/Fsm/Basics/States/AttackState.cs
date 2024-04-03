@@ -27,6 +27,7 @@ namespace GoldSprite.UFsm {
 
         public override void FixedUpdate()
         {
+            ((IAttacker)Props).MoveState.Move(Props.AttackingMoveDrag);
         }
     }
 }

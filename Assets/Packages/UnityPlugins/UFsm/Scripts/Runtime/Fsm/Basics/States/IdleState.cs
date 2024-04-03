@@ -6,8 +6,8 @@ namespace GoldSprite.UFsm {
         public IdleState(BaseFsm fsm) : base(fsm) {
         }
 
-        public override bool Enter() => true;
-        public override bool Exit() => true;
+        public override bool Enter() => false/*Props.Velocity == Vector2.zero*/;
+        public override bool Exit() => /*Props.Direction.x != 0*/true;
 
         public override void Update()
         {
