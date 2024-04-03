@@ -16,6 +16,7 @@ namespace GoldSprite.UFsm {
 
         public override void OnExit()
         {
+            Fsm.AnimCtrls.SetSpeed(1);
         }
 
         public override void FixedUpdate()
@@ -23,6 +24,7 @@ namespace GoldSprite.UFsm {
             Move();
 
             //¶¯»­
+            Fsm.AnimCtrls.SetSpeed(Props.Direction.x);
             Fsm.AnimCtrls.Play(AnimName);
         }
 

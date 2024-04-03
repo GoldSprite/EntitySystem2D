@@ -17,6 +17,7 @@ namespace GoldSprite.EntitySystem2D {
         public void Start()
         {
             InitMetas(props, behaviourMetaList);
+            props.RoamState = GetState<RoamState>();
         }
 
         public void InitMetas(AIUProps props, List<BehaviourMeta> behaviourMetaList)

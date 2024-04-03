@@ -10,13 +10,13 @@ namespace GoldSprite.UFsm {
     public class RoamState : AIState {
         public bool EnterRoam;
         public bool ExitRoam;
-        public Vector2 RoamVelMinMax = new Vector2(0.2f, 1f);
+        public Vector2 RoamVelMinMax = new(0.2f, 1f);
         public float reverseProbability = 0.6f;
         public float LeftDirProbability = 0.5f;
-        public float Ticker, TickerInterval = 3;
+        private float Ticker, TickerInterval = 2;
         [ShowInInspector]
-        public float TickerNormalize => (Ticker - seconds) / TickerInterval;
-        public float seconds;
+        public float TickerNormalizee => (Ticker - seconds) / TickerInterval;
+        private float seconds;
 
         public bool IsOutOrCollision { get; private set; }
 
@@ -25,11 +25,9 @@ namespace GoldSprite.UFsm {
         public float CenterDirX => CenterDistanceX > 0 ? 1 : -1;
         public float CenterDistanceX => Fsm.Props.RoamArea.center.x - Fsm.Props.BodyCollider.bounds.center.x;
 
-
-        public override bool CanTranSelf { get; protected set; } = false;
-
         public RoamState(AIFsm fsm) : base(fsm)
         {
+            CanTranSelf = false;
         }
 
         public override bool Enter() => EnterRoam;
@@ -46,7 +44,7 @@ namespace GoldSprite.UFsm {
         public override void OnEnter()
         {
             EnterRoam = false;
-            Ticker = seconds + TickerInterval;
+            Ticker = Time.time + TickerInterval;
 
             if (IsOutOfRoamArea())
                 CenterMove();
@@ -56,23 +54,28 @@ namespace GoldSprite.UFsm {
         public override void Update()
         {
             //边界时
-            if (IsOutOfRoamArea() && Math.Sign(Direction.x) != Math.Sign(CenterDirX)) {
+            if (IsOutOfRoamArea() && !IsSameSign(Direction.x, CenterDirX)) {
                 Debug.Log("碰撞越界.");
                 if (IsRan(reverseProbability)) CenterMove();
                 else {
                     Debug.Log("随机到退出.");
                     ExitRoam = true;
                 }
-            //内部时
+                //内部时
             } else RandomMoveTask();
+        }
+
+        private bool IsSameSign(float a, float b)
+        {
+            return Math.Sign(a) == Math.Sign(b);
         }
 
         private void RandomMoveTask()
         {
             seconds = Time.time;
-            if (Ticker < seconds) {
+            if (TickerNormalizee <= 0) {
                 Debug.Log($"执行随机移动任务: ");
-                if(IsRan(reverseProbability)) RandomMove();
+                if (IsRan(reverseProbability)) RandomMove();
                 else {
                     Debug.Log("随机到退出.");
                     ExitRoam = true;
@@ -90,9 +93,9 @@ namespace GoldSprite.UFsm {
         private void CenterMove()
         {
             var dirx = CenterDirX;
-            var vel = Random.Range(RoamVelMinMax.x, RoamVelMinMax.y);
-            Debug.Log($"朝中心移动: dirx: {dirx}, vel: {vel}");
             var dir = Direction;
+            var vel = IsSameSign(dirx, dir.x) ? Math.Abs(dir.x) : Random.Range(RoamVelMinMax.x, RoamVelMinMax.y);  //同向则延续速度
+            Debug.Log($"朝中心移动: dirx: {dirx}, vel: {vel}");
             dir.x = dirx * vel;
             Direction = dir;
         }
@@ -100,9 +103,9 @@ namespace GoldSprite.UFsm {
         private void RandomMove()
         {
             var dirx = Ran(LeftDirProbability);
-            var vel = Random.Range(RoamVelMinMax.x, RoamVelMinMax.y);
-            Debug.Log($"随机移动: dirx: {dirx}, vel: {vel}");
             var dir = Direction;
+            var vel = IsSameSign(dirx, dir.x) ? Math.Abs(dir.x) : Random.Range(RoamVelMinMax.x, RoamVelMinMax.y);  //同向则延续速度
+            Debug.Log($"随机移动: dirx: {dirx}, vel: {vel}");
             dir.x = dirx * vel;
             Direction = dir;
         }

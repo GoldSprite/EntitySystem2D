@@ -89,6 +89,11 @@ namespace GoldSprite.UnityPlugins.MyAnimator {
             if (anims == null) return;
             anims.CrossFade(animName, normalizedTransitionDuration);
         }
+
+        public void SetSpeed(float speed)
+        {
+            anims.speed = Math.Clamp(Math.Abs(speed), 0.35f, 1f);
+        }
     }
 
 

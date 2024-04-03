@@ -16,7 +16,8 @@ namespace GoldSprite.UFsm {
 
         //元属性
         public string Name { get; set; } = "AI";
-        public MoveState MoveState { get; set; }
+        [HideInInspector]  //这里莫名报序列化错误所以隐藏
+        public RoamState RoamState { get; set; }
         [SerializeField] private Rect roamArea;
         public Rect RoamArea { get => roamArea; set => roamArea = value; }
         [SerializeField] private Collider2D bodyCollider;
