@@ -16,6 +16,7 @@ namespace GoldSprite.EntitySystem2D {
         {
             animCtrls.InitMetas(behaviourMetaList);
             fsm.InitMetas(props, animCtrls, behaviourMetaList);
+            props.MoveState = fsm.GetState<MoveState>();
         }
     }
 }

@@ -30,6 +30,7 @@ namespace GoldSprite.EntitySystem2D {
             AddActionListener(InputActions.TestPlay.SpecialAttack, (Action<bool>)SpecialAttack);
             AddActionListener(InputActions.TestPlay.Hurt, (Action<bool>)Hurt);
             AddActionListener(InputActions.TestPlay.Death, (Action<bool>)Death);
+            AddActionListener(InputActions.TestPlay.Jump, (Action<bool>)Jump);
         }
 
         private void MoveBoost(bool down)
@@ -57,8 +58,13 @@ namespace GoldSprite.EntitySystem2D {
         }
         public void Death(bool down)
         {
-            if(down)
+            if (down)
                 fsm.Command(BaseFsmCommand.Death, !fsm.Props.DeathKey);
+        }
+        public void Jump(bool down)
+        {
+            if (down)
+                fsm.Command(BaseFsmCommand.Jump, true);
         }
     }
 }

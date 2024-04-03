@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a4d564e411835040bc836fb67e5a4b6
+guid: 49552aa9478e0ef498b21692b0ac6762
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Take Hit - white silhouette_0
+      name: Fall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95ca64e1d0dc7004a948f6809f2a6e90
-      internalID: -1042470733
+      spriteID: fed7691ca89448e4c917f0e89662600b
+      internalID: -2081737828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit - white silhouette_1
+      name: Fall_1
       rect:
         serializedVersion: 2
         x: 200
@@ -164,50 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc40b43801c3a6d4c9b477020b38fe26
-      internalID: 977255765
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Take Hit - white silhouette_2
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 200
-        height: 200
-      alignment: 9
-      pivot: {x: 0.4982477, y: 0.3906963}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78f1c1320e03577408815d2eaa4bca8b
-      internalID: -1569412775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Take Hit - white silhouette_3
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 200
-        height: 200
-      alignment: 9
-      pivot: {x: 0.4982477, y: 0.3906963}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 90d72bd5e14b56641be261b8b8177807
-      internalID: 1926873549
+      spriteID: 2dad53e541e28b6409afb97b34753ed9
+      internalID: -1042282499
       vertices: []
       indices: 
       edges: []
@@ -223,10 +181,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Take Hit - white silhouette_0: -1042470733
-      Take Hit - white silhouette_1: 977255765
-      Take Hit - white silhouette_2: -1569412775
-      Take Hit - white silhouette_3: 1926873549
+      Fall_0: -2081737828
+      Fall_1: -1042282499
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

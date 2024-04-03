@@ -39,6 +39,9 @@ namespace GoldSprite.UFsm {
             Cmd.RegisterCommand<bool>(BaseFsmCommand.Death, (down) => {
                 Props.DeathKey = down;
             });
+            Cmd.RegisterCommand<bool>(BaseFsmCommand.Jump, (down) => {
+                Props.JumpKey = down;
+            });
         }
 
         public void Command(Enum cmd, object p)

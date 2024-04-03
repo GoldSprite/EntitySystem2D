@@ -59,6 +59,8 @@ SpriteAtlas:
   - {fileID: 422968124, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
   - {fileID: 1172687621, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
   - {fileID: 195455360, guid: 2b6558e2a12a70d42b4c7393394c219d, type: 3}
+  - {fileID: -427496331, guid: 6333c604956ffe845b21b3221cb6db34, type: 3}
+  - {fileID: 1137637332, guid: 6333c604956ffe845b21b3221cb6db34, type: 3}
   - {fileID: -1703516459, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
   - {fileID: -1119071891, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
   - {fileID: 899956076, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
@@ -67,6 +69,8 @@ SpriteAtlas:
   - {fileID: 18492706, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
   - {fileID: 741082677, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
   - {fileID: -814421656, guid: 275c46e4022b9d84aa8df920c3a79a26, type: 3}
+  - {fileID: -1042282499, guid: 49552aa9478e0ef498b21692b0ac6762, type: 3}
+  - {fileID: -2081737828, guid: 49552aa9478e0ef498b21692b0ac6762, type: 3}
   - {fileID: -1575209686, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
   - {fileID: -204522778, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
   - {fileID: -1203871471, guid: 91fcee1ee0bccd84aa2d577450c79cad, type: 3}
@@ -98,6 +102,8 @@ SpriteAtlas:
   - Death_3
   - Death_0
   - Death_1
+  - Jump_0
+  - Jump_1
   - Run_7
   - Run_6
   - Run_5
@@ -106,6 +112,8 @@ SpriteAtlas:
   - Run_2
   - Run_1
   - Run_0
+  - Fall_1
+  - Fall_0
   - Attack2_4
   - Attack2_5
   - Attack2_2

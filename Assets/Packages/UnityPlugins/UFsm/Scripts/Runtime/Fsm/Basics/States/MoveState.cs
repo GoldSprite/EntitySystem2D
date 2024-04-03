@@ -20,16 +20,21 @@ namespace GoldSprite.UFsm {
 
         public override void FixedUpdate()
         {
-            //属性
-            var vel = Props.Velocity;
-            vel.x = Props.Direction.x * Props.Speed;
-            Props.Velocity = vel;
-
-            //转向
-            if(Props.Direction.x != 0) Props.Face = Props.Direction.x > 0 ? 1 : -1;
+            Move(0);
 
             //动画
             Fsm.AnimCtrls.Play(AnimName);
+        }
+
+        public void Move(float moveDrag)
+        {
+            //属性
+            var vel = Props.Velocity;
+            vel.x = Props.Direction.x * Props.Speed * (1-moveDrag);
+            Props.Velocity = vel;
+
+            //转向
+            if (Props.Direction.x != 0) Props.Face = Props.Direction.x > 0 ? 1 : -1;
         }
     }
 }

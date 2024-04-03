@@ -15,14 +15,15 @@ namespace GoldSprite.UFsm {
     public class EntityUProps : SerializedMonoBehaviour, IEntityProps {
         //元属性
         public string Name { get; set; } = "UNKNOWN";
-        [SerializeField] private Vector2 direction;
+        private Vector2 direction;
+        [ShowInInspector]
         public Vector2 Direction { get => (direction = direction.magnitude > 1 ? direction.normalized : direction); set => direction = value; }
         [ShowInInspector]
         public Vector2 Velocity { get => rb.velocity; set => rb.velocity = value; }
         [ShowInInspector]
         public bool IsGround => physics.IsGround;
-        [ShowInInspector]
-        public float Speed { get; set; } = 1;
+        [SerializeField] private float speed = 4;
+        public float Speed { get => speed; set => speed = value; }
         public int Face {
             get => transform.localScale.x > 0 ? 1 : -1;
             set {
@@ -32,12 +33,20 @@ namespace GoldSprite.UFsm {
                 transform.localScale = ls;
             }
         }
-        [SerializeField] bool attackKey;
-        public bool AttackKey { get => attackKey; set => attackKey = value; }
-        [SerializeField] bool hurtKey;
-        public bool HurtKey { get => hurtKey; set => hurtKey = value; }
-        [SerializeField] bool deathKey;
-        public bool DeathKey { get => deathKey; set => deathKey = value; }
+        [ShowInInspector]
+        public bool AttackKey { get; set; }
+        [ShowInInspector]
+        public bool HurtKey { get; set; }
+        [ShowInInspector]
+        public bool DeathKey { get; set; }
+        [ShowInInspector]
+        public bool JumpKey { get; set; }
+        [SerializeField] private float jumpForce = 6;
+        public float JumpForce { get => jumpForce; set => jumpForce = value; }
+        [ShowInInspector, PropertyRange(0f, 1f)]
+        [SerializeField] private float jumpingMoveDrag = 0.7f;
+        public float JumpingMoveDrag { get => jumpingMoveDrag; set => jumpingMoveDrag = value; }
+        public MoveState MoveState { get; set; }
 
         //Unity属性
         [ManualRequire]
@@ -46,6 +55,7 @@ namespace GoldSprite.UFsm {
         [ManualRequire]
         [Header("依赖物理")]
         public PhysicsManager physics;
+
         //[Header("可选的")]
         //[RequireInputCtrl]
         //public EntityInputs inputs;

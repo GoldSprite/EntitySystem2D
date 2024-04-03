@@ -497,6 +497,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 117fe79c902d5264c9574222486399d7, type: 2}
   - {fileID: 11400000, guid: 6cb4a2331197eb943ba1719e2e69676b, type: 2}
   - {fileID: 11400000, guid: 6fd700b8eead8a44882a7abf7d726c86, type: 2}
+  - {fileID: 11400000, guid: 72a5efc1f588b7049bd00a8053d0cbec, type: 2}
   fsm: {fileID: 2001830884}
   animCtrls: {fileID: 2001830883}
   props: {fileID: 2001830887}
@@ -608,9 +609,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  direction: {x: 0, y: 0}
-  attackKey: 0
-  hurtKey: 0
-  deathKey: 0
+  jumpForce: 6
+  jumpingMoveDrag: 0.513
   rb: {fileID: 2001830876}
   physics: {fileID: 2001830886}
