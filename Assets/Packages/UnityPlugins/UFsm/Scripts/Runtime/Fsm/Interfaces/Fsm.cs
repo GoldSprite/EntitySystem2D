@@ -36,14 +36,16 @@ namespace GoldSprite.UFsm {
 
         public bool UpdateNextState()
         {
+            var exit = false;
+            if (CState.Exit()) { OnEnterState(DefaultState); exit = true; }
+
             var targetState = CState;
             foreach (var state in states.Values) {
                 if (EnterState(state, targetState)) targetState = state;
             }
-            var change = targetState != CState || (targetState.CanTranSelf && targetState.Enter());
-            if (!change && CState.Exit()) { targetState = DefaultState; change = true; }
-            if (change) OnEnterState(targetState);
-            return change;
+            var enter = targetState != CState || (targetState.CanTranSelf && targetState.Enter());
+            if (enter) OnEnterState(targetState);
+            return enter && exit;
         }
 
         protected bool EnterState(IState target, IState current)
