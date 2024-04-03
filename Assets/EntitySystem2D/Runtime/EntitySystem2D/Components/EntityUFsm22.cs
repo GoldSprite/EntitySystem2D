@@ -10,6 +10,7 @@ namespace GoldSprite.EntitySystem2D {
             AnimCtrls = animCtrls;
 
             Cmd = new BaseFsmCommandManager();
+            InitCommands();
 
             for (int i = 0; i < behaviourMetaList.Count; i++) {
                 var behaviourMeta = behaviourMetaList[i];
@@ -18,10 +19,8 @@ namespace GoldSprite.EntitySystem2D {
                 BaseState state = obj as BaseState;
                 state.AnimName = behaviourMeta.AnimClip.name;
                 if (i == 0) InitState(state);
-                else AddState(state);
+                else AddStateFix(state, behaviourMeta.Priority);
             }
-
-            InitCommands();
         }
     }
 }

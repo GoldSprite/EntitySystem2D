@@ -21,5 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  priority: 2
+  priority: 3
   animClip: {fileID: 7400000, guid: 9394545398f19824ba04461ea3b879a5, type: 2}

@@ -495,10 +495,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21e491bdae6d48243b3af452c296ab21, type: 2}
   - {fileID: 11400000, guid: 70930009688782a41a250a10246ba9e5, type: 2}
   - {fileID: 11400000, guid: 117fe79c902d5264c9574222486399d7, type: 2}
-  - {fileID: 11400000, guid: 6cb4a2331197eb943ba1719e2e69676b, type: 2}
-  - {fileID: 11400000, guid: 6fd700b8eead8a44882a7abf7d726c86, type: 2}
   - {fileID: 11400000, guid: 72a5efc1f588b7049bd00a8053d0cbec, type: 2}
   - {fileID: 11400000, guid: 8db6014932d6c3741a3d1a0aba411744, type: 2}
+  - {fileID: 11400000, guid: 6cb4a2331197eb943ba1719e2e69676b, type: 2}
+  - {fileID: 11400000, guid: 6fd700b8eead8a44882a7abf7d726c86, type: 2}
   fsm: {fileID: 2001830884}
   animCtrls: {fileID: 2001830883}
   props: {fileID: 2001830887}
@@ -613,6 +613,9 @@ MonoBehaviour:
   rb: {fileID: 2001830876}
   physics: {fileID: 2001830886}
   name: UNKNOWN
+  health: 20
+  maxHealth: 20
+  attackPower: 4
   speed: 4
   speedBoost: 2
   jumpForce: 6

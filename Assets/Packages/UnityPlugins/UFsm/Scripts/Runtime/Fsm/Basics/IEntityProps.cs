@@ -13,6 +13,7 @@ namespace GoldSprite.UFsm {
         public float Speed { get; set; }
         public float SpeedBoost { get; set; }
         public int Face { get; set; }
+        //public bool AnyKey { get; set; }
 
         public enum KeySwitchType
         {
@@ -25,8 +26,9 @@ namespace GoldSprite.UFsm {
         public bool AttackKey { get; set; }
         public MoveState MoveState { get; }
         public float AttackingMoveDrag { get; set; }
+        public float AttackPower { get; set; }
     }
-    public interface IVictim {
+    public interface IVictim: ILiving {
         public bool HurtKey { get; set; }
         public bool DeathKey { get; set; }
     }
@@ -35,5 +37,11 @@ namespace GoldSprite.UFsm {
         public float JumpForce { get; set; }
         public MoveState MoveState { get; }
         public float JumpingMoveDrag { get; set; }
+    }
+
+    public interface ILiving
+    {
+        public float Health { get; set;}
+        public float MaxHealth { get; set;}
     }
 }

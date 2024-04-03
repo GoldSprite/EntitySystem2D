@@ -24,6 +24,12 @@ namespace GoldSprite.UFsm {
         //元属性
         [SerializeField] private new string name = "UNKNOWN";
         public string Name { get => name; set => name = value; }
+        [SerializeField] private float health;
+        public float Health { get => health; set => health = value; }
+        [SerializeField] private float maxHealth = 20;
+        public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+        [SerializeField] private float attackPower = 4;
+        public float AttackPower { get => attackPower; set => attackPower = value; }
         private Vector2 direction;
         [ShowInInspector]
         public Vector2 Direction { get => (direction = direction.magnitude > 1 ? direction.normalized : direction); set => direction = value; }
@@ -75,6 +81,13 @@ namespace GoldSprite.UFsm {
         {
             rb = GetComponent<Rigidbody2D>();
             physics = GetComponent<PhysicsManager>();
+
+            InitProps();
+        }
+
+        public void InitProps()
+        {
+            //Health = MaxHealth;
         }
     }
 

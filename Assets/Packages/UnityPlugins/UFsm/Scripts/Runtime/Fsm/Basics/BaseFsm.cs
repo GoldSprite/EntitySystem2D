@@ -15,8 +15,8 @@ namespace GoldSprite.UFsm {
             Props = props;
             AnimCtrls = animCtrls;
             Cmd = new BaseFsmCommandManager();
-            InitStates();
             InitCommands();
+            InitStates();
         }
 
         protected virtual void InitStates()
@@ -27,33 +27,38 @@ namespace GoldSprite.UFsm {
 
         protected virtual void InitCommands()
         {
-            Cmd.RegisterCommand<Vector2>(BaseFsmCommand.Move, (dir) => {
+            Cmd.RegisterCommand(BaseFsmCommand.Move, (Action<Vector2>)((dir) => {
                 Props.Direction = dir;
-            });
-            Cmd.RegisterCommand<bool>(BaseFsmCommand.Attack, (down) => {
+            }));
+            Cmd.RegisterCommand(BaseFsmCommand.Attack, (Action<bool>)((down) => {
                 Props.AttackKey = down;
-            });
-            Cmd.RegisterCommand<bool>(BaseFsmCommand.Hurt, (down) => {
-                Props.HurtKey = down;
-            });
-            Cmd.RegisterCommand<bool>(BaseFsmCommand.Death, (down) => {
+            }));
+            Cmd.RegisterCommand(BaseFsmCommand.Hurt, (Action<IAttacker>)((attacker) => {
+                Props.HurtKey = true;
+            }));
+            Cmd.RegisterCommand(BaseFsmCommand.Death, (Action<bool>)((down) => {
                 Props.DeathKey = down;
-            });
-            Cmd.RegisterCommand<bool>(BaseFsmCommand.Jump, (down) => {
+            }));
+            Cmd.RegisterCommand(BaseFsmCommand.Jump, (Action<bool>)((down) => {
                 Props.JumpKey = down;
-            });
-            Cmd.RegisterCommand<bool>(BaseFsmCommand.MoveBoost, (down) => {
+            }));
+            Cmd.RegisterCommand(BaseFsmCommand.MoveBoost, (Action<bool>)((down) => {
                 if (Props.MoveBoostKeyType == IEntityProps.KeySwitchType.Key)
                     Props.MoveBoostKey = down;
                 else
                 if (Props.MoveBoostKeyType == IEntityProps.KeySwitchType.KeyDown && down)
                     Props.MoveBoostKey = !Props.MoveBoostKey;
-            });
+            }));
         }
 
-        public void Command(Enum cmd, object p)
+        public void Command(Enum cmd, params object[] p)
         {
             Cmd.Execute(cmd, p);
+        }
+
+        public void AddCommandListener(Enum cmd, Delegate act)
+        {
+            Cmd.AddCommandListener(cmd, act);
         }
 
         public override string ToString()

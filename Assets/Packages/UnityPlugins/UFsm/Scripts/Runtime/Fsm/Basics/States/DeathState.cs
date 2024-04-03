@@ -10,6 +10,7 @@ namespace GoldSprite.UFsm {
 
         public override bool Enter()
         {
+            if (Props.Health <= 0) Props.DeathKey = true;
             return Props.DeathKey;
         }
         public override bool Exit()
