@@ -34,6 +34,7 @@ namespace GoldSprite.UFsm {
                 Props.AttackKey = down;
             }));
             Cmd.RegisterCommand(BaseFsmCommand.Hurt, (Action<IAttacker>)((attacker) => {
+                if (Props.DeathKey) return;
                 Props.HurtKey = true;
             }));
             Cmd.RegisterCommand(BaseFsmCommand.Death, (Action<bool>)((down) => {

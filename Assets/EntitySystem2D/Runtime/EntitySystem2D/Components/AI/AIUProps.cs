@@ -13,7 +13,6 @@ using UnityEditor;
 
 namespace GoldSprite.UFsm {
     public class AIUProps : SerializedMonoBehaviour, IAIProps {
-        public PhysicsManager physics;
         //元属性
         public string Name { get; set; } = "AI";
         [HideInInspector]  //这里莫名报序列化错误所以隐藏
@@ -22,12 +21,10 @@ namespace GoldSprite.UFsm {
         public Rect RoamArea { get => roamArea; set => roamArea = value; }
         [SerializeField] private Collider2D bodyCollider;
         public Collider2D BodyCollider { get => bodyCollider; set => bodyCollider = value; }
-        public bool IsCollisionGround { get; set; }
 
 
         private void Start()
         {
-            physics.OnEnterGround += (c) => { IsCollisionGround = true; };
         }
 
         private void OnDrawGizmos()

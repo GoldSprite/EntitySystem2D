@@ -1,5 +1,6 @@
 using GoldSprite.UFsm;
 using GoldSprite.UnityPlugins.MyInputSystem;
+using Sirenix.Serialization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using UnityEngine.InputSystem;
 
 namespace GoldSprite.EntitySystem2D {
     public class AIEntityInputs : AIFsm {
-        [Header("Êä³öµ½×´Ì¬Æ÷")]
         [SerializeField]
         private List<BehaviourMeta> behaviourMetaList;
         public AIUProps props;

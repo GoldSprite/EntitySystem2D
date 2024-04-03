@@ -9,6 +9,15 @@ namespace GoldSprite.UFsm {
         public override bool Enter() => false/*Props.Velocity == Vector2.zero*/;
         public override bool Exit() => /*Props.Direction.x != 0*/true;
 
+        public override void OnEnter()
+        {
+            Fsm.Props.PhysicsMaterial = Fsm.Props.SmoothOrRoughMaterial[1];
+        }
+        public override void OnExit()
+        {
+            Fsm.Props.PhysicsMaterial = Fsm.Props.SmoothOrRoughMaterial[0];
+        }
+
         public override void Update()
         {
             //¶¯»­

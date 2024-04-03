@@ -22,7 +22,10 @@ namespace GoldSprite.UFsm {
         [ShowInInspector]
         public Vector2 Direction { get => Fsm.ctrlFsm.Props.Direction; set => Fsm.ctrlFsm.Props.Direction = value; }
         public float CenterDirX => CenterDistanceX > 0 ? 1 : -1;
-        public float CenterDistanceX => Fsm.Props.RoamArea.center.x - Fsm.Props.BodyCollider.bounds.center.x;
+        public float CenterDistanceX => Fsm.Props.RoamArea.center.x - Fsm.ctrlFsm.Props.BodyCollider.bounds.center.x;
+
+        public int GroundDirX { get; private set; }
+        public float GroundDistanceX { get; private set; }
 
         public Collider2D ground;
         private Vector3 headPoint;
@@ -50,7 +53,10 @@ namespace GoldSprite.UFsm {
 
             if (IsOutOfRoamArea())
                 CenterMove();
-            else RandomMove();
+            else
+            if (IsCollisionGround()) {
+                ReverseMove(Random.Range(RoamVelMinMax.x, RoamVelMinMax.y));
+            } else RandomMove();
         }
 
         public override void Update()
@@ -65,7 +71,7 @@ namespace GoldSprite.UFsm {
                 }
                 //碰撞地面体时
             } else
-            if (IsCollisionGround()) {
+            if (IsCollisionGround() && IsSameSign(Direction.x, GroundDirX)) {
                 LogTool.NLog("RoamStateTest", "头部碰撞地面体.");
                 if (IsRan(reverseProbability)) {
                     float GroundDistanceX = ground.bounds.center.x - headPoint.x;
@@ -84,10 +90,10 @@ namespace GoldSprite.UFsm {
 
         private bool IsCollisionGround()
         {
-            var bounds = Fsm.Props.BodyCollider.bounds;
+            var bounds = Fsm.ctrlFsm.Props.BodyCollider.bounds;
             headPoint = bounds.center;
             headPoint.y = bounds.max.y;
-            var radius = bounds.size.x;
+            var radius = bounds.size.x*1.2f;
             ground = Physics2D.OverlapCircle(headPoint, radius, PhysicsManager.GroundMask);
             return ground != null;
         }
@@ -137,10 +143,12 @@ namespace GoldSprite.UFsm {
             Direction = dir;
         }
 
-        private void ReverseMove(float groundDirX)
+        private void ReverseMove(float? force = null)
         {
+            GroundDistanceX = ground.bounds.center.x - headPoint.x;
+            GroundDirX = GroundDistanceX > 0 ? 1 : -1;
             var dir = Direction;
-            dir.x = -groundDirX * Math.Abs(dir.x);
+            dir.x = -GroundDirX * force ?? Math.Abs(dir.x);
             LogTool.NLog("RoamStateTest", $"反向移动: ");
             Direction = dir;
         }
@@ -152,7 +160,7 @@ namespace GoldSprite.UFsm {
 
         public bool IsOutOfRoamArea()
         {
-            var collBounds = Fsm.Props.BodyCollider.bounds;
+            var collBounds = Fsm.ctrlFsm.Props.BodyCollider.bounds;
             var rect = Fsm.Props.RoamArea;
             return collBounds.min.x < rect.min.x || collBounds.max.x > rect.max.x || collBounds.min.y < rect.min.y || collBounds.max.y > rect.max.y;
         }

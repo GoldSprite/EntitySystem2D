@@ -8,7 +8,7 @@ namespace GoldSprite.UFsm {
         }
 
         public override bool Enter() => Props.Direction.x != 0 && Props.IsGround;
-        public override bool Exit() => Props.Velocity == Vector2.zero || !Props.IsGround;
+        public override bool Exit() => (Props.Direction.x == 0 && Props.Velocity == Vector2.zero) || !Props.IsGround;
 
         public override void OnEnter()
         {
@@ -17,6 +17,10 @@ namespace GoldSprite.UFsm {
         public override void OnExit()
         {
             Fsm.AnimCtrls.SetSpeed(1);
+            ////退出时置零速度保证其他状态不会有滑步.
+            //var dir = Props.Direction;
+            //dir.x = 0;
+            //Props.Direction = dir;
         }
 
         public override void FixedUpdate()

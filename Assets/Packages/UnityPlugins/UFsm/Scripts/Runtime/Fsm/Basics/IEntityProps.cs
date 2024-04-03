@@ -7,6 +7,8 @@ namespace GoldSprite.UFsm {
         public string Name { get; set; }
         public Vector2 Direction { get; set; }
         public Vector2 Velocity { get; set; }
+        public PhysicsMaterial2D[] SmoothOrRoughMaterial { get; set; }
+        public PhysicsMaterial2D PhysicsMaterial { get; set; }
         public bool IsGround { get;}
         public bool MoveBoostKey { get; set; }
         public KeySwitchType MoveBoostKeyType { get; set; }
@@ -14,6 +16,7 @@ namespace GoldSprite.UFsm {
         public float SpeedBoost { get; set; }
         public int Face { get; set; }
         //public bool AnyKey { get; set; }
+        public Collider2D BodyCollider { get; set; }
 
         public enum KeySwitchType
         {

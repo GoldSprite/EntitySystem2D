@@ -20,6 +20,10 @@ namespace GoldSprite.UFsm {
         [ManualRequire]
         [Header("依赖物理")]
         public PhysicsManager physics;
+        [Header("摩擦材质")]
+        [SerializeField] private PhysicsMaterial2D[] smoothOrRoughMaterial;
+        public PhysicsMaterial2D[] SmoothOrRoughMaterial { get => smoothOrRoughMaterial; set => smoothOrRoughMaterial = value; }
+        public PhysicsMaterial2D PhysicsMaterial { get => rb.sharedMaterial; set => rb.sharedMaterial = value; }
         [PropertySpace]
         //元属性
         [SerializeField] private new string name = "UNKNOWN";
@@ -69,6 +73,9 @@ namespace GoldSprite.UFsm {
         public IEntityProps.KeySwitchType MoveBoostKeyType { get => moveBoostKeyType; set => moveBoostKeyType = value; }
         [ShowInInspector]
         public bool MoveBoostKey { get; set; }
+        [SerializeField] private Collider2D bodyCollider;
+
+        public Collider2D BodyCollider { get => bodyCollider; set => bodyCollider = value; }
 
         //[Header("可选的")]
         //[RequireInputCtrl]

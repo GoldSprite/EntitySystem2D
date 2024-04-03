@@ -16,13 +16,13 @@ namespace GoldSprite.UFsm {
 
         public override bool Enter()
         {
-            return Props.HurtKey;
+            var enter = !Props.DeathKey && Props.HurtKey;
+            return enter;
         }
         public override bool Exit() => Fsm.AnimCtrls.IsCurrentAnimEnd(AnimName);
 
         public override void OnEnter()
         {
-            Props.HurtKey = false;
             if (DeathJudgment()) return;
             //¶¯»­
             Fsm.AnimCtrls.Play(AnimName, 0, 0);
@@ -43,6 +43,7 @@ namespace GoldSprite.UFsm {
 
         public override void OnExit()
         {
+            Props.HurtKey = false;
         }
 
         public override void FixedUpdate()

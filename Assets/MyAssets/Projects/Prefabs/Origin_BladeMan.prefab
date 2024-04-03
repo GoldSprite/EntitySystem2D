@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5378278037165200566}
   - component: {fileID: 7575160624325963527}
-  m_Layer: 6
+  - component: {fileID: 28501709703924432}
+  m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,12 +43,26 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 1
+--- !u!114 &28501709703924432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458672114048241430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4670edcacbe14114ebdb513a2cd2bd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fsm: {fileID: 1373086886970461720}
+  targets: []
 --- !u!1 &1373086886970461739
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +82,7 @@ GameObject:
   - component: {fileID: 1373086886970461730}
   - component: {fileID: 1373086886970461729}
   - component: {fileID: 1373086886970461728}
-  - component: {fileID: 1373086886970461735}
+  - component: {fileID: 2660809760894314784}
   - component: {fileID: 1373086886970461722}
   - component: {fileID: 1373086886970461719}
   m_Layer: 6
@@ -180,14 +195,13 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  physics: {fileID: 1373086886970461722}
   roamArea:
     serializedVersion: 2
     x: -9.05
     y: -2.65
     width: 18.31
     height: 5.09
-  bodyCollider: {fileID: 1373086886970461735}
+  bodyCollider: {fileID: 0}
 --- !u!114 &1373086886970461720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +248,9 @@ MonoBehaviour:
     SerializationNodes: []
   rb: {fileID: 1373086886970461728}
   physics: {fileID: 1373086886970461722}
+  smoothOrRoughMaterial:
+  - {fileID: 6200000, guid: b55df863cc05abb4296d1429d7a88664, type: 2}
+  - {fileID: 6200000, guid: 90499fcb8d0dd7741a2a2b60449512de, type: 2}
   name: "AI\u5200\u5BA2"
   health: 20
   maxHealth: 20
@@ -244,6 +261,7 @@ MonoBehaviour:
   jumpingMoveDrag: 0.655
   attackingMoveDrag: 0.8
   moveBoostKeyType: 1
+  bodyCollider: {fileID: 2660809760894314784}
 --- !u!114 &1373086886970461727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,11 +391,11 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &1373086886970461735
-BoxCollider2D:
+--- !u!70 &2660809760894314784
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -389,19 +407,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010492504, y: 0.94995904}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4982477, y: 0.3906963}
-    oldSize: {x: 8.333333, y: 8.333333}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4711398, y: 1.9093142}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.01836884, y: 0.89459246}
+  m_Size: {x: 0.72345066, y: 1.8209873}
+  m_Direction: 0
 --- !u!114 &1373086886970461722
 MonoBehaviour:
   m_ObjectHideFlags: 0
