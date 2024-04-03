@@ -8,7 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace GoldSprite.UFsm {
     public class Fsm : SerializedMonoBehaviour, IFsm {
-        protected virtual Dictionary<Type, IState> states { get; set; }
+        [ShowInInspector]
+        protected virtual SortedDictionary<Type, IState> states { get; set; }
         [ShowInInspector]
         public IState CState { get; protected set; }
         public IState DefaultState { get; protected set; }
@@ -18,7 +19,8 @@ namespace GoldSprite.UFsm {
 
         protected void InitState(IState state)
         {
-            states = new Dictionary<Type, IState>();
+            var comparer = new TypeComparer();
+            states = new SortedDictionary<Type, IState>(comparer);
             DefaultState = CState = state;
             AddState(state, 0);
         }
@@ -85,6 +87,14 @@ namespace GoldSprite.UFsm {
         public void FixedUpdate()
         {
             CState.FixedUpdate();
+        }
+
+
+        class TypeComparer : IComparer<Type> {
+            public int Compare(Type x, Type y)
+            {
+                return string.Compare(x.Name, y.Name);
+            }
         }
     }
 }

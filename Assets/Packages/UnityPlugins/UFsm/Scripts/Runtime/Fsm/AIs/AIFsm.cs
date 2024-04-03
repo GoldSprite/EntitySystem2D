@@ -8,8 +8,7 @@ using UnityEngine;
 
 namespace GoldSprite.UFsm {
     public class AIFsm : BaseFsm {
-        [ShowInInspector]
-        protected override Dictionary<Type, IState> states { get; set; }
+        //protected override SortedDictionary<Type, IState> states { get; set; }
         public new IAIProps Props { get; protected set; }
         protected new AIFsmCommandManager Cmd { get; set; }
         public BaseFsm ctrlFsm;
