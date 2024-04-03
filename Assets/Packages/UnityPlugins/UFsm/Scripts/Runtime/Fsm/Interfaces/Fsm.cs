@@ -8,7 +8,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace GoldSprite.UFsm {
     public class Fsm : SerializedMonoBehaviour, IFsm {
-        protected Dictionary<Type, IState> states = new();
+        protected virtual Dictionary<Type, IState> states { get; set; }
         [ShowInInspector]
         public IState CState { get; protected set; }
         public IState DefaultState { get; protected set; }
@@ -18,6 +18,7 @@ namespace GoldSprite.UFsm {
 
         protected void InitState(IState state)
         {
+            states = new Dictionary<Type, IState>();
             DefaultState = CState = state;
             AddState(state, 0);
         }

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GoldSprite.EntitySystem2D {
-    public class EntityInputs : MyUInputManager {
+    public class PlayerEntityInputs : MyUInputManager {
         [Header("Êä³öµ½×´Ì¬Æ÷")]
         [ManualRequire]
         public EntityUFsm22 fsm;

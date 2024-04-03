@@ -146,7 +146,7 @@
 - [x] 疾跑忘了, 加上
 
 
-## 2024.4.3 - [V0.1.7.0-alpha]
+## 2024.4.3 - [V0.1.6.4-alpha]
 - [x] Plan:
   - Add Properties: Health, MaxHealth, AttackPower.
     - Update Fsm: 
@@ -177,6 +177,13 @@
     - 加入了生命, 攻击力属性, 
     - 修复了一些状态转换bug
     - 优化了行为转换手感
+
+
+## 2024.4.3 - [V0.1.8.0-temp]
+- 额上一个版本搞错了, 应该换版本之后版本号进位的, 上个应该是[1.7.0]->1.6.4
+- 好接着做ai, 其实就是Inputs的变种
+  - 制作AI输入器:
+- 做了随机左右走动, 先存档, 尝试换Dictionary为SortedDictionary
 
 
 

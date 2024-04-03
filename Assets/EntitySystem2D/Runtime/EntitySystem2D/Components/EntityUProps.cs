@@ -72,7 +72,7 @@ namespace GoldSprite.UFsm {
 
         //[Header("可选的")]
         //[RequireInputCtrl]
-        //public EntityInputs inputs;
+        //public PlayerEntityInputs inputs;
         //[HideInInspector]
         //public List<UnityEvent> RegisterInputsCtrls;
 

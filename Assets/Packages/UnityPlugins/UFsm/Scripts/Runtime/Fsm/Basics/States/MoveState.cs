@@ -20,13 +20,13 @@ namespace GoldSprite.UFsm {
 
         public override void FixedUpdate()
         {
-            Move(0);
+            Move();
 
             //∂Øª≠
             Fsm.AnimCtrls.Play(AnimName);
         }
 
-        public void Move(float moveDrag)
+        public void Move(float moveDrag = 0)
         {
             // Ù–‘
             var vel = Props.Velocity;
