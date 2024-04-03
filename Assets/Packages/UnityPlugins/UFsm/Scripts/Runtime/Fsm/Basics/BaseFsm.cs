@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace GoldSprite.UFsm {
     public class BaseFsm : Fsm {
-        public new IBaseProps Props { get; protected set; }
+        public new IEntityProps Props { get; protected set; }
         public MyAnimator AnimCtrls { get; protected set; }
         protected BaseFsmCommandManager Cmd { get; set; }
 
-        public void InitFsm(IBaseProps props, MyAnimator animCtrls)
+        public void InitFsm(IEntityProps props, MyAnimator animCtrls)
         {
             Props = props;
             AnimCtrls = animCtrls;
@@ -29,6 +29,15 @@ namespace GoldSprite.UFsm {
         {
             Cmd.RegisterCommand<Vector2>(BaseFsmCommand.Move, (dir) => {
                 Props.Direction = dir;
+            });
+            Cmd.RegisterCommand<bool>(BaseFsmCommand.Attack, (down) => {
+                Props.AttackKey = down;
+            });
+            Cmd.RegisterCommand<bool>(BaseFsmCommand.Hurt, (down) => {
+                Props.HurtKey = down;
+            });
+            Cmd.RegisterCommand<bool>(BaseFsmCommand.Death, (down) => {
+                Props.DeathKey = down;
             });
         }
 

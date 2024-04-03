@@ -119,4 +119,16 @@
 ## 2024.4.3 - [V0.1.5-temp]
 - 各组件搭配, 实现左右移动, 不过项目结构略凌乱, 待梳理
 
+
 ## 2024.4.3 - [V0.1.6-temp]
+- [x] 将AnimEnum属性改回AnimName因为Enum不能可视化
+  - 修改BaseStateAnimEnum为AnimName, 
+  - 修改所有引用处
+    - IBehaviourMeta BId改为string
+      - 修改所有引用
+- [x] 准备加攻击受伤死亡状态.
+  - [x] 攻击
+    - [x] 测试指令
+    - [x] 测试AttackState的CanTranSelf是否有效
+  - [x] 受伤
+  - [x] 死亡

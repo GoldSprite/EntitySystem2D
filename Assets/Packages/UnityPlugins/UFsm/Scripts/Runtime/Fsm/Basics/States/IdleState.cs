@@ -12,7 +12,7 @@ namespace GoldSprite.UFsm {
         public override void Update()
         {
             //¶¯»­
-            Fsm.AnimCtrls.Play(AnimEnum);
+            Fsm.AnimCtrls.Play(AnimName);
         }
     }
 }

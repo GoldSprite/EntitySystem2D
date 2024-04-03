@@ -29,7 +29,7 @@ namespace GoldSprite.UFsm {
             if(Props.Direction.x != 0) Props.Face = Props.Direction.x > 0 ? 1 : -1;
 
             //¶¯»­
-            Fsm.AnimCtrls.Play(AnimEnum);
+            Fsm.AnimCtrls.Play(AnimName);
         }
     }
 }

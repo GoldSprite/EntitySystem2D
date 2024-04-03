@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GoldSprite.EntitySystem2D {
     [CreateAssetMenu]
-    public class MoveBehaviourMeta : EntityBehaviourMeta {
-        public override Type StateType => typeof(MoveState);
+    public class DeathBehaviourMeta : EntityBehaviourMeta {
+        public override Type StateType => typeof(DeathState);
     }
 }

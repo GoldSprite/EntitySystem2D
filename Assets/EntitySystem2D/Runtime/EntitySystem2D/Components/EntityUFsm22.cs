@@ -16,7 +16,7 @@ namespace GoldSprite.EntitySystem2D {
                 var stateType = behaviourMeta.StateType;
                 var obj = Activator.CreateInstance(stateType, new object[] { this });
                 BaseState state = obj as BaseState;
-                state.AnimEnum = behaviourMeta.BId;
+                state.AnimName = behaviourMeta.AnimClip.name;
                 if (i == 0) InitState(state);
                 else AddState(state);
             }

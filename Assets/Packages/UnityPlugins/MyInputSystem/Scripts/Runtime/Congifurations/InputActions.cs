@@ -313,6 +313,15 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Death"",
+                    ""type"": ""Value"",
+                    ""id"": ""4cf4e5c5-72c1-479a-968f-d80a8aff9489"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -414,6 +423,17 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
                     ""action"": ""MoveBoost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72b9d683-51da-4a08-9504-f50b4b02cb43"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Death"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -440,6 +460,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
             m_TestPlay_Attack = m_TestPlay.FindAction("Attack", throwIfNotFound: true);
             m_TestPlay_SpecialAttack = m_TestPlay.FindAction("SpecialAttack", throwIfNotFound: true);
             m_TestPlay_Hurt = m_TestPlay.FindAction("Hurt", throwIfNotFound: true);
+            m_TestPlay_Death = m_TestPlay.FindAction("Death", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -654,6 +675,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
         private readonly InputAction m_TestPlay_Attack;
         private readonly InputAction m_TestPlay_SpecialAttack;
         private readonly InputAction m_TestPlay_Hurt;
+        private readonly InputAction m_TestPlay_Death;
         public struct TestPlayActions
         {
             private @InputActions m_Wrapper;
@@ -663,6 +685,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
             public InputAction @Attack => m_Wrapper.m_TestPlay_Attack;
             public InputAction @SpecialAttack => m_Wrapper.m_TestPlay_SpecialAttack;
             public InputAction @Hurt => m_Wrapper.m_TestPlay_Hurt;
+            public InputAction @Death => m_Wrapper.m_TestPlay_Death;
             public InputActionMap Get() { return m_Wrapper.m_TestPlay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -687,6 +710,9 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
                 @Hurt.started += instance.OnHurt;
                 @Hurt.performed += instance.OnHurt;
                 @Hurt.canceled += instance.OnHurt;
+                @Death.started += instance.OnDeath;
+                @Death.performed += instance.OnDeath;
+                @Death.canceled += instance.OnDeath;
             }
 
             private void UnregisterCallbacks(ITestPlayActions instance)
@@ -706,6 +732,9 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
                 @Hurt.started -= instance.OnHurt;
                 @Hurt.performed -= instance.OnHurt;
                 @Hurt.canceled -= instance.OnHurt;
+                @Death.started -= instance.OnDeath;
+                @Death.performed -= instance.OnDeath;
+                @Death.canceled -= instance.OnDeath;
             }
 
             public void RemoveCallbacks(ITestPlayActions instance)
@@ -745,6 +774,7 @@ namespace GoldSprite.UnityPlugins.MyInputSystem
             void OnAttack(InputAction.CallbackContext context);
             void OnSpecialAttack(InputAction.CallbackContext context);
             void OnHurt(InputAction.CallbackContext context);
+            void OnDeath(InputAction.CallbackContext context);
         }
     }
 }

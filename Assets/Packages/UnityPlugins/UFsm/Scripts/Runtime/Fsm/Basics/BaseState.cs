@@ -3,9 +3,9 @@ using System;
 namespace GoldSprite.UFsm {
     [Serializable]
     public class BaseState : State {
-        public Enum AnimEnum { get; set; }
+        public string AnimName { get; set; }
         public new BaseFsm Fsm { get; }
-        public IBaseProps Props => Fsm.Props;
+        public IEntityProps Props => Fsm.Props;
 
         public BaseState(BaseFsm fsm) : base(fsm) { Fsm = fsm; }
 

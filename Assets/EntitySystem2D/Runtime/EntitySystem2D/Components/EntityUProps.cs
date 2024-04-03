@@ -12,11 +12,11 @@ using UnityEditor;
 #endif
 
 namespace GoldSprite.UFsm {
-    public class EntityUProps : SerializedMonoBehaviour, IBaseProps {
+    public class EntityUProps : SerializedMonoBehaviour, IEntityProps {
         //元属性
         public string Name { get; set; } = "UNKNOWN";
         [SerializeField] private Vector2 direction;
-        public Vector2 Direction { get => direction; set => direction = value.magnitude > 1 ? value.normalized : value; }
+        public Vector2 Direction { get => (direction = direction.magnitude > 1 ? direction.normalized : direction); set => direction = value; }
         [ShowInInspector]
         public Vector2 Velocity { get => rb.velocity; set => rb.velocity = value; }
         [ShowInInspector]
@@ -24,7 +24,7 @@ namespace GoldSprite.UFsm {
         [ShowInInspector]
         public float Speed { get; set; } = 1;
         public int Face {
-            get => transform.localScale.x > 0 ? 1 : -1; 
+            get => transform.localScale.x > 0 ? 1 : -1;
             set {
                 if (value == 0) return;
                 var ls = transform.localScale;
@@ -32,6 +32,12 @@ namespace GoldSprite.UFsm {
                 transform.localScale = ls;
             }
         }
+        [SerializeField] bool attackKey;
+        public bool AttackKey { get => attackKey; set => attackKey = value; }
+        [SerializeField] bool hurtKey;
+        public bool HurtKey { get => hurtKey; set => hurtKey = value; }
+        [SerializeField] bool deathKey;
+        public bool DeathKey { get => deathKey; set => deathKey = value; }
 
         //Unity属性
         [ManualRequire]

@@ -289,6 +289,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Death",
+                    "type": "Value",
+                    "id": "4cf4e5c5-72c1-479a-968f-d80a8aff9489",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -388,6 +397,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MoveBoost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72b9d683-51da-4a08-9504-f50b4b02cb43",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Death",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

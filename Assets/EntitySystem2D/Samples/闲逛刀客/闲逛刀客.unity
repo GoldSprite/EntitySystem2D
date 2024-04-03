@@ -330,12 +330,12 @@ GameObject:
   - component: {fileID: 2001830882}
   - component: {fileID: 2001830885}
   - component: {fileID: 2001830884}
+  - component: {fileID: 2001830887}
   - component: {fileID: 2001830883}
   - component: {fileID: 2001830878}
   - component: {fileID: 2001830877}
   - component: {fileID: 2001830876}
   - component: {fileID: 2001830875}
-  - component: {fileID: 2001830887}
   - component: {fileID: 2001830886}
   m_Layer: 6
   m_Name: BladeMan
@@ -494,6 +494,9 @@ MonoBehaviour:
   behaviourMetaList:
   - {fileID: 11400000, guid: 21e491bdae6d48243b3af452c296ab21, type: 2}
   - {fileID: 11400000, guid: 70930009688782a41a250a10246ba9e5, type: 2}
+  - {fileID: 11400000, guid: 117fe79c902d5264c9574222486399d7, type: 2}
+  - {fileID: 11400000, guid: 6cb4a2331197eb943ba1719e2e69676b, type: 2}
+  - {fileID: 11400000, guid: 6fd700b8eead8a44882a7abf7d726c86, type: 2}
   fsm: {fileID: 2001830884}
   animCtrls: {fileID: 2001830883}
   props: {fileID: 2001830887}
@@ -519,38 +522,12 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: animClips
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Enum, mscorlib],[UnityEngine.AnimationClip,
-        UnityEngine.AnimationModule]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[System.Enum, mscorlib]],
-        mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: OnAnimEndEvent
       Entry: 6
       Data: 
     - Name: OnAnimTranEvent
-      Entry: 6
-      Data: 
-    - Name: CAnimEnum
-      Entry: 6
-      Data: 
-    - Name: LastAnimEnum
-      Entry: 6
-      Data: 
-    - Name: LastAnimEndEnum
       Entry: 6
       Data: 
   anims: {fileID: 2001830878}
@@ -632,5 +609,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   direction: {x: 0, y: 0}
+  attackKey: 0
+  hurtKey: 0
+  deathKey: 0
   rb: {fileID: 2001830876}
   physics: {fileID: 2001830886}

@@ -8,14 +8,12 @@ using Sirenix.OdinInspector;
 namespace GoldSprite.UnityPlugins.MyAnimator.Samples {
     public class MyAnimatorSample : SerializedMonoBehaviour {
         public MyAnimator animCtrl;
-        public Dictionary<AnimClipType, AnimationClip> clips;
 
 
         private void Start()
         {
-            animCtrl.SetAnimClips(clips);
             animCtrl.OnAnimEndEvent += (clipType) => {
-                if (AnimClipType.Idle.Equals(clipType))
+                if ("Idle"==clipType)
                     LogTool.NLog("MyAnimatorSamples", "AnimClipType.Idle¶¯»­½áÊø");
             };
             animCtrl.OnAnimTranEvent += (lastAnim, nowAnim) => {
@@ -27,7 +25,7 @@ namespace GoldSprite.UnityPlugins.MyAnimator.Samples {
         public void Exec()
         {
             if (!Application.isPlaying) return;
-            animCtrl.Play(AnimClipType.Idle, 0, 0);
+            animCtrl.Play("Idle", 0, 0);
         }
 
 
