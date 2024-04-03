@@ -622,5 +622,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d544c0028a0bb42b62696469aea6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  direction: {x: 0, y: 0}
   rb: {fileID: 2001830876}
   physics: {fileID: 2001830886}
