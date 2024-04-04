@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 1373086886970461728}
   - component: {fileID: 2660809760894314784}
   - component: {fileID: 1373086886970461722}
+  - component: {fileID: 5254907948078194938}
   - component: {fileID: 1373086886970461719}
   m_Layer: 6
   m_Name: Origin_BladeMan
@@ -426,6 +427,23 @@ MonoBehaviour:
   GroundCount: 0
   IsGround: 0
   CollisionList: []
+--- !u!114 &5254907948078194938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373086886970461739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da03e542353068a48a6da39e8f23a0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhysicsManager: {fileID: 1373086886970461722}
+  SmoothOrRoughMaterial:
+  - {fileID: 6200000, guid: b55df863cc05abb4296d1429d7a88664, type: 2}
+  - {fileID: 6200000, guid: 90499fcb8d0dd7741a2a2b60449512de, type: 2}
+  rb: {fileID: 1373086886970461728}
 --- !u!58 &1373086886970461719
 CircleCollider2D:
   m_ObjectHideFlags: 0
