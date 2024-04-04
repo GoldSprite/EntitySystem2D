@@ -68,7 +68,7 @@ namespace GoldSprite.UnityPlugins.PhysicsManager {
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            Debug.Log($"退出Collider{collision.gameObject.name}");
+            //Debug.Log($"退出Collider{collision.gameObject.name}");
             OnExitGround?.Invoke(collision);
         }
     }

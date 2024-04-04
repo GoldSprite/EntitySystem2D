@@ -19,6 +19,12 @@ namespace GoldSprite.UFsm {
         [ShowInInspector]
         public Vector2 Direction { get => Fsm.ctrlFsm.Props.Direction; set => Fsm.ctrlFsm.Props.Direction = value; }
 
+        private float ChaseCache;
+        public float ChaseCacheInterval = 1f;
+        [ShowInInspector]
+        public float ChaseCacheNormalized => (ChaseCache - Time.time) / ChaseCacheInterval;
+
+
         public ChaseState(AIFsm fsm) : base(fsm)
         {
             CanTranSelf = false;
@@ -30,6 +36,7 @@ namespace GoldSprite.UFsm {
                 LogTool.NLog("ChaseStateTest", "自身在界外, 不可追击.");
                 StateSwitch = false;
             } else
+
             if (Fsm.collCtrls.TryOverlap(Fsm.Props.VisionRange, out otherFsm)) {
                 StateSwitch = true;
                 MoveVector = otherFsm.Props.BodyCollider.bounds.center - BodyPos; MoveVector.y = 0;
@@ -57,7 +64,10 @@ namespace GoldSprite.UFsm {
 
         public override void Update()
         {
-            Fsm.ctrlFsm.Props.Direction = MoveVector;
+            if (ChaseCacheNormalized <= 0) {
+                Fsm.ctrlFsm.Props.Direction = MoveVector;
+                ChaseCache = Time.time + ChaseCacheInterval;
+            }
         }
 
 

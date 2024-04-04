@@ -36,6 +36,8 @@ namespace GoldSprite.UFsm {
         private Vector2 direction;
         [ShowInInspector]
         public Vector2 Direction { get => (direction = direction.magnitude > 1 ? direction.normalized : direction); set => direction = value; }
+        [SerializeField] private bool hurtTurn = true;
+        public bool HurtTurn { get => hurtTurn; set => hurtTurn = value; }
         [ShowInInspector]
         public Vector2 Velocity { get => rb.velocity; set => rb.velocity = value; }
         [ShowInInspector]

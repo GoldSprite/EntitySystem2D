@@ -22,10 +22,14 @@ namespace GoldSprite.UFsm {
         {
             //¶¯»­
             Fsm.AnimCtrls.Play(AnimName, 0, 0);
+            Fsm.Props.BodyCollider.enabled = false;
+            Fsm.Props.BodyCollider.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
 
         public override void OnExit()
         {
+            Fsm.Props.BodyCollider.enabled = true;
+            Fsm.Props.BodyCollider.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
 
         public override void FixedUpdate()

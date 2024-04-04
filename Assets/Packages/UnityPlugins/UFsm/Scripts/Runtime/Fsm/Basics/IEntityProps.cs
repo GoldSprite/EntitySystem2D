@@ -17,6 +17,7 @@ namespace GoldSprite.UFsm {
         public int Face { get; set; }
         //public bool AnyKey { get; set; }
         public Collider2D BodyCollider { get; set; }
+        bool HurtTurn { get; set; }
 
         public enum KeySwitchType
         {

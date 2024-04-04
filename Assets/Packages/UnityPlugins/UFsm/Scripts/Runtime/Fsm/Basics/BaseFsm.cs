@@ -38,6 +38,13 @@ namespace GoldSprite.UFsm {
                 if (Props.DeathKey) return;
                 Props.HurtKey = true;
             }));
+            Cmd.RegisterCommand(BaseFsmCommand.Turn, (Action<float>)((face) => {
+                var sign = Math.Sign(face);
+                if (sign==0) return;
+                var ls = transform.localScale;
+                ls.x = sign;
+                transform.localScale = ls;
+            }));
             Cmd.RegisterCommand(BaseFsmCommand.Death, (Action<bool>)((down) => {
                 Props.DeathKey = down;
             }));

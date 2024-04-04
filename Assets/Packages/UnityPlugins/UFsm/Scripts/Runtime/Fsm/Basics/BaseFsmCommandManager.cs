@@ -26,6 +26,7 @@ namespace GoldSprite.UFsm {
     public enum BaseFsmCommand {
         Idle, Move, Attack, Hurt, Death,
         Jump,
-        MoveBoost
+        MoveBoost,
+        Turn
     }
 }

@@ -346,9 +346,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1373086886970461720, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
     - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: name
+      value: "\u73A9\u5BB6\u63A7\u5236\u5200\u5BA2"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: jumpingMoveDrag
+      value: 0.336
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461725, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -665,7 +677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.x
-      value: 0.38
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.y
@@ -689,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.width
-      value: 9.8
+      value: 15.83
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: roamArea.width
@@ -740,8 +752,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1373086886970461720, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
     - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: health
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: hurtTurn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461723, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: serializationData.Prefab
