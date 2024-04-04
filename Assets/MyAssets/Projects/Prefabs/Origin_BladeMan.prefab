@@ -172,7 +172,7 @@ MonoBehaviour:
   StateRun: 1
   ctrlFsm: {fileID: 1373086886970461720}
   behaviourMetaList:
-  - {fileID: 11400000, guid: 31b6df288f0a84d4ea319657144f2571, type: 2}
+  - {fileID: 11400000, guid: 57ef813e38bc41b4484ea8f97229c3c8, type: 2}
   - {fileID: 11400000, guid: 6ecc58146224f9e48baacd23fe707058, type: 2}
   props: {fileID: 1373086886970461717}
 --- !u!114 &1373086886970461717

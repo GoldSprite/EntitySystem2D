@@ -222,6 +222,18 @@
         - 有reverseProbability几率折返, 否则退出状态
 
 
+## 2024.4.4 - [V0.1.8.4-alpha]
+- 已基本修复AIIdle与Roam逻辑: 碰撞边界, 碰撞地面体, 圈内随机移动.
+- 修复滑步问题: 增加一个plugin专用于`IsGround`时设置`Rough`材质反之`smooth`材质
+
+
+## 2024.4.4 - [V0.1.8.5-temp]
+- 继续优化AI状态机: 
+  - [x] 修改两状态, AIIdle移除, Roam变回Task形式, 持续运行.
+- 更新总结: 
+  - 状态与状态机增加UpdateCondition与UpdateConditions方法, 用于持续执行所有状态条件更新任务.
+  - 在Roam.UpdateCondition()计时并在保持一段时间闲置后进入漫游.
+
 
 ```
 

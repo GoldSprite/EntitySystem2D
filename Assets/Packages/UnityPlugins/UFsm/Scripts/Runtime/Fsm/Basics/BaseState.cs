@@ -3,7 +3,7 @@ using System;
 namespace GoldSprite.UFsm {
     [Serializable]
     public class BaseState : State {
-        public string AnimName { get; set; }
+        public string AnimName { get; set; } = "";
         public new BaseFsm Fsm { get; }
         public IEntityProps Props => Fsm.Props;
 

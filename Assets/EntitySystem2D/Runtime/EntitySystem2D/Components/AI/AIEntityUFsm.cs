@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GoldSprite.EntitySystem2D {
-    public class AIEntityInputs : AIFsm {
+    public class AIEntityUFsm : AIFsm {
         [SerializeField]
         private List<BehaviourMeta> behaviourMetaList;
         public AIUProps props;

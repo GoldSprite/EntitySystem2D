@@ -11,6 +11,7 @@ namespace GoldSprite.UFsm {
     public class Fsm : SerializedMonoBehaviour, IFsm {
         public bool TranRun = true;
         public bool StateRun = true;
+        public bool ConditionRun = true;
         [ShowInInspector]
         protected virtual SortedDictionary<Type, IState> states { get; set; }
         [ShowInInspector]
@@ -39,7 +40,7 @@ namespace GoldSprite.UFsm {
         {
             states.Add(state.GetType(), state);
             state.Priority = priority;
-            LastPriority = states.Values.OrderBy(p=>p.Priority).Last().Priority;
+            LastPriority = states.Values.OrderBy(p => p.Priority).Last().Priority;
         }
 
         public void Begin()
@@ -81,19 +82,29 @@ namespace GoldSprite.UFsm {
             return default;
         }
 
+        public bool IsDefaultState() { return CState == DefaultState; }
+
         public void Update()
         {
-            if(!TranRun) return;
+            if (ConditionRun)
+                UpdateConditions();
 
-            UpdateNextState();
-            CState.Update();
+            if (TranRun)
+                UpdateNextState();
+
+            if (StateRun) CState.Update();
+        }
+
+        public void UpdateConditions()
+        {
+            foreach(var state in states.Values) {
+                state.UpdateCondition();
+            }
         }
 
         public void FixedUpdate()
         {
-            if (!StateRun) return;
-
-            CState.FixedUpdate();
+            if (StateRun) CState.FixedUpdate();
         }
 
 

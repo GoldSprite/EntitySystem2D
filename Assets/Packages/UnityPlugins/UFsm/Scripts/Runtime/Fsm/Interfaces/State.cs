@@ -11,6 +11,7 @@ namespace GoldSprite.UFsm {
         public virtual void OnExit() { }
         public virtual void Update() { }
         public virtual void FixedUpdate() { }
+        public virtual void UpdateCondition() { }
 
         public override string ToString()
         {

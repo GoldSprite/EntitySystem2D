@@ -9,5 +9,6 @@ namespace GoldSprite.UFsm {
         public void OnExit();
         public void Update();
         public void FixedUpdate();
+        public void UpdateCondition();
     }
 }

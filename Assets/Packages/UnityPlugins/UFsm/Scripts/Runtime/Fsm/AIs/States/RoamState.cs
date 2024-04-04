@@ -14,9 +14,13 @@ namespace GoldSprite.UFsm {
         public Vector2 RoamVelMinMax = new(0.2f, 1f);
         public float reverseProbability = 0.6f;
         public float LeftDirProbability = 0.5f;
+
         private float Ticker, TickerInterval = 2;
         [ShowInInspector]
         public float TickerNormalizee => (Ticker - seconds) / TickerInterval;
+        private float EnterTicker, EnterTickerInterval = 2;
+        [ShowInInspector]
+        public float EnterTickerNormalized => (EnterTicker - Time.time) / EnterTickerInterval;
         private float seconds;
 
         [ShowInInspector]
@@ -33,7 +37,23 @@ namespace GoldSprite.UFsm {
         public RoamState(AIFsm fsm) : base(fsm)
         {
             CanTranSelf = false;
+            EnterTicker = Time.time + EnterTickerInterval;
         }
+
+        public override void UpdateCondition()
+        {
+            if (Fsm.IsDefaultState()) {
+                LogTool.NLog("EnterRoamStateTest", $"这个人在发呆, 赶紧让他逛逛, 倒计时--[{EnterTickerNormalized}]");
+            } else {
+                LogTool.NLog("EnterRoamStateTest", "它在闲逛或者正忙, 计时器重置.");
+                EnterTicker = Time.time + EnterTickerInterval;
+            }
+            if(EnterTickerNormalized <= 0) {
+                LogTool.NLog("EnterRoamStateTest", "计时结束, 闲了有一会儿了, 逛逛.");
+                EnterRoam = true;
+            }
+        }
+
 
         public override bool Enter() => EnterRoam;
         public override bool Exit() => ExitRoam;
@@ -92,7 +112,7 @@ namespace GoldSprite.UFsm {
             var bounds = Fsm.ctrlFsm.Props.BodyCollider.bounds;
             headPoint = bounds.center;
             headPoint.y = bounds.max.y;
-            var radius = bounds.size.x/2f * 1.1f;
+            var radius = bounds.size.x / 2f * 1.1f;
             ground = Physics2D.OverlapCircle(headPoint, radius, PhysicsManager.GroundMask);
             return ground != null;
         }

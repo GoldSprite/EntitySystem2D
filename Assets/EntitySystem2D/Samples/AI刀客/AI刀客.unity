@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Origin_BladeMan
       objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461739, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
     - {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
@@ -640,16 +644,16 @@ PrefabInstance:
       objectReference: {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: roamArea.x
-      value: 4.2
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: roamArea.width
-      value: 5.34
+      value: 12.04
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
     - target: {fileID: 1373086886970461718, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: enable
       value: 0
