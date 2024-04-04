@@ -84,7 +84,7 @@ namespace GoldSprite.UFsm {
 
         public bool IsDefaultState() { return CState == DefaultState; }
 
-        public void Update()
+        public virtual void Update()
         {
             if (ConditionRun)
                 UpdateConditions();
@@ -102,7 +102,7 @@ namespace GoldSprite.UFsm {
             }
         }
 
-        public void FixedUpdate()
+        public virtual void FixedUpdate()
         {
             if (StateRun) CState.FixedUpdate();
         }

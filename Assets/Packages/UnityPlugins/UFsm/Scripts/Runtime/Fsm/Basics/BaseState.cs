@@ -16,5 +16,7 @@ namespace GoldSprite.UFsm {
 
         public override bool Enter() => false;
         public override bool Exit() => true;
+
+        public virtual void OnDrawGizmos() { }
     }
 }

@@ -170,10 +170,12 @@ MonoBehaviour:
     SerializationNodes: []
   TranRun: 1
   StateRun: 1
+  ConditionRun: 1
   ctrlFsm: {fileID: 1373086886970461720}
   behaviourMetaList:
   - {fileID: 11400000, guid: 57ef813e38bc41b4484ea8f97229c3c8, type: 2}
   - {fileID: 11400000, guid: 6ecc58146224f9e48baacd23fe707058, type: 2}
+  - {fileID: 11400000, guid: 8563708df9013524cbc4b4e107106eae, type: 2}
   props: {fileID: 1373086886970461717}
 --- !u!114 &1373086886970461717
 MonoBehaviour:
@@ -203,6 +205,12 @@ MonoBehaviour:
     width: 18.31
     height: 5.09
   bodyCollider: {fileID: 0}
+  visionRange:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!114 &1373086886970461720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +234,7 @@ MonoBehaviour:
     SerializationNodes: []
   TranRun: 1
   StateRun: 1
+  ConditionRun: 1
 --- !u!114 &1373086886970461723
 MonoBehaviour:
   m_ObjectHideFlags: 0

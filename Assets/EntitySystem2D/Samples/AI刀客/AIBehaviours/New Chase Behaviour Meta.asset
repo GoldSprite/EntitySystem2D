@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8343df2307e0dcb47bb1d02244987f2a, type: 3}
-  m_Name: New AI Idle Behaviour Meta
+  m_Script: {fileID: 11500000, guid: b1eb8a000035ff049b8c19ce4aff8546, type: 3}
+  m_Name: New Chase Behaviour Meta
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,5 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  priority: 0
+  priority: 2
   animClip: {fileID: 0}

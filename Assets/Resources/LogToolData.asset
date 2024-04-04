@@ -79,7 +79,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 8
     - Name: 
       Entry: 7
       Data: 
@@ -161,6 +161,18 @@ MonoBehaviour:
     - Name: $v
       Entry: 5
       Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: ChaseStateTest
+    - Name: $v
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 

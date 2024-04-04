@@ -38,5 +38,22 @@ namespace GoldSprite.UFsm {
             //        Props.MoveBoostKey = !Props.MoveBoostKey;
             //}));
         }
+
+        public override void Update()
+        {
+            base.Update();
+        }
+
+        //private void OnDrawGizmos()
+        //{
+        //    DrawStateGizmos();
+        //}
+
+        //public void DrawStateGizmos()
+        //{
+        //    foreach(var state in states.Values) {
+        //        ((BaseState)state).OnDrawGizmos();
+        //    }
+        //}
     }
 }

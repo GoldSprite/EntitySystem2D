@@ -227,12 +227,44 @@
 - 修复滑步问题: 增加一个plugin专用于`IsGround`时设置`Rough`材质反之`smooth`材质
 
 
-## 2024.4.4 - [V0.1.8.5-temp]
+## 2024.4.4 - [V0.1.8.5-alpha]
 - 继续优化AI状态机: 
   - [x] 修改两状态, AIIdle移除, Roam变回Task形式, 持续运行.
 - 更新总结: 
   - 状态与状态机增加UpdateCondition与UpdateConditions方法, 用于持续执行所有状态条件更新任务.
   - 在Roam.UpdateCondition()计时并在保持一段时间闲置后进入漫游.
+
+
+## 2024.4.4 - [V0.1.9:`AIChase`]
+- 思路: 
+  - 功能分析: 
+    1. IAIProps: 
+       1. 增加IChaseProps: 
+          1. 视野范围Rect VisionRange
+    2. AIUprops: 
+       1. 实现视野范围属性
+    3. AIState声明抽象方法OnGizmos
+    4. AIFsm: 
+       1. 增加提供OnGizmos(), 在方法内遍历所有状态的OnGizmos()方法
+    5. Chase状态: 
+       1. 属性: 
+          1. 私有bool控制是否绘制VisionRange
+       2. Chase.UpdateCondition(): 
+          1. 在视野范围内有实体出现时: 
+             1. 切换到追击Chase状态
+                1. UpdateLoop: 
+                   1. 计算目标与自身向量MoveVector
+                   2. 将移动方向Direction设为MoveVector
+          2. 否则退出追击.
+       3. Chase.OnGizmos(): 
+          1. 根据绘制开关绘制VisionRange
+  - 逐步完成: 
+    - [x] 增加VisionRange属性与Gizmos方法, 重写IAIProps, AIUprops, AIState, AIFsm
+    - [x] 增加Chase状态, 增加创建ChaseMeta, AIEntityUFsm增加Meta
+    - [ ] 实现Chase逻辑: 
+
+
+### 2024.4.4 - [V0.1.9:`AIChase`] [0-temp]
 
 
 ```

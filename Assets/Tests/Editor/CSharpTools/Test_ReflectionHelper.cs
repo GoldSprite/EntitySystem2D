@@ -9,9 +9,9 @@ namespace GoldSprite.GUtils.Tests {
         public void 基本查找()
         {
             var obj = new MyObj();
-            Debug.Log($"有路径泛型 查找Vector2成员MyObj.Pos: {ReflectionHelper.GetField<Vector2>(obj, "Pos")}");
+            Debug.Log($"有路径泛型 查找Vector2成员MyObj.BodyPos: {ReflectionHelper.GetField<Vector2>(obj, "BodyPos")}");
             Debug.Log($"无路径泛型 查找string成员MyObj: {ReflectionHelper.GetField<string>(obj)}");
-            Debug.Log($"有路径object型 查找成员MyObj.Pos: {ReflectionHelper.GetField(obj, "Pos")}");
+            Debug.Log($"有路径object型 查找成员MyObj.BodyPos: {ReflectionHelper.GetField(obj, "BodyPos")}");
 
             obj.obj = new MyObj.MyObjOb();
             var type = ReflectionHelper.GetFieldInfo(obj, "obj.Name").FieldType;
