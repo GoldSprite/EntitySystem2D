@@ -23,6 +23,8 @@ namespace GoldSprite.UFsm {
         public Collider2D VisionRange { get => visionRange; set => visionRange = value; }
         [SerializeField] private IEntityProps ctrlProps;
         public IEntityProps CtrlProps { get => ctrlProps; set => ctrlProps = value; }
+        [SerializeField] private Collider2D attackRange;
+        public Collider2D AttackRange { get => attackRange; set => attackRange = value; }
 
 
         private void Start()

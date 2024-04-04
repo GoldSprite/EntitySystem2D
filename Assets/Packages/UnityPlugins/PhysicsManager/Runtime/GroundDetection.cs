@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GoldSprite.UnityPlugins.PhysicsManager {
     [Serializable]
-    public class PhysicsManager : MonoBehaviour {
+    public class GroundDetection : MonoBehaviour {
         [Header("配置")]
         public Collider2D footColl;
         [Header("事件")]
@@ -54,21 +54,21 @@ namespace GoldSprite.UnityPlugins.PhysicsManager {
             };
         }
 
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    OnEnterGround?.Invoke(collision.collider);
-        //}
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            OnEnterGround?.Invoke(collision.collider);
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             OnEnterGround?.Invoke(collision);
         }
-        //private void OnCollisionExit2D(Collision2D collision)
-        //{
-        //    OnExitGround?.Invoke(collision.collider);
-        //}
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            OnExitGround?.Invoke(collision.collider);
+        }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            //Debug.Log($"退出Collider{collision.gameObject.name}");
+            Debug.Log($"退出Collider{collision.gameObject.name}");
             OnExitGround?.Invoke(collision);
         }
     }

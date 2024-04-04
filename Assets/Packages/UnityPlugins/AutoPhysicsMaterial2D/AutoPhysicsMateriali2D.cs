@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class AutoPhysicsMateriali2D : MonoBehaviour {
     [ManualRequire]
-    public PhysicsManager PhysicsManager;
+    public GroundDetection PhysicsManager;
     public PhysicsMaterial2D[] SmoothOrRoughMaterial;
-    [ManualRequire]
     public Rigidbody2D rb;
     public PhysicsMaterial2D PhysicsMaterial { get => rb.sharedMaterial;set => rb.sharedMaterial = value; }
 

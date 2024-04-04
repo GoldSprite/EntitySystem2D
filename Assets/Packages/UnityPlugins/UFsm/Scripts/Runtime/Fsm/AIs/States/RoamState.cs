@@ -113,7 +113,7 @@ namespace GoldSprite.UFsm {
             headPoint = bounds.center;
             headPoint.y = bounds.max.y;
             var radius = bounds.size.x / 2f * 1.1f;
-            ground = Physics2D.OverlapCircle(headPoint, radius, PhysicsManager.GroundMask);
+            ground = Physics2D.OverlapCircle(headPoint, radius, GroundDetection.GroundMask);
             return ground != null;
         }
 

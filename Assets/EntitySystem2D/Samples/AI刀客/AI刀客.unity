@@ -409,6 +409,11 @@ PrefabInstance:
     - {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
     - {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+--- !u!61 &1431656587 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7825384227011985634, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+  m_PrefabInstance: {fileID: 1842894374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443660202
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,26 +643,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 458672114048241430, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+    - target: {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: behaviourMetaList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461716, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: behaviourMetaList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: cd5b8ee443acec9499c3000148d242c8, type: 2}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.x
-      value: 0.23
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.y
-      value: -2.76
+      value: -2.47
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: roamArea.x
       value: -2.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
+      propertyPath: visionRange
+      value: 
+      objectReference: {fileID: 1431656587}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: visionRange.x
       value: 0
@@ -668,7 +689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.width
-      value: 9.74
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: roamArea.width
@@ -676,7 +697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: landArea.height
-      value: 5.22
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: visionRange.width
@@ -698,10 +719,6 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"ctrlProps","value":$eref:0'
       objectReference: {fileID: 0}
-    - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
-      propertyPath: serializationData.ReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 2071380430}
     - target: {fileID: 1373086886970461717, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 1
@@ -800,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373086886970461739, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc7178906478cd4d9bd50df182de241, type: 3}

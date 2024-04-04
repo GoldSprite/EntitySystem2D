@@ -17,9 +17,8 @@ namespace GoldSprite.UFsm {
         [ManualRequire]
         [Header("控制组件")]
         public Rigidbody2D rb;
-        [ManualRequire]
         [Header("依赖物理")]
-        public PhysicsManager physics;
+        public GroundDetection physics;
         [Header("摩擦材质")]
         [SerializeField] private PhysicsMaterial2D[] smoothOrRoughMaterial;
         public PhysicsMaterial2D[] SmoothOrRoughMaterial { get => smoothOrRoughMaterial; set => smoothOrRoughMaterial = value; }
@@ -40,7 +39,7 @@ namespace GoldSprite.UFsm {
         [ShowInInspector]
         public Vector2 Velocity { get => rb.velocity; set => rb.velocity = value; }
         [ShowInInspector]
-        public bool IsGround => physics.IsGround;
+        public bool IsGround => (physics?.IsGround)??false;
         [SerializeField] private float speed = 4;
         public float Speed { get => speed; set => speed = value; }
         [SerializeField] private float speedBoost = 2;
@@ -86,8 +85,8 @@ namespace GoldSprite.UFsm {
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
-            physics = GetComponent<PhysicsManager>();
+            //rb = GetComponent<Rigidbody2D>();
+            //physics = GetComponent<GroundDetection>();
 
             InitProps();
         }

@@ -30,10 +30,9 @@ namespace GoldSprite.UFsm {
                 LogTool.NLog("ChaseStateTest", "自身在界外, 不可追击.");
                 StateSwitch = false;
             } else
-            if (TryOverlap(Fsm.Props.VisionRange, out otherFsm)) {
+            if (Fsm.collCtrls.TryOverlap(Fsm.Props.VisionRange, out otherFsm)) {
                 StateSwitch = true;
                 MoveVector = otherFsm.Props.BodyCollider.bounds.center - BodyPos; MoveVector.y = 0;
-                Fsm.ctrlFsm.Props.Direction = MoveVector;
                 LogTool.NLog("ChaseStateTest", "有目标, 进入追击");
             } else {
                 LogTool.NLog("ChaseStateTest", "没有一个目标, 退出追击");
@@ -58,35 +57,10 @@ namespace GoldSprite.UFsm {
 
         public override void Update()
         {
-
+            Fsm.ctrlFsm.Props.Direction = MoveVector;
         }
 
 
-        private bool TryOverlap(Collider2D collider, out BaseFsm otherFsm)
-        {
-            Bounds selfBounds = collider.bounds;
-            var min = selfBounds.min;
-            var max = selfBounds.max;
-            var colls = Physics2D.OverlapAreaAll(min, max);
-            if (colls.Length != 0) {
-                LogTool.NLog("ChaseStateTest", "列表不为空, 遍历判断是否有BaseFsm");
-                foreach (var coll in colls) {
-                    if (coll.TryGetComponent(out otherFsm) && otherFsm is not AIFsm) {
-                        LogTool.NLog("ChaseStateTest", "找到BaseFsm且不为AIFsm.");
-                        if (otherFsm.Props.BodyCollider != null && (coll == otherFsm.Props.BodyCollider) && coll != Fsm.ctrlFsm.Props.BodyCollider) {
-                            LogTool.NLog("ChaseStateTest", $"且是一个不是自身的Fsm-BodyCollider, 碰撞(距离).");
-                            LogTool.NLog("ChaseStateTest", "完成目标BaseFsm查找, 返回该Fsm, 且Overlap结果为true.");
-                            return true;
-                        }
-                    } else {
-                        LogTool.NLog("ChaseStateTest", "不是BaseFsm");
-                    }
-                }
-            }
-            LogTool.NLog("ChaseStateTest", "没找到BaseFsm, Fsm为空, 且Overlap结果为false.");
-            otherFsm = null;
-            return false;
-        }
 
         //public float Distance(Rect selfBounds, Collider2D p)
         //{
