@@ -24,8 +24,8 @@ namespace GoldSprite.UFsm {
         public float CenterDirX => CenterDistanceX > 0 ? 1 : -1;
         public float CenterDistanceX => Fsm.Props.RoamArea.center.x - Fsm.ctrlFsm.Props.BodyCollider.bounds.center.x;
 
-        public int GroundDirX { get; private set; }
-        public float GroundDistanceX { get; private set; }
+        public int GroundDirX => GroundDistanceX > 0 ? 1 : -1;
+        public float GroundDistanceX => ground.bounds.center.x - headPoint.x;
 
         public Collider2D ground;
         private Vector3 headPoint;
@@ -40,6 +40,7 @@ namespace GoldSprite.UFsm {
 
         public override void OnExit()
         {
+            LogTool.NLog("RoamStateTest", "退出漫游, 速度置零.");
             ExitRoam = false;
             var dir = Direction;
             dir.x = 0;
@@ -69,13 +70,11 @@ namespace GoldSprite.UFsm {
                     LogTool.NLog("RoamStateTest", "随机到退出.");
                     ExitRoam = true;
                 }
-                //碰撞地面体时
             } else
+            //碰撞地面体时反向移动
             if (IsCollisionGround() && IsSameSign(Direction.x, GroundDirX)) {
                 LogTool.NLog("RoamStateTest", "头部碰撞地面体.");
                 if (IsRan(reverseProbability)) {
-                    float GroundDistanceX = ground.bounds.center.x - headPoint.x;
-                    float GroundDirX = GroundDistanceX > 0 ? 1 : -1;
                     ReverseMove(GroundDirX);
                 } else {
                     LogTool.NLog("RoamStateTest", "随机到退出.");
@@ -83,7 +82,7 @@ namespace GoldSprite.UFsm {
                 }
                 ground = null;
             } else
-                //内部时
+                //无碰时随机移动
                 RandomMoveTask();
 
         }
@@ -93,7 +92,7 @@ namespace GoldSprite.UFsm {
             var bounds = Fsm.ctrlFsm.Props.BodyCollider.bounds;
             headPoint = bounds.center;
             headPoint.y = bounds.max.y;
-            var radius = bounds.size.x*1.2f;
+            var radius = bounds.size.x/2f * 1.1f;
             ground = Physics2D.OverlapCircle(headPoint, radius, PhysicsManager.GroundMask);
             return ground != null;
         }
@@ -145,10 +144,8 @@ namespace GoldSprite.UFsm {
 
         private void ReverseMove(float? force = null)
         {
-            GroundDistanceX = ground.bounds.center.x - headPoint.x;
-            GroundDirX = GroundDistanceX > 0 ? 1 : -1;
             var dir = Direction;
-            dir.x = -GroundDirX * force ?? Math.Abs(dir.x);
+            dir.x = -GroundDirX * Math.Abs(force ?? dir.x);
             LogTool.NLog("RoamStateTest", $"反向移动: ");
             Direction = dir;
         }
