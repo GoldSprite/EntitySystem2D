@@ -19,21 +19,8 @@ namespace GoldSprite.UFsm {
         public RoamState RoamState { get; set; }
         [SerializeField] private Rect landArea;
         public Rect LandArea { get => landArea; set => landArea = value; }
-        [SerializeField] private Rect visionRange;
-        public Rect VisionRange {
-            get {
-                var rect = visionRange;
-                var rectS = visionRange.size;
-                var sign = Math.Sign(transform.localScale.x);
-                if (sign != 0) {
-                    rectS.x = Math.Abs(rectS.x) * sign;
-                    visionRange.size = rectS;
-                }
-                rect.center += (Vector2)transform.position;
-                return rect;
-            }
-            set => visionRange = value;
-        }
+        [SerializeField] private Collider2D visionRange;
+        public Collider2D VisionRange { get => visionRange; set => visionRange = value; }
         [SerializeField] private IEntityProps ctrlProps;
         public IEntityProps CtrlProps { get => ctrlProps; set => ctrlProps = value; }
 
@@ -45,7 +32,7 @@ namespace GoldSprite.UFsm {
         private void OnDrawGizmos()
         {
             DrawRoamArea();
-            DrawVisionRange();
+            //DrawVisionRange();
         }
 
         private void DrawRoamArea()
@@ -54,13 +41,13 @@ namespace GoldSprite.UFsm {
             Gizmos.DrawWireCube(LandArea.center, LandArea.size);
         }
 
-        private void DrawVisionRange()
-        {
-            var center = (Vector3)VisionRange.center;
-            var size = VisionRange.size;
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(center, size);
-        }
+        //private void DrawVisionRange()
+        //{
+        //    var center = (Vector3)VisionRange.center;
+        //    var size = VisionRange.size;
+        //    Gizmos.color = Color.green;
+        //    Gizmos.DrawWireCube(center, size);
+        //}
     }
 
 }

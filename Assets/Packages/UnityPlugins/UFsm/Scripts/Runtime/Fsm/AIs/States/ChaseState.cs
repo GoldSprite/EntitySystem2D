@@ -62,8 +62,9 @@ namespace GoldSprite.UFsm {
         }
 
 
-        private bool TryOverlap(Rect selfBounds, out BaseFsm otherFsm)
+        private bool TryOverlap(Collider2D collider, out BaseFsm otherFsm)
         {
+            Bounds selfBounds = collider.bounds;
             var min = selfBounds.min;
             var max = selfBounds.max;
             var colls = Physics2D.OverlapAreaAll(min, max);

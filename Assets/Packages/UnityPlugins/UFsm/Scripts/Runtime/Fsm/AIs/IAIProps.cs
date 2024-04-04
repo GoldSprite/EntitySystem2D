@@ -14,6 +14,6 @@ namespace GoldSprite.UFsm {
     }
 
     public interface IChaseProps {
-        public Rect VisionRange { get; set; }
+        public Collider2D VisionRange { get; set; }
     }
 }
