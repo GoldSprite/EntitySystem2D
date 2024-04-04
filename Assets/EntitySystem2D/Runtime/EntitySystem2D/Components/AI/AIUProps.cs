@@ -17,8 +17,8 @@ namespace GoldSprite.UFsm {
         public string Name { get; set; } = "AI";
         [HideInInspector]  //这里莫名报序列化错误所以隐藏
         public RoamState RoamState { get; set; }
-        [SerializeField] private Rect roamArea;
-        public Rect RoamArea { get => roamArea; set => roamArea = value; }
+        [SerializeField] private Rect landArea;
+        public Rect LandArea { get => landArea; set => landArea = value; }
         [SerializeField] private Rect visionRange;
         public Rect VisionRange {
             get {
@@ -51,7 +51,7 @@ namespace GoldSprite.UFsm {
         private void DrawRoamArea()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(RoamArea.center, RoamArea.size);
+            Gizmos.DrawWireCube(LandArea.center, LandArea.size);
         }
 
         private void DrawVisionRange()

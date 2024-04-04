@@ -16,6 +16,8 @@ namespace GoldSprite.UFsm {
         public bool VisionRangeGizmos = true;
         public Vector3 BodyPos => Fsm.ctrlFsm.Props.BodyCollider.bounds.center;
         public BaseFsm otherFsm;
+        [ShowInInspector]
+        public Vector2 Direction { get => Fsm.ctrlFsm.Props.Direction; set => Fsm.ctrlFsm.Props.Direction = value; }
 
         public ChaseState(AIFsm fsm) : base(fsm)
         {
@@ -24,6 +26,10 @@ namespace GoldSprite.UFsm {
 
         public override void UpdateCondition()
         {
+            if (Fsm.collCtrls.IsOutOfLandArea()) {
+                LogTool.NLog("ChaseStateTest", "自身在界外, 不可追击.");
+                StateSwitch = false;
+            } else
             if (TryOverlap(Fsm.Props.VisionRange, out otherFsm)) {
                 StateSwitch = true;
                 MoveVector = otherFsm.Props.BodyCollider.bounds.center - BodyPos; MoveVector.y = 0;
@@ -41,6 +47,9 @@ namespace GoldSprite.UFsm {
 
         public override void OnExit()
         {
+            var dir = Direction;
+            dir.x = 0;
+            Direction = dir;
         }
 
         public override void OnEnter()

@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GoldSprite.UFsm {
-    public class AIFsm : BaseFsm {
+    public partial class AIFsm : BaseFsm {
         //protected override SortedDictionary<Type, IState> states { get; set; }
         public new IAIProps Props { get; protected set; }
         protected new AIFsmCommandManager Cmd { get; set; }
         public BaseFsm ctrlFsm;
+        public Collisions collCtrls { get; protected set; }
+
 
         protected override void InitCommands()
         {
@@ -43,17 +45,5 @@ namespace GoldSprite.UFsm {
         {
             base.Update();
         }
-
-        //private void OnDrawGizmos()
-        //{
-        //    DrawStateGizmos();
-        //}
-
-        //public void DrawStateGizmos()
-        //{
-        //    foreach(var state in states.Values) {
-        //        ((BaseState)state).OnDrawGizmos();
-        //    }
-        //}
     }
 }

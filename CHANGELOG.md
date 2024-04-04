@@ -261,7 +261,10 @@
   - 逐步完成: 
     - [x] 增加VisionRange属性与Gizmos方法, 重写IAIProps, AIUprops, AIState, AIFsm
     - [x] 增加Chase状态, 增加创建ChaseMeta, AIEntityUFsm增加Meta
-    - [ ] 实现Chase逻辑: 
+    - [x] 实现Chase逻辑:
+    - [ ] 限定追击范围: 
+      1. 将RoamArea换为LandArea并作为主属性以便追击状态获取,
+      2. 将巡逻的越界判定方法改到状态机以便公用
 
 
 ### 2024.4.4 - [V0.1.9:`AIChase`] [0-temp]

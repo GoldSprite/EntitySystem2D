@@ -7,10 +7,10 @@ namespace GoldSprite.UFsm {
         public string Name { get; set; }
         public RoamState RoamState { get; set; }
         public IEntityProps CtrlProps { get; set; }
+        public Rect LandArea { get; set; }
     }
 
     public interface IRoamProps {
-        public Rect RoamArea { get; set; }
     }
 
     public interface IChaseProps {

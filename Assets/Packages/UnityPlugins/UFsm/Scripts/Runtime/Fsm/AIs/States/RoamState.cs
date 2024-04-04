@@ -26,7 +26,7 @@ namespace GoldSprite.UFsm {
         [ShowInInspector]
         public Vector2 Direction { get => Fsm.ctrlFsm.Props.Direction; set => Fsm.ctrlFsm.Props.Direction = value; }
         public float CenterDirX => CenterDistanceX > 0 ? 1 : -1;
-        public float CenterDistanceX => Fsm.Props.RoamArea.center.x - Fsm.ctrlFsm.Props.BodyCollider.bounds.center.x;
+        public float CenterDistanceX => Fsm.Props.LandArea.center.x - Fsm.ctrlFsm.Props.BodyCollider.bounds.center.x;
 
         public int GroundDirX => GroundDistanceX > 0 ? 1 : -1;
         public float GroundDistanceX => ground.bounds.center.x - headPoint.x;
@@ -72,7 +72,7 @@ namespace GoldSprite.UFsm {
             EnterRoam = false;
             Ticker = Time.time + TickerInterval;
 
-            if (IsOutOfRoamArea())
+            if (Fsm.collCtrls.IsOutOfLandArea())
                 CenterMove();
             else
             if (IsCollisionGround()) {
@@ -83,7 +83,7 @@ namespace GoldSprite.UFsm {
         public override void Update()
         {
             //边界时朝中心移动
-            if (IsOutOfRoamArea() && !IsSameSign(Direction.x, CenterDirX)) {
+            if (Fsm.collCtrls.IsOutOfLandArea() && !IsSameSign(Direction.x, CenterDirX)) {
                 LogTool.NLog("RoamStateTest", "碰撞越界.");
                 if (IsRan(reverseProbability)) CenterMove();
                 else {
@@ -175,11 +175,5 @@ namespace GoldSprite.UFsm {
             return MathTool.rand.NextDouble() < leftDirProbability ? -1 : 1;
         }
 
-        public bool IsOutOfRoamArea()
-        {
-            var collBounds = Fsm.ctrlFsm.Props.BodyCollider.bounds;
-            var rect = Fsm.Props.RoamArea;
-            return collBounds.min.x < rect.min.x || collBounds.max.x > rect.max.x || collBounds.min.y < rect.min.y || collBounds.max.y > rect.max.y;
-        }
     }
 }

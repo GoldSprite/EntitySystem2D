@@ -26,6 +26,7 @@ namespace GoldSprite.EntitySystem2D {
 
             Cmd = new AIFsmCommandManager();
             InitCommands();
+            collCtrls = new Collisions(this);
 
             for (int i = 0; i < behaviourMetaList.Count; i++) {
                 var behaviourMeta = behaviourMetaList[i];

@@ -10,6 +10,7 @@ namespace GoldSprite.UFsm {
         public MyAnimator AnimCtrls { get; protected set; }
         protected BaseFsmCommandManager Cmd { get; set; }
 
+
         public void InitFsm(IEntityProps props, MyAnimator animCtrls)
         {
             Props = props;
@@ -66,5 +67,6 @@ namespace GoldSprite.UFsm {
         {
             return $"[{GetType().Name}-{Props.Name}]";
         }
+
     }
 }

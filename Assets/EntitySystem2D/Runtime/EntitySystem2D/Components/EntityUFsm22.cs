@@ -12,6 +12,7 @@ namespace GoldSprite.EntitySystem2D {
             Cmd = new BaseFsmCommandManager();
             InitCommands();
 
+
             for (int i = 0; i < behaviourMetaList.Count; i++) {
                 var behaviourMeta = behaviourMetaList[i];
                 var stateType = behaviourMeta.StateType;
