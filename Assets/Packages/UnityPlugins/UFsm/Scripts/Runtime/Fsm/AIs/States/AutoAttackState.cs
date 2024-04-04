@@ -48,7 +48,7 @@ namespace GoldSprite.UFsm {
 
         public override void OnEnter()
         {
-            AttackCache += Time.time + AttackCacheInterval;
+            AttackCache = Time.time + AttackCacheInterval;
         }
 
         public override void Update()
